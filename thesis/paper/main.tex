@@ -1,40 +1,30 @@
-\documentclass[12pt,a4paper]{article}
-
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[brazil]{babel}
-\usepackage[margin=2.5cm]{geometry}
-\usepackage{graphicx}
-\usepackage{amsmath}
+% Classe extraída do template ICMC/USP fornecido.
+\documentclass[brazil]{packages/icmc}
 \usepackage{booktabs}
-\usepackage[hidelinks]{hyperref}
+\graphicspath{{figures/}{images/}}
+\input{metadata}
 
-\graphicspath{{figures/}}
-
-\title{Monitoramento de temperatura e umidade}
-\author{Seu nome}
-\date{\today}
-
-\begin{document}
-
-\maketitle
-
-\begin{abstract}
+\textoresumo{
 Escreva aqui um resumo do problema, do método utilizado e dos principais
 resultados do trabalho.
-\end{abstract}
+}{temperatura, umidade, monitoramento ambiental}
 
-\noindent\textbf{Palavras-chave:} temperatura; umidade; monitoramento ambiental.
+% Ative quando houver figuras e tabelas no texto.
+% \incluilistadefiguras
+% \incluilistadetabelas
+\hypersetup{hidelinks}
 
+\begin{document}
+% A classe gera capa, folha de rosto, resumo e sumário automaticamente.
+\textual
 \input{sections/introducao}
 \input{sections/metodologia}
 \input{sections/resultados}
 \input{sections/conclusao}
 
-% Adicione as referências citadas no texto neste ambiente.
-% Exemplo de citação no texto: \cite{chave}.
-% \begin{thebibliography}{99}
-% \bibitem{chave} Autor. \textit{Título da obra}. Ano.
-% \end{thebibliography}
-
+\bookmarksetup{startatroot}
+\postextual
+% Adicione referências em references.bib e cite-as com \cite{chave}.
+% Ative após adicionar a primeira citação:
+% \bibliography{references}
 \end{document}
