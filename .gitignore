@@ -1,0 +1,41 @@
+# Python: ambientes virtuais e arquivos compilados
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+
+# Caches de ferramentas e cobertura
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Jupyter: manter notebooks, ignorar checkpoints
+.ipynb_checkpoints/
+
+# Configurações locais e credenciais
+.env
+.env.*
+!.env.example
+!.env.*.example
+/.aws/
+
+# Animações e quadros gerados pelos scripts
+/code/frames/
+/code/mapa_*.gif
+
+# Arquivos temporários de editores e do sistema
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Os artefatos LaTeX são ignorados em thesis/paper/.gitignore.
+# CSVs, JSONs, notebooks e figuras permanecem versionáveis.
