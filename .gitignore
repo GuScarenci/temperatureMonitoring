@@ -39,3 +39,6 @@ Desktop.ini
 
 # Os artefatos LaTeX são ignorados em thesis/paper/.gitignore.
 # CSVs, JSONs, notebooks e figuras permanecem versionáveis.
+
+code/sensor_humidity_24_09_2026.csv
+code/sensor_temperature_24_09_2026.csv
