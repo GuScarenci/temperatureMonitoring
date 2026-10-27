@@ -30,7 +30,7 @@ no ZIP, sem certificação independente de sua versão.
 sudo apt update
 sudo apt install latexmk texlive-latex-recommended texlive-latex-extra \
   texlive-publishers texlive-science texlive-fonts-recommended \
-  texlive-lang-portuguese
+  texlive-lang-portuguese texlive-plain-generic texlive-pictures
 ```
 
 `texlive-publishers` fornece `abntex2`; os demais pacotes atendem às
