@@ -1,0 +1,15 @@
+id_device,nome,regiao,id_environment,x_aprox,y_aprox
+887,1006-esp32-temphum-09,1006,1,0.0,0.0
+86790,1006-esp32-temphum-02,1006,1,3.0,1.4
+86791,1006-esp32-temphum-03,1006,1,5.0,1.4
+86793,1006-esp32-temphum-08,1006,1,8.0,0.0
+891,1006-esp32-temphum-06,1006,1,0.0,4.9
+1025,1008Reuniao-esp32-temphum-03,Reuniao,2,3.0,4.2
+86801,1008Reuniao-esp32-temphum-04,Reuniao,2,5.0,4.2
+48,1006-esp32-temphum-07,1006,1,8.0,5.6
+86796,1006Cluster-esp32-temphum-03,Cluster,3,0.0,7.0
+885,1006Cluster-esp32-temphum-04,Cluster,3,0.0,5.6
+86797,1006Cluster-esp32-temphum-05,Cluster,3,3.0,6.3
+86786,1006Cluster-esp32temphum-06,Cluster,3,4.5,6.3
+86795,1006Cluster-esp32temphum-02,Cluster,3,6.0,7.0
+86794,1006Cluster-esp32temphum-01,Cluster,3,6.0,5.6

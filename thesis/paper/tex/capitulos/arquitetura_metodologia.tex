@@ -1,0 +1,20 @@
+\section{COPPA como caso de uso}
+Apresentar somente os requisitos do COPPA diretamente relacionados ao TCC: identificação da máquina, autorização, extração, conectividade, confiabilidade e registro do resultado. Aplicativo, pagamentos, assinatura e infraestrutura comercial ficam fora do escopo.
+
+\section{Koala como referência arquitetural}
+Descrever os conceitos da camada edge do Koala que serão reaproveitados: ESP32, MQTT, device abstraction, comunicação reativa, identidade e padrões de integração, sem assumir que toda a topologia fog/cloud deva ser reproduzida.
+
+\section{Equipamento e interface física}
+Documentar a máquina escolhida, sinais disponíveis, restrições elétricas e a estratégia de atuação isolada. Se a máquina não puder ser obtida em tempo hábil, documentar o rig representativo utilizado.
+
+\section{Modelo de falhas}
+Definir explicitamente os cenários suportados: mensagens duplicadas, replay, comando expirado, reboot antes/depois da atuação, perda de conexão e perda do ACK. Delimitar falhas fora do escopo.
+
+\section{Arquitetura proposta}
+A arquitetura deverá separar Authorization Service, MQTT, ESP32/Edge Agent, Legacy Adapter, Physical Evidence e registro persistente de execução. Cada comando deve possuir \texttt{command\_id}, \texttt{machine\_id}, validade e estado.
+
+\section{Máquina de estados}
+Especificar estados como RECEIVED, VALIDATED, ACTUATING, WAITING\_FEEDBACK, COMPLETED, FAILED e UNKNOWN, incluindo transições e persistência necessária para recuperação.
+
+\section{Metodologia de avaliação}
+Comparar baseline MQTT direto versus proposta sob cenários normais e falhas induzidas, com repetição suficiente para obter métricas quantitativas.

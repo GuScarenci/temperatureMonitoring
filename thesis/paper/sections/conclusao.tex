@@ -1,5 +1,107 @@
 \chapter{Conclusão}
 \label{sec:conclusao}
 
-Sintetize os principais resultados, as limitações do estudo e as possibilidades
-de trabalhos futuros.
+Este trabalho investigou a reconstrução virtual de temperaturas
+a partir de medições de sensores IoT instalados no ambiente 1006
+do LASDPC. O objetivo proposto foi atendido por meio da preparação,
+sincronização e enriquecimento de dados históricos de nove sensores
+físicos, cujas medições foram agregadas em intervalos de cinco
+minutos. A avaliação permitiu comparar métodos de reconstrução
+e investigar a influência da quantidade e da seleção de sensores
+de referência, bem como a contribuição de informações ambientais
+complementares. A principal contribuição consiste na avaliação
+experimental dessas estratégias em uma infraestrutura real
+preexistente, com procedimentos e resultados documentados
+para reprodução.
+
+Na comparação principal, os métodos supervisionados apresentaram
+erros médios inferiores aos da média aritmética. A regressão
+linear obteve MAE médio entre sensores-alvo de 0,257~°C,
+enquanto a Random Forest alcançou 0,254~°C, em comparação
+a 0,927~°C da referência. A Random Forest apresentou o menor
+MAE médio, enquanto a regressão linear obteve a menor média
+dos RMSE. Entretanto, as diferenças agregadas entre os modelos
+supervisionados foram pequenas e o desempenho variou conforme
+o sensor-alvo. A média aritmética, por exemplo, apresentou
+menor MAE nos sensores 1 e 86782, evidenciando que nenhuma
+das abordagens foi superior em todos os casos.
+
+Diante desses resultados, a regressão linear se apresenta
+como uma alternativa inicial competitiva para a reconstrução
+de temperaturas no cenário estudado, considerando sua
+simplicidade estrutural e seu desempenho próximo ao da
+Random Forest. Essa interpretação não estabelece superioridade
+estatística nem exclui a utilização de outros métodos,
+especialmente em sensores para os quais foram observadas
+vantagens individuais.
+
+A investigação da quantidade de entradas mostrou que
+utilizar todos os sensores disponíveis não necessariamente
+produz estimativas mais precisas. Na regressão linear com
+seleção por correlação calculada exclusivamente no treinamento,
+quatro sensores de referência apresentaram o menor MAE médio
+entre as configurações avaliadas, de 0,238~°C. Esse resultado
+sugere que subconjuntos de sensores podem oferecer informações
+suficientes para reconstruções competitivas. Entretanto,
+o desempenho depende do sensor-alvo e da regra de seleção
+empregada, não sendo possível estabelecer uma quantidade
+universalmente ótima com base nos experimentos realizados.
+
+Na análise espacial complementar, realizada com seis sensores
+de posições conhecidas, a seleção por correlação histórica
+apresentou menor MAE médio que a seleção por proximidade
+física para uma a quatro entradas. Esse comportamento indica
+que a distância euclidiana, isoladamente, não foi o critério
+mais favorável nas configurações avaliadas. A representação
+espacial das temperaturas médias também permitiu visualizar
+diferenças entre os dispositivos, utilizando interpolação
+IDW exclusivamente para fins ilustrativos, sem validar
+um campo térmico contínuo.
+
+O enriquecimento das entradas com umidade relativa produziu
+uma redução pequena no MAE médio da regressão linear, com
+melhorias em cinco sensores-alvo e aumento do erro nos
+outros quatro. Dessa forma, não foi observada uma vantagem
+uniforme da inclusão dessa grandeza nas condições avaliadas.
+Os registros de energia, por sua vez, apresentaram baixa
+disponibilidade temporal, cobrindo apenas 4,07\% da grade
+considerada, e não tiveram sua unidade física confirmada.
+Por esse motivo, sua utilização permaneceu restrita a uma
+análise exploratória.
+
+As conclusões obtidas estão limitadas a um único ambiente,
+um período de observação e uma divisão cronológica de
+treinamento e teste, considerando apenas janelas com
+temperaturas disponíveis para todos os sensores do conjunto
+principal. Não foram avaliados cenários de indisponibilidade
+simultânea das entradas ou a estabilidade dos modelos em
+outras condições ambientais. Além disso, as medições dos
+próprios sensores foram utilizadas como referência,
+sem comparação com instrumentos calibrados. Portanto,
+os erros observados não demonstram exatidão metrológica
+nem validam diretamente a reconstrução de temperaturas
+em posições não instrumentadas ou a avaliação de conforto
+térmico.
+
+Como continuidade, recomenda-se avaliar os métodos em
+outros períodos e ambientes, investigar estratégias de
+reconstrução diante de falhas dos sensores de referência
+e validar estimativas em posições não instrumentadas.
+A integração de novas fontes de dados, após a verificação
+de suas convenções temporais e unidades físicas, também
+poderá ampliar as possibilidades de análise. Por fim,
+a utilização das temperaturas reconstruídas em estudos
+de conforto térmico dependerá da definição de um protocolo
+específico e da obtenção das demais variáveis ambientais
+e pessoais necessárias.
+
+Em síntese, os resultados demonstram que dados históricos
+de uma infraestrutura IoT existente podem ser utilizados
+para reconstruir temperaturas de sensores físicos com
+erros relativamente baixos nas condições experimentais
+avaliadas. A comparação entre métodos e configurações
+evidencia a importância de considerar as características
+de cada sensor-alvo e de selecionar adequadamente as
+informações utilizadas na reconstrução, oferecendo uma
+base experimental para futuras aplicações de sensoriamento
+virtual no LASDPC.

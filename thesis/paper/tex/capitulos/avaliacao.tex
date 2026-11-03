@@ -1,0 +1,23 @@
+\section{Baseline e proposta}
+O baseline será um acionamento direto após recebimento de comando MQTT, sem persistência/idempotência avançada. A proposta adicionará validação, estado persistente e feedback físico.
+
+\section{Cenários experimentais}
+\begin{description}
+\item[C1] Comando normal.
+\item[C2] Mesmo \texttt{command\_id} recebido múltiplas vezes.
+\item[C3] Replay após conclusão.
+\item[C4] Comando expirado.
+\item[C5] Reboot antes da atuação.
+\item[C6] Reboot após atuação e antes do ACK.
+\item[C7] Queda de rede antes/depois da extração.
+\item[C8] Comando aceito sem evidência física de extração.
+\end{description}
+
+\section{Métricas}
+Incluir duplicate actuation rate, successful command rate, verified completion rate, false completion rate, consistência de recuperação, latência autorização--atuação, latência de verificação, latência ponta a ponta e overhead de recursos.
+
+\section{Resultados}
+Organizar os resultados por cenário, comparar baseline e proposta e responder diretamente às RQs.
+
+\section{Ameaças à validade}
+Discutir representatividade da máquina, tamanho da amostra, qualidade do sensor de feedback, falhas não modeladas, ambiente de rede e generalização para outros equipamentos.

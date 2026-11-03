@@ -1,0 +1,14 @@
+{
+  "executado_em_utc": "2026-10-31T20:37:45.489813+00:00",
+  "sha256_extracao": "cd58de6962a11b632ac32a217014acef95cbead18a24619c13aa8a423df5d2f1",
+  "unidade_energy": "não confirmada",
+  "conversao_para_consumo": false,
+  "limiar_ligado_desligado": null,
+  "primeira_janela": "2026-06-10T01:40:00+00:00",
+  "ultima_janela": "2026-06-11T22:30:00+00:00",
+  "sensor_ids": [
+    23
+  ],
+  "semantica": "escala original do banco; ACS712 é sensor de corrente, transformação no firmware não confirmada",
+  "fonte_fabricante": "https://www.allegromicro.com/en/products/sense/current-sensor-ics/integrated-current-sensors/acs712"
+}

@@ -1,0 +1,45 @@
+%\chapter{Introdução}
+\label{sec:introducao}
+
+\section{Contextualização e Motivação}
+O monitoramento de condições ambientais em espaços internos desempenha um papel importante na caracterização e no acompanhamento das condições de funcionamento desses ambientes. Entre as variáveis frequentemente monitoradas, a temperatura se destaca por sua relação com o conforto térmico, com o funcionamento de equipamentos e com as condições de operação de determinados espaços. Nesse contexto, a utilização de dispositivos conectados à Internet das Coisas (Internet of Things — IoT) permite realizar medições periódicas e armazenar grandes volumes de dados para posterior análise.
+
+Sistemas de monitoramento baseados em sensores distribuídos possibilitam acompanhar a evolução temporal da temperatura em diferentes posições de um ambiente. Entretanto, as medições obtidas por esses dispositivos representam apenas as condições observadas em seus respectivos pontos de instalação. A distribuição espacial da temperatura pode não ser uniforme, especialmente em ambientes que apresentam equipamentos eletrônicos, sistemas de climatização, divisórias e diferentes condições de circulação de ar. Dessa forma, a temperatura registrada em um determinado ponto não necessariamente representa a temperatura de todo o espaço monitorado.
+
+Uma alternativa para ampliar o aproveitamento das informações disponíveis é o emprego de técnicas de sensoriamento virtual. Diferentemente de um sensor físico, que realiza diretamente a medição de uma grandeza, um sensor virtual utiliza informações provenientes de outras fontes para estimar o valor dessa grandeza. No monitoramento térmico, essa abordagem permite investigar a possibilidade de estimar a temperatura em uma determinada posição a partir das medições realizadas por sensores instalados em outras posições.
+
+A viabilidade dessa abordagem depende, entre outros fatores, das relações existentes entre as séries temporais dos sensores, da distribuição espacial dos dispositivos e do método utilizado para realizar as estimativas. Sensores próximos podem apresentar comportamentos semelhantes, mas essa relação não é necessariamente determinada apenas pela distância física. Características específicas do ambiente também podem influenciar as medições e, consequentemente, a precisão das estimativas.
+
+Nesse cenário, métodos estatísticos e de aprendizado de máquina podem ser empregados para identificar relações entre as temperaturas registradas por diferentes dispositivos. Modelos como regressão linear e Random Forest permitem construir estimativas a partir de observações históricas, oferecendo alternativas a estratégias mais simples, como o cálculo da média das temperaturas dos sensores disponíveis.
+
+O presente trabalho investiga a reconstrução virtual de medições de temperatura utilizando dados históricos de sensores IoT instalados em ambientes internos de laboratório. O estudo considera uma infraestrutura de monitoramento já existente, sem alterações no posicionamento físico dos dispositivos. Dessa forma, a investigação concentra-se no aproveitamento dos dados disponíveis e na avaliação de diferentes estratégias de estimativa.
+
+Para possibilitar a avaliação quantitativa dos métodos, adota-se uma abordagem na qual as medições de um sensor físico são utilizadas como referência, enquanto as medições dos demais sensores servem como entradas para os modelos. Assim, é possível comparar as temperaturas estimadas com os valores efetivamente registrados e quantificar os erros de reconstrução.
+
+Além da comparação entre diferentes modelos, o trabalho busca investigar como a quantidade de sensores utilizados e os critérios empregados para sua seleção influenciam a qualidade das estimativas. Para isso, são consideradas tanto as relações estatísticas entre as séries temporais quanto as informações aproximadas sobre a localização física dos dispositivos.
+
+\section{Objetivos}
+O objetivo geral deste trabalho é avaliar a viabilidade da reconstrução virtual de medições de temperatura em ambientes internos utilizando dados históricos de sensores IoT previamente instalados.
+
+Como objetivos específicos, estabelecem-se:
+
+Caracterizar os dados históricos de temperatura obtidos de uma infraestrutura real de monitoramento ambiental.
+
+Identificar e organizar os sensores de acordo com seus respectivos ambientes e posições físicas aproximadas.
+
+Desenvolver um procedimento de pré-processamento para limpeza, agregação e sincronização temporal das medições.
+
+Implementar e avaliar diferentes métodos de estimativa de temperatura, incluindo média simples, regressão linear e Random Forest.
+
+Investigar a influência da quantidade de sensores de entrada na precisão das estimativas.
+
+Comparar estratégias de seleção de sensores baseadas em proximidade espacial e correlação temporal.
+
+Analisar os resultados por meio de métricas quantitativas de erro, identificando as potencialidades e limitações das abordagens estudadas.
+
+\section{Organização do Trabalho}
+Este trabalho está organizado em quatro capítulos. O Capítulo 2 ~\ref{sec:revisao} ~\ref{sec:desenvolvimento} apresenta a metodologia adotada, incluindo a caracterização do ambiente monitorado, a identificação dos sensores, a obtenção dos dados históricos e os procedimentos previstos para o pré-processamento e a avaliação dos modelos.
+
+O Capítulo 3 apresenta os resultados obtidos e sua discussão, contemplando a caracterização das séries temporais, a análise da disponibilidade das medições e a comparação entre os métodos de reconstrução virtual.
+
+Por fim, o Capítulo 4 ~\ref{sec:conclusao} reúne as conclusões do estudo, suas principais limitações e as possibilidades de continuidade da investigação.

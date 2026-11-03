@@ -1,0 +1,7 @@
+{
+  "extraido_em_utc": "2026-10-31T20:37:44.566429+00:00",
+  "endpoint": "http://andromeda.lasdpc.icmc.usp.br:61102/questdb/exec",
+  "sql": "SELECT measured_in, sensor_id, avg(energy) AS valor_medio,\n min(energy) AS minimo, max(energy) AS maximo, count(*) AS quantidade,\n count(energy) AS quantidade_validos FROM sensor_energy WHERE environment = '1006'\n AND measured_in >= '2026-06-10T00:00:00Z' AND measured_in < '2026-07-26T00:00:00Z'\n SAMPLE BY 5m ORDER BY measured_in, sensor_id",
+  "linhas": 539,
+  "sha256_csv": "cd58de6962a11b632ac32a217014acef95cbead18a24619c13aa8a423df5d2f1"
+}

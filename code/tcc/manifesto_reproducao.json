@@ -1,0 +1,950 @@
+{
+  "gerado_em_utc": "2026-11-03T01:05:12.740527+00:00",
+  "arquivos": [
+    {
+      "arquivo": "code/sensores.json",
+      "bytes": 12640,
+      "sha256": "6f4e7416c9d1bdb02898843947218f690a5213d315e12e7b9c0126c14353af72"
+    },
+    {
+      "arquivo": "code/sensorsWithCoordinates",
+      "bytes": 616,
+      "sha256": "a1477e125c15e7ca86a5dbb40f3429d0da6f3cd8bded432ca0e1d838763d8ec9"
+    },
+    {
+      "arquivo": "code/tcc/01_exploracao_dados.ipynb",
+      "bytes": 665758,
+      "sha256": "30a2c60855793dbe550e04ca3356990d5407e6e53abb9df4f2e82c6a087f9ed3"
+    },
+    {
+      "arquivo": "code/tcc/02_preprocessamento.ipynb",
+      "bytes": 31310,
+      "sha256": "13a937c886a563737be2fcf9ff9039bc82dd4322ad3171526ba232dd581028cc"
+    },
+    {
+      "arquivo": "code/tcc/03_experimentos.ipynb",
+      "bytes": 217172,
+      "sha256": "51eacb1c00e50ca742650a1617a47d731d26da720d0ff20bb973a8a924c61439"
+    },
+    {
+      "arquivo": "code/tcc/04_analise_espacial.ipynb",
+      "bytes": 438131,
+      "sha256": "a9831b165f7afb31b2893b62396256b196b96f0cc6adc8157d77caab53f1c351"
+    },
+    {
+      "arquivo": "code/tcc/05_umidade.ipynb",
+      "bytes": 370566,
+      "sha256": "ce40a0e97f572be616145aaf1df60e71bb1f93eaa3ac63c9c159b87e8cc80113"
+    },
+    {
+      "arquivo": "code/tcc/06_energia_exploratoria.ipynb",
+      "bytes": 289490,
+      "sha256": "4e044cce21e30c5e5dba570ea46739118ec83d2bcf93e94d1fc7cbb06075c320"
+    },
+    {
+      "arquivo": "code/tcc/README.md",
+      "bytes": 6260,
+      "sha256": "3207bd10af892b5ccbe8cd59a422ad074076b03fafbac5bb509572547b15398c"
+    },
+    {
+      "arquivo": "code/tcc/apoio_consultas.py",
+      "bytes": 2317,
+      "sha256": "0343c2cd12ec8b50833d7759dd4ef767c483db341b64c582190be2c21c058c9d"
+    },
+    {
+      "arquivo": "code/tcc/data/metadata/auditoria_preprocessamento_1006.json",
+      "bytes": 722,
+      "sha256": "73dedc35847f4caf79f9242eedae037e5a7acd0a75531409c539cf0ba0067420"
+    },
+    {
+      "arquivo": "code/tcc/data/metadata/cobertura_sensores.csv",
+      "bytes": 2270,
+      "sha256": "18557bb117fe6abc73d5f7fd24a0b8610374f05a59cd72edaa81cd850ba96287"
+    },
+    {
+      "arquivo": "code/tcc/data/metadata/comparacao_contagens_questdb.csv",
+      "bytes": 100,
+      "sha256": "67f7f19828cf1ac7f26849911dfcd35f7b2c7017775331e570c7cf405d6c6605"
+    },
+    {
+      "arquivo": "code/tcc/data/metadata/resumo_questdb_1006.csv",
+      "bytes": 1030,
+      "sha256": "eabf7d9ac8fd5c1b058b905bb1bc223b2c42f1506d6d19169cb0908c0bb0df62"
+    },
+    {
+      "arquivo": "code/tcc/data/metadata/sensores.csv",
+      "bytes": 722,
+      "sha256": "a697609a9e1bdc6e2f9be1f54f7347327de408e3f53bf60cb04d157b0d125add"
+    },
+    {
+      "arquivo": "code/tcc/data/processed/contagens_1006_5min.csv",
+      "bytes": 886737,
+      "sha256": "6824244da600787921b8b9a3ed91435c2130d132229144785e48a2fab00ba563"
+    },
+    {
+      "arquivo": "code/tcc/data/processed/energia_1006_5min.csv",
+      "bytes": 363561,
+      "sha256": "b6d65147b48fbb1839c32c50c3cc0f4a73a8bba7c457816935a6aae36aa9b407"
+    },
+    {
+      "arquivo": "code/tcc/data/processed/temperaturas_1006_5min.csv",
+      "bytes": 1901851,
+      "sha256": "3cf2c050c7d0aa6e2031ccadcd79ad770065b306980f99c1add81f8d9199a6e0"
+    },
+    {
+      "arquivo": "code/tcc/data/processed/temperaturas_1006_5min_completas.csv",
+      "bytes": 1883898,
+      "sha256": "36a7345b1b519a49f45620ea6fd939827255a99880e0e59e0daf639e421e9195"
+    },
+    {
+      "arquivo": "code/tcc/data/processed/umidade_1006_5min.csv",
+      "bytes": 2295045,
+      "sha256": "bafdb5f066b2f05970f731a786c438e7be1e81337128854be6a280f8456aaaed"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/auditoria_energy.json",
+      "bytes": 995,
+      "sha256": "c374e9c422f372b22a67c9f9539390676bd2ef5b765994735f9b3093b91a656f"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/auditoria_humidity.json",
+      "bytes": 2378,
+      "sha256": "1dc713be415c1120b571029a3bba5428cd14ee22d284f22c04e3a25f5716143b"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/energia_1006_5min.csv",
+      "bytes": 31027,
+      "sha256": "cd58de6962a11b632ac32a217014acef95cbead18a24619c13aa8a423df5d2f1"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/energia_1006_5min.json",
+      "bytes": 591,
+      "sha256": "7a8debef2b29920dcb9de6df838d41492c21112b76ff335e479b335d897605e8"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/energia_1006_5min.sql",
+      "bytes": 342,
+      "sha256": "c48cd96f60dbfffcfd25d758d5aece8d10c8dd684680a5772db6235fd18eec63"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/inventario_energia.csv",
+      "bytes": 134,
+      "sha256": "3e86b85d988bd6ef1ce14e8bd9d889756708d358434b8e368ab6e619461a7df2"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/inventario_energia.json",
+      "bytes": 785,
+      "sha256": "0cd23b7ee7db7dc712af3a1d2432c54b087e59d26eec3417a9d5a7ed7f882389"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/inventario_energia.sql",
+      "bytes": 329,
+      "sha256": "e2a1a9525fd79f89de4797301e91f2e51c08587405e0fa04a6704fb442ad165e"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/inventario_umidade.csv",
+      "bytes": 881,
+      "sha256": "10cf6d1295d94632e92711d18728937cade58844e6e3cc95a573ad131fd20a22"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/inventario_umidade.json",
+      "bytes": 794,
+      "sha256": "81dc36c893817bf81f092942296dc7ffba11135482fc57d002fcefa1d0ce25b0"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/inventario_umidade.sql",
+      "bytes": 335,
+      "sha256": "692878939f1f2a80cacd0c4cfa7cc0c5b561deb3d28b5956b8518c4de28ebcb9"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/umidade_1006_5min.csv",
+      "bytes": 7626466,
+      "sha256": "c8b0eace227bb99299cc42f4425967dca7219ef56fc104099d4cf4f667c61045"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/umidade_1006_5min.json",
+      "bytes": 696,
+      "sha256": "ab60bda558f29203a68fa1128e3d355aa52f2eebd95596c6cdea2df548eeb319"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/complementares/umidade_1006_5min.sql",
+      "bytes": 443,
+      "sha256": "c62025eb760d59ccd5768b58bc075026c9481cca1032201d6d53912004abf8a7"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/temperaturas_1006_2026-06-10_2026-07-26_5min.csv",
+      "bytes": 6026848,
+      "sha256": "60dc83ecee283db049c4f51208d9a7e4fc7efec64760f5da771261065f561707"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/temperaturas_1006_2026-06-10_2026-07-26_5min.json",
+      "bytes": 864,
+      "sha256": "b9c271cf7c22b9a9e72fb4cf9624b1bd0103944ffe0ccd81d847540ad207326b"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/questdb/temperaturas_1006_2026-06-10_2026-07-26_5min.sql",
+      "bytes": 383,
+      "sha256": "16b51c4d06cf06deeeeebe32eb02de57c6c07025d266340fce10abd134c5d8bf"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/matriz_exploratoria.csv",
+      "bytes": 9892344,
+      "sha256": "c95e028fce8e4cd89e7c77bb3464dcb51a49bd5725ac3df14406761b9166cbf2"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_1025_2026-06-10_2026-07-26.csv",
+      "bytes": 3887183,
+      "sha256": "01113a58b421a81fc73435b42d91241a94e2c1655720bdc0ca743d8d63573495"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_1025_2026-06-28_2026-06-29.csv",
+      "bytes": 91459,
+      "sha256": "9964d828485da21029d06050e8cfe5113ee14577c314c81ab3da6fe1fd8f8a35"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_48_2026-06-10_2026-07-26.csv",
+      "bytes": 3503203,
+      "sha256": "64e789151e7702e844f5e9fc9f9147c0b56f538d80bec55d52897523bacb89b3"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_48_2026-06-28_2026-06-29.csv",
+      "bytes": 86543,
+      "sha256": "e67c1ba5155555afe4bdd00980deae077f795a4db1e15b2770d397090c9b98e0"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86786_2026-06-10_2026-07-26.csv",
+      "bytes": 3973269,
+      "sha256": "4af98e76f8674734bf9ce9cb09f9fa9a6aa64e36a14839460d253903a027399f"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86786_2026-06-28_2026-06-29.csv",
+      "bytes": 91829,
+      "sha256": "7b69597c13a4fc84fa6f006aa3b0b3b85a0df93ffa4cd4d470bdb1cadc25a01d"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86790_2026-06-10_2026-07-26.csv",
+      "bytes": 3996702,
+      "sha256": "27ec90d654e66451a7963e3f99ce02d687f4a0591835bcf3c401552161af81cc"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86790_2026-06-28_2026-06-29.csv",
+      "bytes": 91387,
+      "sha256": "950440b66c47d393471ecef396f17806b4023c98155e1126d0d32469a86f77ae"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86791_2026-06-10_2026-07-26.csv",
+      "bytes": 3946948,
+      "sha256": "da13020e52bb4438fcce5d30d17980e7a698140c8434d710487b029a8d72f1ea"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86791_2026-06-28_2026-06-29.csv",
+      "bytes": 92768,
+      "sha256": "8661656e44a8d1981b4f4cefdcd2d83d883923599ec8689fd55c638e3f759b8a"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86793_2026-06-10_2026-07-26.csv",
+      "bytes": 3999476,
+      "sha256": "a1a17c5bdf278b683fae0858d99cf55106a063af7303364cfa648d7c7fd51241"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86793_2026-06-28_2026-06-29.csv",
+      "bytes": 92224,
+      "sha256": "2e28705c3976c968dc4bb699540ab6e7be3068f7d99fd1b383e4affb66efe68c"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86794_2026-06-10_2026-07-26.csv",
+      "bytes": 3988933,
+      "sha256": "2213b6a0ae51c7a528d3f13544d35ca1bee2607a85ed2e569e7b02b7cd6536e0"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86794_2026-06-28_2026-06-29.csv",
+      "bytes": 86912,
+      "sha256": "ec1074e6ee65f7e027993ef8853110da9f6116cea37170d5e0bd0ac41b04bf66"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86795_2026-06-10_2026-07-26.csv",
+      "bytes": 3959034,
+      "sha256": "07ff36b61e04dabe2be2fadb916c180d8ffee5089c57561bf5d2dae490127000"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86795_2026-06-28_2026-06-29.csv",
+      "bytes": 84910,
+      "sha256": "22868f8da4e53bb025b4e3d2414d5b55144fd1eef630510e5455534cf725ae07"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86796_2026-06-10_2026-07-26.csv",
+      "bytes": 4028753,
+      "sha256": "b835168b0ddf95d42a116f688f1b08d80c621f24a0110d21c8085fb5eec77087"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86796_2026-06-28_2026-06-29.csv",
+      "bytes": 91987,
+      "sha256": "1d2f7d2b46f48889fcbd475a501b09be3a9acb0fbd033cf001f3b863e6d90436"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86797_2026-06-10_2026-07-26.csv",
+      "bytes": 3974380,
+      "sha256": "1fa7d892e507e05343207e84b7ff5a7cbd32a530be40b5be9c67509601218cb5"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86797_2026-06-28_2026-06-29.csv",
+      "bytes": 89429,
+      "sha256": "098096c484c934640006482db0774ee75a8e9cef3ae8a8c538e3c081dbc98b30"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86801_2026-06-10_2026-07-26.csv",
+      "bytes": 3950208,
+      "sha256": "32e91aa928bb24b28aa3b0e6949412876fac3075a9cc4fd9427acd829ecc116f"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_86801_2026-06-28_2026-06-29.csv",
+      "bytes": 90824,
+      "sha256": "afb13f6ebf8a87ca7fcf0a7967eb8e3da2355a63a60cb880debe72a298a13fb4"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_885_2026-06-10_2026-07-26.csv",
+      "bytes": 3799770,
+      "sha256": "be0a971ff5dd9c134a9719fecf8f98bc194698ab8e012238321457dd54a11e57"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_885_2026-06-28_2026-06-29.csv",
+      "bytes": 83378,
+      "sha256": "d01d05e2d4998c2bab1c0c35233ed9ba5660567cd3ea672c8a7484e7e04a9eff"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_887_2026-06-10_2026-07-26.csv",
+      "bytes": 3751983,
+      "sha256": "a5275f6771df420402eca984c9fd5a782b590c9e53fb9871781771710ce864b2"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_887_2026-06-28_2026-06-29.csv",
+      "bytes": 86397,
+      "sha256": "e439f673ffef9b1774048d80a1dda6c682485929e0cd0c5052143eca24f4abbb"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_891_2026-06-10_2026-07-26.csv",
+      "bytes": 3799947,
+      "sha256": "9d6c06fd6e0440f37b5b2abb8e0ec86018b47a54ac9bd249c7d3a3dde15f9b21"
+    },
+    {
+      "arquivo": "code/tcc/data/raw/smartlab/sensor_891_2026-06-28_2026-06-29.csv",
+      "bytes": 85827,
+      "sha256": "93b90c4798359b14cf75c47119b234bdb4b8bc3c880efb90afa3837d86e338d4"
+    },
+    {
+      "arquivo": "code/tcc/gerar_manifesto.py",
+      "bytes": 1351,
+      "sha256": "73bb2bd7372ea3df91b025c558b59b866bcbf2b4c54e80b4044484defa8bd726"
+    },
+    {
+      "arquivo": "code/tcc/requirements.txt",
+      "bytes": 234,
+      "sha256": "4f3aeab18924f83c3efdb0d2fa1acf13bec790bdbd651cd3a4bc70c96f9023ea"
+    },
+    {
+      "arquivo": "code/tcc/results/energia/configuracao_energia.json",
+      "bytes": 629,
+      "sha256": "2af18ec271802f577b43c90156ce0848f363f7492639103a1f5bb59579df5cfa"
+    },
+    {
+      "arquivo": "code/tcc/results/energia/figuras/energia_temperatura_exploratoria.pdf",
+      "bytes": 51932,
+      "sha256": "8e7df88a50458143c037a9ae49f637ca90c0ae33e990bdba44d40f358736ef36"
+    },
+    {
+      "arquivo": "code/tcc/results/energia/figuras/energia_temperatura_exploratoria.png",
+      "bytes": 610021,
+      "sha256": "25fd214835e75c95d279ebdd9cb062d5e9d5f88db413c2f1cf8af6d35643001f"
+    },
+    {
+      "arquivo": "code/tcc/results/energia/sobreposicao_temporal.csv",
+      "bytes": 85907,
+      "sha256": "40edbd944a11eb7de3310bc4052edfe947ed7a9b253489f1934b7db48b57a578"
+    },
+    {
+      "arquivo": "code/tcc/results/energia/tabelas/inventario_energia.csv",
+      "bytes": 143,
+      "sha256": "e4c29144875f32054ec334140ccae50b8fccdba0258cd52492123b6a5a589857"
+    },
+    {
+      "arquivo": "code/tcc/results/energia/tabelas/resumo_energia.csv",
+      "bytes": 182,
+      "sha256": "7dcdfa82ab401a56aae65333b04317e3f97b7826df937df1f8b6e14926a0e124"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/configuracao_espacial.json",
+      "bytes": 1514,
+      "sha256": "0c10d7428f40b22a7e131b032b1b4dce2db1081ae8dfffec806abf0b468846d4"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/figuras/comparacao_selecao_espacial.pdf",
+      "bytes": 19818,
+      "sha256": "67f4e05cef95c88ac0c31751a6e19de3b14cdea61c77418f598c32932b5346a5"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/figuras/comparacao_selecao_espacial.png",
+      "bytes": 161060,
+      "sha256": "a9276128750bb2cb6cc5ea6f0338c1ba2007483c2e845074774989220bc53f8f"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/figuras/mapa_termico_1006.pdf",
+      "bytes": 63014,
+      "sha256": "d7451df8bfc9e4e14db95646e2b716968bf4e3205975f37a7ef743dcebb5b2ed"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/figuras/mapa_termico_1006.png",
+      "bytes": 330955,
+      "sha256": "25d85481a9fa79a7a2ec0232be00993c6b15eac7b662cf2d56cfa347563d1123"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/figuras/mapa_termico_1006_painel.pdf",
+      "bytes": 66963,
+      "sha256": "95a3cbf9ce6b57398a60b86b3de9aba77ddce99312f78b3b4776856b9b851d4a"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/figuras/mapa_termico_1006_painel.png",
+      "bytes": 208685,
+      "sha256": "e75a35082b1d1c3eef53f111966b0c0a41a8f01607d8a100c443308fe2566f1f"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/grade_idw_media.npz",
+      "bytes": 270715,
+      "sha256": "8df732beabff626ef1c305df701ebe277f7963c2180b51454441067bb2826a54"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/previsoes_espaciais.csv.gz",
+      "bytes": 3277840,
+      "sha256": "383983d486655b9c32a9096dd4043f795c921a2274062d19913529e6010f3c21"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/tabelas/correlacoes_treinamento.csv",
+      "bytes": 658,
+      "sha256": "2ac5f5afd3d738bfad2e068d3e9c5f9cdb3aa5346cb09d1e9566dd2eb390aa8f"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/tabelas/disponibilidade_fontes_locais.csv",
+      "bytes": 1479,
+      "sha256": "5fca2c710a7475e50374b4b2ed8bb9a374b42f778d85412c4f91a3a6cc0e0db1"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/tabelas/distancias_relativas.csv",
+      "bytes": 526,
+      "sha256": "d967f3ede9139acd2079f37597cd3c6d685ab69416730aceb2297bd87f9217c4"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/tabelas/inventario_espacial.csv",
+      "bytes": 722,
+      "sha256": "a697609a9e1bdc6e2f9be1f54f7347327de408e3f53bf60cb04d157b0d125add"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/tabelas/metricas_espaciais_por_alvo.csv",
+      "bytes": 6440,
+      "sha256": "7ce8ff8db06af48f7947c869a2fbceecdad1e094a9d362afed9fc0be2d52761a"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/tabelas/rankings_entradas.csv",
+      "bytes": 3463,
+      "sha256": "20de1529f391946d40ba1a9f066751a7035e42d915b0a3d192990aabd9c53ff8"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/tabelas/resumo_selecao_espacial.csv",
+      "bytes": 975,
+      "sha256": "5caf61d4f545d48412b154c143dd3bc44332cd5e342fc2435b15cd8664041553"
+    },
+    {
+      "arquivo": "code/tcc/results/espacial/tabelas/temperaturas_mapa.csv",
+      "bytes": 269,
+      "sha256": "e4d8da9f4bdb4a5e2e9ce9462989f376d32e23875c8667e158666f4f62e2c51a"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/configuracao_execucao.json",
+      "bytes": 1726,
+      "sha256": "51c93184f86ddd6519c09862401275b09d7bc8a080b46100e96b879d4ac1b71b"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/figuras/erro_quantidade_sensores.pdf",
+      "bytes": 23081,
+      "sha256": "f80f116149b8aa681c9456ae07eec361e0aec4873454ae5480af186cea54ea98"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/figuras/erro_quantidade_sensores.png",
+      "bytes": 345362,
+      "sha256": "982db87ed418664238dfba31553733dda931ecae435795beb422e382af8da35c"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/figuras/mae_por_sensor.pdf",
+      "bytes": 16857,
+      "sha256": "97a68fde9ba6b076396ca34fdf709d19b082ffeb1a0b92983db56f0ef3335d00"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/figuras/mae_por_sensor.png",
+      "bytes": 105762,
+      "sha256": "a8b583184580b7eb6894e39871c0c9d3d4b5239b7f3adfd42f9ecf85f1c91c81"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/figuras/reconstrucao_sensor_1.pdf",
+      "bytes": 225256,
+      "sha256": "01319a88c767d06519dd7b8777a040f9b035432220359a91dd58bf98fcf2e2aa"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/figuras/reconstrucao_sensor_48.pdf",
+      "bytes": 228823,
+      "sha256": "de4ead1207ca85c164fb3d140e0370f1f918b3c56f24e8a7f3f9205571b8957b"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/figuras/reconstrucao_sensor_86782.pdf",
+      "bytes": 231789,
+      "sha256": "4ed21a65a29683cc4aeea1f67f9c4c5cfc1efe8963ef4fb61919d1312c138ee4"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/figuras/reconstrucao_sensor_86789.pdf",
+      "bytes": 222652,
+      "sha256": "d424db9ccdb7bb8612b2922785ed98b0601760a7d5011ea5de15a73860dbafe9"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/figuras/reconstrucao_sensor_86790.pdf",
+      "bytes": 232126,
+      "sha256": "52476fd6df1db762a1930e77425ab9cec5566c05553afa3a99f284207b5cc01d"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/figuras/reconstrucao_sensor_86791.pdf",
+      "bytes": 235225,
+      "sha256": "b62ee53bdb07d4bbbe533a3739c4ff79af42e21cbe870e6e42a384dccfec89c4"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/figuras/reconstrucao_sensor_86793.pdf",
+      "bytes": 231205,
+      "sha256": "584f59bfbb679a55e706c71b0960cfd89e26f5e25f54fc97e5e4a63c5da5aae9"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/figuras/reconstrucao_sensor_887.pdf",
+      "bytes": 234196,
+      "sha256": "49eb0133919d0ae30b9922ae1a9b0c2ca62b7d1b104fc07b6055fceb7f8e9e89"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/figuras/reconstrucao_sensor_891.pdf",
+      "bytes": 227882,
+      "sha256": "a660dfe951188bbd49c3029b4a9a08e6efaccca10a21792e54b67c419f8d8b0c"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/previsoes_teste.csv",
+      "bytes": 9922248,
+      "sha256": "4cc2cd3a7f39f221f5d9368a64ed612a9b9e1f60be03330afcf1112a4e31fdb3"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/tabelas/divisao_temporal.csv",
+      "bytes": 169,
+      "sha256": "966fe49421f4ffc49d8b74c518d23a02fc1b77dcf73dd171b772dd67d6e1fc2d"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/tabelas/metricas_por_sensor.csv",
+      "bytes": 2413,
+      "sha256": "59ab43d97052ae774b4d262e1523d1dbb33edca6716f9b3f16f9c3017b9bde64"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/tabelas/quantidade_sensores_por_alvo.csv",
+      "bytes": 8274,
+      "sha256": "dd17d8840a2acb72f73b970a8d11ab5725ef6dbd04a67c3ab59b281128b17105"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/tabelas/resumo_modelos.csv",
+      "bytes": 412,
+      "sha256": "da668617d432ee8884d50b1e0521197f9088790f249ca816e7c83985c4f1c29f"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/tabelas/resumo_modelos.tex",
+      "bytes": 248,
+      "sha256": "3b6e457f68c845ba1b5d2bced102785305633e2c8ee32a5079a2dcb3d7f04cc6"
+    },
+    {
+      "arquivo": "code/tcc/results/experimentos/tabelas/resumo_quantidade_sensores.csv",
+      "bytes": 535,
+      "sha256": "4c7ef556e1bd5a8d1608f42d9a58872d02c862757a47d084ff94f2c605240e03"
+    },
+    {
+      "arquivo": "code/tcc/results/figuras/image.png",
+      "bytes": 185831,
+      "sha256": "d8afe4a9c3f6dc3fb8c9b2e3e8294273220bd09b8cbfd13c83fb4060b7ff426f"
+    },
+    {
+      "arquivo": "code/tcc/results/figuras/mapa_sensores_aproximado.png",
+      "bytes": 69205,
+      "sha256": "e6e5505b4aa405bb4228f4029a32fc919dc841910bd5b1fbd71e0d36e4a45fd8"
+    },
+    {
+      "arquivo": "code/tcc/results/figuras/temperaturas_1006.png",
+      "bytes": 304972,
+      "sha256": "25a8cddb18b1548b7c23d7d5a99477f44236873b7de55b2665adc02bcdb8314e"
+    },
+    {
+      "arquivo": "code/tcc/results/figuras/temperaturas_cluster.png",
+      "bytes": 263431,
+      "sha256": "88acfd829b57c1d16089d2fa99fe800a695e74991758551a92a02f6a7f4a0818"
+    },
+    {
+      "arquivo": "code/tcc/results/figuras/temperaturas_reuniao.png",
+      "bytes": 170107,
+      "sha256": "ce75e54148fc1ae925b3d991f34049da2371d856823230bfb50615f2cb4862ae"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/configuracao_umidade.json",
+      "bytes": 853,
+      "sha256": "ed318458ee71e5ca075ba27c370a940341670781ea89e135cdc6c1eae5ff0363"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/figuras/caracterizacao_umidade.pdf",
+      "bytes": 93063,
+      "sha256": "a4783b04eb20a14c8fe751be6abddde899758ebef2b9a732f382b9e9eac9cff8"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/figuras/caracterizacao_umidade.png",
+      "bytes": 642784,
+      "sha256": "eea11a1c60daa8c931b26e8243ab00e58d6c6328d9c303ce7962a52e1336c4f2"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/figuras/efeito_umidade.pdf",
+      "bytes": 15078,
+      "sha256": "9846b7dc3f769667b4d0fc3cc2e16b4555bd1d9a7ca3738f27b0c4fa2419489c"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/figuras/efeito_umidade.png",
+      "bytes": 69323,
+      "sha256": "e2bf903c2449a3e2797a5cca0e098cc6640b38fb5192b15348b8bdcf646b88b0"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/figuras/faixas_umidade_auditadas.pdf",
+      "bytes": 16178,
+      "sha256": "64075f5a1f395e286fcec9b6aaf513a2a50d656e267dc13a6e5f491be3cbe075"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/figuras/faixas_umidade_auditadas.png",
+      "bytes": 67519,
+      "sha256": "a1adc808ce1dd0fd4ea7187eb9eacbe435b25a5f6220c117593a6c1ff684b64c"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/previsoes_enriquecimento.csv.gz",
+      "bytes": 1033527,
+      "sha256": "58633c6d4fda0d8e2a58bd64b67224333279a4bf53121a9b153f21e557d219ed"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/tabelas/amostras_pareadas.csv",
+      "bytes": 225,
+      "sha256": "df91d9ff3751349b3a2660ce68c9637fce08372238e52a2a4daf83d30708bebb"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/tabelas/delta_mae_por_alvo.csv",
+      "bytes": 657,
+      "sha256": "d6716f84ec0e56cf86cb19fb7383143c73cd06509834e618f8ed003af92d2fb0"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/tabelas/inventario_umidade.csv",
+      "bytes": 890,
+      "sha256": "10824a751d3e521c049981f2ce53e428d65ba4d94199c3d800d073093f583868"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/tabelas/janelas_invalidas_umidade.csv",
+      "bytes": 80,
+      "sha256": "8d29043a4b532adac71bd2961d82b2bce0a5e0c81b0ac9cc80c61bdc140f9508"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/tabelas/metricas_enriquecimento.csv",
+      "bytes": 2652,
+      "sha256": "0a938bb87d93abe2ac6a130de93337596deddcf61fe6ccc9dc3abe1fa3cdc301"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/tabelas/resumo_enriquecimento.csv",
+      "bytes": 192,
+      "sha256": "c00710213a183dbf57de2333e4b3e42317769372c2524b111dbb875d219b27b4"
+    },
+    {
+      "arquivo": "code/tcc/results/umidade/tabelas/resumo_umidade.csv",
+      "bytes": 1253,
+      "sha256": "1600e996c304860cd25e7415f34cb3cad2d93ff88d596b14027e129c2cd1ed1c"
+    },
+    {
+      "arquivo": "code/tcc/verificar_resultados.py",
+      "bytes": 7613,
+      "sha256": "c65792652a8fdf3a0a0dd0e939c0cca259d65b1bf9513a8dd7148111cdb66a96"
+    },
+    {
+      "arquivo": "thesis/README.md",
+      "bytes": 3561,
+      "sha256": "c5f3426d58f6fa5a17dc271bb00a1f9032ed29d5dda6add13a0bff1a8b69c556"
+    },
+    {
+      "arquivo": "thesis/TCC_GustavoMoura.pdf",
+      "bytes": 2220045,
+      "sha256": "7c5e69c4e0561f0a49f4f2f83f6e1b24c19b6e0334b89a6d18838e0cc5724a8f"
+    },
+    {
+      "arquivo": "thesis/archive/overleaf-original.zip",
+      "bytes": 2767965,
+      "sha256": "6fa9d6432f0078704fcba8d6bec225928acdad4b14cac759708bf041222eb960"
+    },
+    {
+      "arquivo": "thesis/archive/paper-anterior.zip",
+      "bytes": 704565,
+      "sha256": "abe709142827d93a7e8ca20d747fb2faf5f2d2d7db07933a4160f8a1f9c2a294"
+    },
+    {
+      "arquivo": "thesis/paper/.gitignore",
+      "bytes": 171,
+      "sha256": "8cfa94800f3be9d18279fe52a51f7f9b352369180190113da63dd94edfa02cf9"
+    },
+    {
+      "arquivo": "thesis/paper/Distribuição Espacial dos Sensores.png",
+      "bytes": 1363661,
+      "sha256": "c4dbeea506721013e828027a882b61ae43bfc35d9734ef1bfcfa67b76e524434"
+    },
+    {
+      "arquivo": "thesis/paper/Makefile",
+      "bytes": 148,
+      "sha256": "90a3cd454737b20bd611d2cb73d5c8981367ddc14d59467cd51cb7eab845d950"
+    },
+    {
+      "arquivo": "thesis/paper/README.md",
+      "bytes": 700,
+      "sha256": "1f8850bfa90b79ab18ca51629a1ae176cae2b7584eb8f308cb75b588bd7580e0"
+    },
+    {
+      "arquivo": "thesis/paper/algorithm2e.sty",
+      "bytes": 167163,
+      "sha256": "b0fa767c706a0a64209bc66acb3042d77203bc0610925db2e31a9e2154c8d312"
+    },
+    {
+      "arquivo": "thesis/paper/figures/caracterizacao_umidade.pdf",
+      "bytes": 93063,
+      "sha256": "a4783b04eb20a14c8fe751be6abddde899758ebef2b9a732f382b9e9eac9cff8"
+    },
+    {
+      "arquivo": "thesis/paper/figures/comparacao_selecao_espacial.pdf",
+      "bytes": 19818,
+      "sha256": "67f4e05cef95c88ac0c31751a6e19de3b14cdea61c77418f598c32932b5346a5"
+    },
+    {
+      "arquivo": "thesis/paper/figures/efeito_umidade.pdf",
+      "bytes": 15078,
+      "sha256": "9846b7dc3f769667b4d0fc3cc2e16b4555bd1d9a7ca3738f27b0c4fa2419489c"
+    },
+    {
+      "arquivo": "thesis/paper/figures/energia_temperatura_exploratoria.pdf",
+      "bytes": 51932,
+      "sha256": "8e7df88a50458143c037a9ae49f637ca90c0ae33e990bdba44d40f358736ef36"
+    },
+    {
+      "arquivo": "thesis/paper/figures/erro_quantidade_sensores.pdf",
+      "bytes": 23081,
+      "sha256": "f80f116149b8aa681c9456ae07eec361e0aec4873454ae5480af186cea54ea98"
+    },
+    {
+      "arquivo": "thesis/paper/figures/mae_por_sensor.pdf",
+      "bytes": 16857,
+      "sha256": "97a68fde9ba6b076396ca34fdf709d19b082ffeb1a0b92983db56f0ef3335d00"
+    },
+    {
+      "arquivo": "thesis/paper/figures/mapa_termico_1006_painel.pdf",
+      "bytes": 66963,
+      "sha256": "95a3cbf9ce6b57398a60b86b3de9aba77ddce99312f78b3b4776856b9b851d4a"
+    },
+    {
+      "arquivo": "thesis/paper/figures/reconstrucao_sensor_891.pdf",
+      "bytes": 227882,
+      "sha256": "a660dfe951188bbd49c3029b4a9a08e6efaccca10a21792e54b67c419f8d8b0c"
+    },
+    {
+      "arquivo": "thesis/paper/images/logo-capa.png",
+      "bytes": 55118,
+      "sha256": "ddb9638fe7978ca5b12482009bab747cf4b1af6a11a7a0ddc0c7fc88c81b23ae"
+    },
+    {
+      "arquivo": "thesis/paper/images/usp-logo.eps",
+      "bytes": 771870,
+      "sha256": "99468d9904ea4a0c146ae9d3a6b05f9de6d2982f992e16ebb11531bff14ca622"
+    },
+    {
+      "arquivo": "thesis/paper/metadata.tex",
+      "bytes": 474,
+      "sha256": "32f12e1d9ea3346831b6f118f742aea97918952726c0df9c2387d6689ba88e22"
+    },
+    {
+      "arquivo": "thesis/paper/packages/icmc.cls",
+      "bytes": 39296,
+      "sha256": "b17fcb2c88c153fbd22a9b8d69442eff6ecdcfce6ae07385de20ba2697a4efa8"
+    },
+    {
+      "arquivo": "thesis/paper/references.bib",
+      "bytes": 5043,
+      "sha256": "262e1f396eeba496eb47980c650f30cec0f8615e2c4c38ec170251188870146a"
+    },
+    {
+      "arquivo": "thesis/paper/sections/conclusao.tex",
+      "bytes": 5604,
+      "sha256": "6c015d0ffcbcce010c87c8f0506ff8ee406521273805d053f5819c35f09639bb"
+    },
+    {
+      "arquivo": "thesis/paper/sections/desenvolvimento.tex",
+      "bytes": 9497,
+      "sha256": "a2dd554b23c0c0a63e26474edb996f8263a11d902930a135d33a14e2014c4533"
+    },
+    {
+      "arquivo": "thesis/paper/sections/introducao.tex",
+      "bytes": 7794,
+      "sha256": "2ef5a5433dc7807a4787260bc6dc79a228fe153a7dae24d6737422c6a1167d42"
+    },
+    {
+      "arquivo": "thesis/paper/sections/metodologia.tex",
+      "bytes": 22175,
+      "sha256": "ceb73fc2ccea398f60613c013459ba38970b9290bebb3e601c500560b3bd9868"
+    },
+    {
+      "arquivo": "thesis/paper/sections/resultados.tex",
+      "bytes": 24370,
+      "sha256": "756f10c89ab02eed62f74899a8c74aab4494732332beb1dda6668e6980ddaad2"
+    },
+    {
+      "arquivo": "thesis/paper/sections/revisao_bibliografica.tex",
+      "bytes": 19758,
+      "sha256": "4b8db3e2d2a21662b9d4a7ec7cdfecedb2bca1112bd97a288d6939918f24058f"
+    },
+    {
+      "arquivo": "thesis/paper/tables/coordenadas.tex",
+      "bytes": 290,
+      "sha256": "a1ccb5e45b16b92aee77149cac1210fcce5fc8046e7e3ca0a2921e0c72f12338"
+    },
+    {
+      "arquivo": "thesis/paper/tables/enriquecimento_umidade.tex",
+      "bytes": 210,
+      "sha256": "669c8315f3f1d8efae07a4619539f78a57c019cb9608ceb9a11a6046cc90b151"
+    },
+    {
+      "arquivo": "thesis/paper/tables/mae_alvos.tex",
+      "bytes": 424,
+      "sha256": "e728bdd02efdebe12e526d67f647ab0199f2d8a3ad2abbd863ba66090508d8d0"
+    },
+    {
+      "arquivo": "thesis/paper/tables/modelos.tex",
+      "bytes": 243,
+      "sha256": "488203d1b14c9e25e3148642444d00e7a7f7f930d3f963b341ca156834c5a97a"
+    },
+    {
+      "arquivo": "thesis/paper/tables/quantidade.tex",
+      "bytes": 280,
+      "sha256": "b6d8df8e8f658dbc52ab19efca9d09e2478a2e87c2d37e907bc103ce2bf0a556"
+    },
+    {
+      "arquivo": "thesis/paper/tables/selecao_espacial.tex",
+      "bytes": 309,
+      "sha256": "c1e8ea03c410753d79a3284e3546fe2fbf30990f767b55e51c4e9ba0a4156678"
+    },
+    {
+      "arquivo": "thesis/paper/tables/sensores.tex",
+      "bytes": 576,
+      "sha256": "5951c4e80e83dda44cb1345fa580feed4771151c9f34fd5ba29c893d002ae862"
+    },
+    {
+      "arquivo": "thesis/paper/tables/umidade_por_alvo.tex",
+      "bytes": 421,
+      "sha256": "f95a2f60f0149fd18d9840e7ee5d2afa411632157b7fb2d0de83b24b40bfb32a"
+    },
+    {
+      "arquivo": "thesis/paper/tables/umidade_sensores.tex",
+      "bytes": 483,
+      "sha256": "2650b014babf0f9dc99718a8e3744d84fe23899fd500a02dddbc16429e5c4280"
+    },
+    {
+      "arquivo": "thesis/paper/tex/capitulos/arquitetura_metodologia.tex",
+      "bytes": 1730,
+      "sha256": "7b54c93afd8a3b94fd852ec1d73d4edbe18f176341bff9ad81567d3a1641c65a"
+    },
+    {
+      "arquivo": "thesis/paper/tex/capitulos/avaliacao.tex",
+      "bytes": 1254,
+      "sha256": "e824aea162b1022495027ff9884d13eb4474a6f17611bdbb70d27e66e75b6098"
+    },
+    {
+      "arquivo": "thesis/paper/tex/capitulos/conclusao.tex",
+      "bytes": 770,
+      "sha256": "878f46022444c4966526e51be94a371e0b3ff3b7cf27b718342152cfb79b079a"
+    },
+    {
+      "arquivo": "thesis/paper/tex/capitulos/desenvolvimento.tex",
+      "bytes": 1354,
+      "sha256": "c6814ad78c61f58fa539e4da54f02f5ef32c8dc9181cb05e6ec8ff7f16077785"
+    },
+    {
+      "arquivo": "thesis/paper/tex/capitulos/introducao.tex",
+      "bytes": 5918,
+      "sha256": "7ab00556aa763054d4ba9b9ffbecd4fc1177198d8a3d23b998f9f6fd026ae32a"
+    },
+    {
+      "arquivo": "thesis/paper/tex/capitulos/revisao.tex",
+      "bytes": 23376,
+      "sha256": "6f0fb436d31a6c3fbf8e0e2a283c994ef3256b49bd1c32f6c7a95b8e09006323"
+    },
+    {
+      "arquivo": "thesis/paper/tex/pre-textual/agradecimentos.tex",
+      "bytes": 28,
+      "sha256": "a1af9cdeff509ad810b778c7011f7771061479556ba7e2ef8ab1b967daa0667b"
+    },
+    {
+      "arquivo": "thesis/paper/tex/pre-textual/dedicatoria.tex",
+      "bytes": 25,
+      "sha256": "8811422ebc96feb7b8b636d249fa972a9f0682e725514fd5bb03158b374c8ce0"
+    },
+    {
+      "arquivo": "thesis/paper/thesis.tex",
+      "bytes": 2654,
+      "sha256": "3d24ddc17242924f76e0062807e85fb79453112525205d83a46a7d5c87b2b9a5"
+    },
+    {
+      "arquivo": "thesis/pdf_template/Monografias.v2026.pdf",
+      "bytes": 324202,
+      "sha256": "6fce407d6464ee904475b43458b67531feebf682bc8d3ce4f7480c9085800890"
+    },
+    {
+      "arquivo": "thesis/propose.pdf",
+      "bytes": 58319,
+      "sha256": "6f7be82547659a3695566da207de5898df31344a6f50debb5dacd5dc7624ac79"
+    },
+    {
+      "arquivo": "thesis/relatedPapers/3748522.3779987.pdf",
+      "bytes": 2207219,
+      "sha256": "c8569afd43f91eb0f819b2b009f5d8d5cee05c6650fac6d45eafebf4ee05c86a"
+    },
+    {
+      "arquivo": "thesis/relatedPapers/From_Deployment_to_Operation_A_Reproducible_IoT_Testbed_for_Smart-Building_HVAC_with_OTA_and_Observability.pdf",
+      "bytes": 2159334,
+      "sha256": "643a206f11c1dda5a672de307b790691f7873605a95bb131bbf8ad64290fee77"
+    },
+    {
+      "arquivo": "thesis/relatedPapers/Interpolation_of_spatial_temperature_profiles_by_sensor_networks.pdf",
+      "bytes": 826130,
+      "sha256": "227a91e168afe67ec59dbf5c23a35be9d84c5647d92badf4b17051bbc0d1f251"
+    },
+    {
+      "arquivo": "thesis/relatedPapers/electronics-11-00477-v2.pdf",
+      "bytes": 11204008,
+      "sha256": "3608f6ca213c402841a41d5ef798e4c997350bf54b5d50e1a898b3b17a936aad"
+    },
+    {
+      "arquivo": "thesis/relatedPapers/sensors-21-02728.pdf",
+      "bytes": 9774441,
+      "sha256": "dfca073b3aad571b4494bc28fbcbb28cfe5690863f9d3cfe0fc142a65241c416"
+    },
+    {
+      "arquivo": "thesis/relatedPapers/sensors-25-04984.pdf",
+      "bytes": 11986964,
+      "sha256": "d471c87dc5f163d5a2cd720f0f4d405951ee2af35d00b714d3b652158363f565"
+    },
+    {
+      "arquivo": "thesis/relatedPapers/smartcities-08-00082-v2.pdf",
+      "bytes": 2542972,
+      "sha256": "140153a0f54a53b4eb2c6c41e96389843dbfe5c318d58a7aa664a8b67eb8218a"
+    },
+    {
+      "arquivo": "thesis/scripts/exportar_resultados.py",
+      "bytes": 5658,
+      "sha256": "fd1b671fce3290e62fe96f386e94d2035c1bb97afdfe423d93c4733897a25ce7"
+    }
+  ]
+}

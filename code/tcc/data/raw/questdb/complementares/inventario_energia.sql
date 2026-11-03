@@ -1,0 +1,1 @@
+SELECT sensor_id, sensor_model, count(*) AS total, min(measured_in) AS inicio, max(measured_in) AS fim, min(energy) AS minimo, max(energy) AS maximo FROM sensor_energy WHERE environment = '1006' AND measured_in >= '2026-06-10T00:00:00Z' AND measured_in < '2026-07-26T00:00:00Z' GROUP BY sensor_id, sensor_model ORDER BY sensor_id
