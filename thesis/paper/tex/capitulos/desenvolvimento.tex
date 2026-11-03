@@ -1,0 +1,20 @@
+\section{Prototipação do retrofit}
+Descrever a inspeção da máquina, circuito de interface, isolamento, protótipo de bancada e eventual PCB. A PCB é desejável, mas não deve bloquear os experimentos.
+
+\section{Firmware ESP32}
+Documentar identidade, MQTT, parser do comando, validação, persistência, máquina de estados, acionamento e publicação do resultado.
+
+\section{Contrato de autorização}
+Descrever o payload do comando, identificador único, validade temporal, assinatura/autenticação adotada, regras de anti-replay e formato dos acknowledgements.
+
+\section{Mecanismo de feedback físico}
+Explicar o sensor/sinal escolhido, circuito, calibração e regra usada para concluir que a extração ocorreu. Discutir falsos positivos e falsos negativos.
+
+\section{Serviço mínimo}
+Apresentar o emissor de autorizações e o registro de resultados. Esse serviço deve permanecer deliberadamente simples, apenas o necessário para testar o edge.
+
+\section{Injeção de falhas}
+Documentar scripts ou procedimentos para duplicar comandos, reenviar autorizações antigas, derrubar a conexão, reiniciar o ESP32 e perder ACKs de forma controlada.
+
+\section{Reprodutibilidade}
+Registrar esquemático, BOM, firmware, versões, configuração do broker, certificados/segredos de teste sem expor credenciais reais, scripts e passos de execução.

@@ -1,6 +1,58 @@
 \section{Descrição das Atividades Realizadas}
 \label{sec:metodologia}
 
+A metodologia foi organizada em etapas de aquisição, preparação e análise dos dados, seguidas pela execução de experimentos de reconstrução virtual de temperaturas. A Figura~\ref{fig:fluxograma_metodologia}
+apresenta uma visão geral desse procedimento, destacando o processamento comum das séries temporais e as diferentes configurações experimentais avaliadas. Os experimentos complementares investigam a influência da quantidade e da seleção de sensores de referência, bem como a contribuição da umidade relativa para as estimativas.
+
+\begin{figure}[p]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  >={Latex[length=2mm]},
+  node distance=0.55cm,
+  etapa/.style={draw=black!65,rounded corners=2pt,fill=blue!6,
+    align=center,text width=10.1cm,minimum height=1.00cm,inner sep=5pt},
+  ensaio/.style={draw=black!65,rounded corners=2pt,fill=green!7,
+    align=center,text width=4.55cm,minimum height=1.75cm,inner sep=5pt},
+  saida/.style={draw=black!65,rounded corners=2pt,fill=orange!10,
+    align=center,text width=10.1cm,minimum height=1.00cm,inner sep=5pt},
+  auxiliar/.style={draw=black!55,dashed,rounded corners=2pt,fill=gray!7,
+    align=center,text width=10.1cm,minimum height=0.95cm,inner sep=5pt},
+  fluxo/.style={-{Latex[length=2mm]},thick,draw=black!70}
+]
+\node[etapa] (fonte) {\textbf{Aquisição dos dados}\\QuestDB: ambiente 1006, nove sensores de temperatura};
+\node[etapa,below=of fonte] (preparo) {\textbf{Pré-processamento}\\Agregação em 5 minutos e sincronização temporal};
+\node[etapa,below=of preparo] (matriz) {\textbf{Matriz experimental}\\12.892 janelas completas de temperatura};
+\node[etapa,below=of matriz] (divisao) {\textbf{Divisão cronológica}\\9.024 janelas de treinamento (70\%) e 3.868 de teste (30\%)};
+\draw[fluxo] (fonte) -- (preparo);
+\draw[fluxo] (preparo) -- (matriz);
+\draw[fluxo] (matriz) -- (divisao);
+
+\node[ensaio,below=1.35cm of divisao.south west,anchor=north west,xshift=0.02cm] (exp1) {\textbf{Comparação dos métodos}\\Média aritmética\\Regressão linear e Random Forest\\9 sensores};
+\node[ensaio,right=0.65cm of exp1] (exp2) {\textbf{Quantidade de entradas}\\Regressão linear\\Correlação; $k\in\{1,2,3,4,6,8\}$\\9 sensores};
+\node[ensaio,below=0.55cm of exp1] (exp3) {\textbf{Seleção espacial}\\Correlação versus\\proximidade\\6 sensores com coordenadas};
+\node[ensaio,right=0.65cm of exp3] (exp4) {\textbf{Inclusão de umidade}\\Regressão linear\\Temperaturas versus\\temperaturas + umidades};
+\begin{scope}[on background layer]
+  \node[draw=black!45,dashed,rounded corners=3pt,fill=gray!3,
+    fit=(exp1)(exp2)(exp3)(exp4),inner xsep=0.25cm,
+    inner ysep=0.55cm] (grupo) {};
+\end{scope}
+\node[fill=white,inner sep=2pt,font=\bfseries\small] at ([xshift=-3.05cm]grupo.north) {Experimentos de reconstrução};
+\draw[fluxo] (divisao.south) -- (grupo.north);
+
+\node[saida,below=0.70cm of grupo.south] (avaliacao) {\textbf{Avaliação das reconstruções}\\Comparação com os valores observados\\MAE, RMSE e $R^2$};
+\node[saida,below=of avaliacao] (analise) {\textbf{Análise e interpretação}\\Comparação por método, sensor-alvo e configuração};
+\draw[fluxo] (grupo.south) -- (avaliacao.north);
+\draw[fluxo] (avaliacao) -- (analise);
+
+\node[auxiliar,below=0.5cm of analise] (energia) {\textbf{Auditoria independente dos registros de energia}\\Caracterização da disponibilidade; sem entrada nos modelos};
+\end{tikzpicture}
+\vspace{10pt}
+\caption{Visão geral da preparação dos dados, dos experimentos de reconstrução e da avaliação. A análise espacial considera seis sensores com coordenadas conhecidas, e o experimento com umidade utiliza amostras pareadas. A auditoria de energia é independente dos modelos de reconstrução.}
+\label{fig:fluxograma_metodologia}
+\fautor
+\end{figure}
+
 \subsection{Operacionalização do Enriquecimento}
 \label{subsec:operacionalizacao_enriquecimento}
 
@@ -12,14 +64,12 @@ os sensores. Por fim, a umidade foi alinhada às temperaturas e incluída
 nas entradas da regressão linear. Essas etapas são rastreáveis nos
 notebooks e nas tabelas exportadas.
 
-O aprendizado supervisionado utiliza a temperatura do alvo como resposta
-histórica e as medições dos demais dispositivos como entradas. O
-experimento com umidade compara oito temperaturas com oito temperaturas
-e oito umidades, em amostras pareadas. Já as coordenadas são utilizadas
-no ordenamento por proximidade e no mapa, sem integrar a matriz de
-variáveis explicativas dos modelos individuais. Dessa forma, o uso
-espacial e a inclusão de outra grandeza ambiental são avaliados em
-experimentos complementares, e não como uma única configuração.
+% O aprendizado supervisionado utiliza a temperatura do alvo como resposta histórica e as medições dos demais dispositivos como entradas. O experimento com umidade compara oito temperaturas com oito temperaturas e oito umidades, em amostras pareadas. Já as coordenadas são utilizadas no ordenamento por proximidade e no mapa, sem integrar a matriz de variáveis explicativas dos modelos individuais. Dessa forma, o uso espacial e a inclusão de outra grandeza ambiental são avaliados em experimentos complementares, e não como uma única configuração.
+
+O aprendizado supervisionado utiliza a temperatura do sensor-alvo como resposta histórica e as medições dos demais dispositivos como variáveis de entrada. Para avaliar a contribuição da umidade relativa, foram comparadas duas configurações de regressão linear: a primeira utiliza as temperaturas dos oito sensores de referência, enquanto a segunda incorpora também suas respectivas medições de umidade, totalizando 16 variáveis explicativas. Ambas foram avaliadas sobre os mesmos registros temporais para cada sensor-alvo, permitindo comparar seus resultados em condições equivalentes.
+
+As coordenadas espaciais, por sua vez, foram utilizadas no ordenamento dos sensores por proximidade e na elaboração do mapa térmico, sem integrar diretamente as variáveis explicativas dos modelos de reconstrução. Dessa forma, a utilização das informações espaciais e a inclusão da umidade foram investigadas em experimentos complementares, e não como uma única configuração.
+
 
 \subsection{Delimitação do conjunto experimental}
 \label{subsec:conjunto_experimental}
@@ -47,9 +97,7 @@ com convenções temporais ainda não confirmadas.
 
 A consulta agrupou as temperaturas de cada sensor em intervalos de
 cinco minutos, por meio de \texttt{SAMPLE BY 5m}, retornando a média
-e a quantidade de medições por intervalo. Foram obtidas 116.438
-linhas agregadas, cada uma correspondente a um par sensor--janela;
-essa contagem, uma linha não representa uma medição individual.
+e a quantidade de medições por intervalo. Foram obtidas 116.438 linhas agregadas, cada uma correspondente a um par sensor--janela. Portanto, cada linha representa um intervalo temporal agregado para determinado dispositivo, e não uma medição individual.
 A extração foi salva localmente em CSV, acompanhada da consulta SQL,
 da identificação da fonte e de um resumo criptográfico SHA-256.
 
@@ -122,9 +170,7 @@ em que $\overline{T}$ é a média das observações do alvo no teste.
 As métricas foram calculadas individualmente para cada alvo.
 Os resumos apresentam suas médias aritméticas entre os nove alvos,
 com pesos iguais. Em particular, a média dos RMSE não corresponde
-ao RMSE calculado reunindo todas as previsões. O desvio entre alvos,
-quando exportado, descreve heterogeneidade espacial entre dispositivos,
-sem constituir intervalo de confiança.
+ao RMSE calculado reunindo todas as previsões. O desvio entre alvos, quando exportado, descreve a variabilidade de desempenho entre sensores-alvo, sem constituir intervalo de confiança.
 
 \subsection{Quantidade e seleção de sensores de entrada}
 \label{subsec:quantidade_sensores}
@@ -150,14 +196,11 @@ os resultados consolidados aqui.
 \subsection{Análise espacial complementar e mapa térmico}
 \label{subsec:metodologia_espacial}
 
-O arquivo \texttt{sensorsWithCoordinates} registra as coordenadas
-relativas de 14 dispositivos, confirmadas pelo autor. Desses,
-seis pertencem ao conjunto experimental do QuestDB: 48, 887, 891,
-86790, 86791 e 86793. A análise complementar utiliza esses seis
-sensores como alvos e candidatos a entrada, preservando as mesmas
-12.892 janelas completas e a divisão de 9.024 linhas de treinamento
-e 3.868 de teste. Os sensores 1, 86782 e 86789 não participam dessa
-análise por não possuírem coordenadas confirmadas no cadastro.
+% O arquivo \texttt{sensorsWithCoordinates} registra as coordenadas relativas de 14 dispositivos, confirmadas pelo autor. Desses, seis pertencem ao conjunto experimental do QuestDB: 48, 887, 891, 86790, 86791 e 86793. A análise complementar utiliza esses seis sensores como alvos e candidatos a entrada, preservando as mesmas 12.892 janelas completas e a divisão de 9.024 linhas de treinamento e 3.868 de teste. Os sensores 1, 86782 e 86789 não participam dessa análise por não possuírem coordenadas confirmadas no cadastro.
+
+Conforme apresentado na Seção~\ref{subsec:ambiente_experimental}, foram mapeadas coordenadas relativas para 14 dispositivos, representados na Figura~\ref{fig:lablasdpcschem}. Entretanto, apenas seis desses dispositivos pertencem ao conjunto principal de nove sensores utilizado nos experimentos com dados do QuestDB: 48, 887, 891, 86790, 86791 e 86793.
+
+A análise espacial complementar considera exclusivamente esses seis sensores, utilizados alternadamente como alvos e candidatos a entrada. Foram preservadas as mesmas 12.892 janelas completas e a divisão temporal de 9.024 observações para treinamento e 3.868 para teste. Os sensores 1, 86782 e 86789 não participam dessa análise por não possuírem coordenadas confirmadas.
 
 Para cada alvo, foram comparadas duas regras de seleção de entradas:
 correlação de Pearson decrescente no treinamento e distância euclidiana
@@ -235,21 +278,33 @@ As médias das métricas foram calculadas com pesos iguais entre alvos.
 \subsection{Auditoria exploratória do campo de energia}
 \label{subsec:metodologia_energia}
 
-A tabela \texttt{sensor\_energy} foi consultada no mesmo ambiente e
-período, preservando identificadores, modelo, limites temporais e
-extremos. Os registros disponíveis foram agregados em cinco minutos
-para caracterização e sobreposição às séries de temperatura.
-O cadastro associa o sensor 23 ao dispositivo denominado
-\textit{Ar Samsung Direita Vilalba}; o modelo registrado é ACS712.
+A tabela \texttt{sensor\_energy} foi consultada para o mesmo ambiente
+e período do experimento principal, preservando os identificadores
+dos dispositivos, os modelos registrados e os limites temporais.
+Os dados disponíveis foram agregados em intervalos de cinco minutos
+para caracterização e comparação temporal com as séries de temperatura.
 
-O fabricante descreve o ACS712 como sensor de corrente
-\cite{allegroacs712}. Entretanto, não foi confirmada a transformação
-aplicada pelo firmware até o campo \texttt{energy} no QuestDB.
-Portanto, os valores são apresentados na escala original, com unidade
-não confirmada. Não foram convertidos para potência ou consumo,
-integrados no tempo, nem utilizados para classificar arbitrariamente
-o estado de funcionamento do equipamento. A sobreposição temporal
-é descritiva e não constitui avaliação causal da climatização.
+Entre os registros consultados, o dispositivo de identificador 23
+estava associado ao modelo ACS712, destinado à medição de corrente
+elétrica \cite{allegroacs712}. Embora esse componente permita obter
+medidas de corrente em ampères (A), não foi possível confirmar a
+unidade física dos valores armazenados no campo \texttt{energy}
+a partir das informações disponíveis sobre o processamento das
+medições. Por esse motivo, os registros foram mantidos em sua escala
+original, sem conversões para corrente, potência ou consumo energético.
+
+Dessa forma, essa etapa foi limitada à caracterização da
+disponibilidade dos registros e à comparação temporal exploratória
+com as temperaturas observadas. Não foram realizadas inferências
+sobre os estados de funcionamento dos equipamentos ou estabelecidas
+relações causais entre os registros elétricos e as condições
+térmicas do ambiente.
+
+% O cadastro associa o sensor 23 ao dispositivo denominado \textit{Ar Samsung Direita Vilalba}; o modelo registrado é ACS712.
+
+% O fabricante descreve o ACS712 como sensor de corrente \cite{allegroacs712}. Entretanto, não foi confirmada a transformação aplicada pelo firmware até o campo \texttt{energy} no QuestDB. Portanto, os valores são apresentados na escala original, com unidade não confirmada. Não foram convertidos para potência ou consumo, integrados no tempo, nem utilizados para classificar arbitrariamente o estado de funcionamento do equipamento. A sobreposição temporal é descritiva e não constitui avaliação causal da climatização.
+
+%O modelo ACS712 é destinado à medição de corrente elétrica \cite{allegroacs712}. Entretanto, a unidade dos valores armazenados no campo \texttt{energy} não pôde ser determinada a partir das informações disponíveis nesta análise. Por esse motivo, os registros foram mantidos em sua escala original, sem conversão para corrente, potência ou consumo energético.
 
 \subsection{Organização e rastreabilidade}
 \label{subsec:reprodutibilidade}
@@ -268,3 +323,11 @@ As extensões de umidade e energia foram executadas em 31 de outubro
 de 2026 nos notebooks \texttt{05\_umidade.ipynb} e
 \texttt{06\_energia\_exploratoria.ipynb}, com consultas, caches
 e configurações próprios, preservando os experimentos anteriores.
+
+Os códigos utilizados na preparação dos dados, na execução dos
+experimentos e na geração das visualizações estão disponíveis
+no repositório público do projeto no GitHub\footnote{
+\url{https://github.com/GuScarenci/temperatureMonitoring}}.
+O repositório reúne os materiais de implementação e documentação
+associados ao desenvolvimento deste trabalho, permitindo consultar
+os procedimentos adotados e apoiar sua reprodução.

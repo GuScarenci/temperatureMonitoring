@@ -1,5 +1,5 @@
 {
-  "gerado_em_utc": "2026-10-31T21:04:41.170082+00:00",
+  "gerado_em_utc": "2026-11-03T01:05:12.740527+00:00",
   "arquivos": [
     {
       "arquivo": "code/sensores.json",
@@ -43,8 +43,8 @@
     },
     {
       "arquivo": "code/tcc/README.md",
-      "bytes": 6016,
-      "sha256": "d5e27df2f60408d886f729364dd3a3d1fdd4a257a6f32466b79d345fe1b6af04"
+      "bytes": 6260,
+      "sha256": "3207bd10af892b5ccbe8cd59a422ad074076b03fafbac5bb509572547b15398c"
     },
     {
       "arquivo": "code/tcc/apoio_consultas.py",
@@ -333,8 +333,8 @@
     },
     {
       "arquivo": "code/tcc/gerar_manifesto.py",
-      "bytes": 1357,
-      "sha256": "0e8e9680b45cd513caf18b01f163965b0f95038e9ac9fdc83e43b708eb26bba7"
+      "bytes": 1351,
+      "sha256": "73bb2bd7372ea3df91b025c558b59b866bcbf2b4c54e80b4044484defa8bd726"
     },
     {
       "arquivo": "code/tcc/requirements.txt",
@@ -667,34 +667,49 @@
       "sha256": "c65792652a8fdf3a0a0dd0e939c0cca259d65b1bf9513a8dd7148111cdb66a96"
     },
     {
+      "arquivo": "thesis/README.md",
+      "bytes": 3561,
+      "sha256": "c5f3426d58f6fa5a17dc271bb00a1f9032ed29d5dda6add13a0bff1a8b69c556"
+    },
+    {
+      "arquivo": "thesis/TCC_GustavoMoura.pdf",
+      "bytes": 2220045,
+      "sha256": "7c5e69c4e0561f0a49f4f2f83f6e1b24c19b6e0334b89a6d18838e0cc5724a8f"
+    },
+    {
+      "arquivo": "thesis/archive/overleaf-original.zip",
+      "bytes": 2767965,
+      "sha256": "6fa9d6432f0078704fcba8d6bec225928acdad4b14cac759708bf041222eb960"
+    },
+    {
+      "arquivo": "thesis/archive/paper-anterior.zip",
+      "bytes": 704565,
+      "sha256": "abe709142827d93a7e8ca20d747fb2faf5f2d2d7db07933a4160f8a1f9c2a294"
+    },
+    {
       "arquivo": "thesis/paper/.gitignore",
       "bytes": 171,
       "sha256": "8cfa94800f3be9d18279fe52a51f7f9b352369180190113da63dd94edfa02cf9"
     },
     {
-      "arquivo": "thesis/paper/ALINHAMENTO_PROPOSTA.md",
-      "bytes": 4129,
-      "sha256": "18f3940636b85fca37546f8f307971e1154befe3e076f6eb9c92ce0cb0d750ab"
+      "arquivo": "thesis/paper/Distribuição Espacial dos Sensores.png",
+      "bytes": 1363661,
+      "sha256": "c4dbeea506721013e828027a882b61ae43bfc35d9734ef1bfcfa67b76e524434"
     },
     {
       "arquivo": "thesis/paper/Makefile",
-      "bytes": 149,
-      "sha256": "0288c319942a9d4454967cf11d2cbf424ead1f354316a70c7c70c7798776e522"
+      "bytes": 148,
+      "sha256": "90a3cd454737b20bd611d2cb73d5c8981367ddc14d59467cd51cb7eab845d950"
     },
     {
       "arquivo": "thesis/paper/README.md",
-      "bytes": 3625,
-      "sha256": "01de2a2ce6bdf1f7317f66e2036bd9f78c78baa18c092a60108f9f60d1f3f51e"
+      "bytes": 700,
+      "sha256": "1f8850bfa90b79ab18ca51629a1ae176cae2b7584eb8f308cb75b588bd7580e0"
     },
     {
-      "arquivo": "thesis/paper/REVISAO.md",
-      "bytes": 10799,
-      "sha256": "63d3c69347398bf69636208d7a385e8dabb7b60be087ad07265c2b3b99edc269"
-    },
-    {
-      "arquivo": "thesis/paper/figures/.gitkeep",
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "arquivo": "thesis/paper/algorithm2e.sty",
+      "bytes": 167163,
+      "sha256": "b0fa767c706a0a64209bc66acb3042d77203bc0610925db2e31a9e2154c8d312"
     },
     {
       "arquivo": "thesis/paper/figures/caracterizacao_umidade.pdf",
@@ -747,14 +762,9 @@
       "sha256": "99468d9904ea4a0c146ae9d3a6b05f9de6d2982f992e16ebb11531bff14ca622"
     },
     {
-      "arquivo": "thesis/paper/main.tex",
-      "bytes": 2155,
-      "sha256": "443f99f0fd274b2000a264f1bbaa15148c29e0e2334a76f4402f52f164cd0718"
-    },
-    {
       "arquivo": "thesis/paper/metadata.tex",
-      "bytes": 521,
-      "sha256": "7c788b2593ee0ad2b45f8182c83e978a999016bae4b5d71d18aee9b30986424f"
+      "bytes": 474,
+      "sha256": "32f12e1d9ea3346831b6f118f742aea97918952726c0df9c2387d6689ba88e22"
     },
     {
       "arquivo": "thesis/paper/packages/icmc.cls",
@@ -762,29 +772,19 @@
       "sha256": "b17fcb2c88c153fbd22a9b8d69442eff6ecdcfce6ae07385de20ba2697a4efa8"
     },
     {
-      "arquivo": "thesis/paper/packages/monografias.cls",
-      "bytes": 4103,
-      "sha256": "b0d85859b7d47207929ba629c571112cc1484bb1fc6350097a43e2b71ff81525"
-    },
-    {
       "arquivo": "thesis/paper/references.bib",
       "bytes": 5043,
       "sha256": "262e1f396eeba496eb47980c650f30cec0f8615e2c4c38ec170251188870146a"
     },
     {
-      "arquivo": "thesis/paper/scripts/exportar_resultados.py",
-      "bytes": 5659,
-      "sha256": "b57199b55f62457ffea93dbf67820cb5760922b7104bd2e19bf35202cc69670b"
-    },
-    {
       "arquivo": "thesis/paper/sections/conclusao.tex",
-      "bytes": 2839,
-      "sha256": "9e93bb76950b7e4bfceb8c4c477dc292be54509c6b03de48d28596603ca5415c"
+      "bytes": 5604,
+      "sha256": "6c015d0ffcbcce010c87c8f0506ff8ee406521273805d053f5819c35f09639bb"
     },
     {
       "arquivo": "thesis/paper/sections/desenvolvimento.tex",
-      "bytes": 6389,
-      "sha256": "99301de0afd5a33ed92ad93c15283dbd7596df49821cce99c45b66b85db448ce"
+      "bytes": 9497,
+      "sha256": "a2dd554b23c0c0a63e26474edb996f8263a11d902930a135d33a14e2014c4533"
     },
     {
       "arquivo": "thesis/paper/sections/introducao.tex",
@@ -793,18 +793,18 @@
     },
     {
       "arquivo": "thesis/paper/sections/metodologia.tex",
-      "bytes": 14772,
-      "sha256": "ff66844765f4201a33b1fc19672cebb9435e1cd20425101d7c980f3016c34c3a"
+      "bytes": 22175,
+      "sha256": "ceb73fc2ccea398f60613c013459ba38970b9290bebb3e601c500560b3bd9868"
     },
     {
       "arquivo": "thesis/paper/sections/resultados.tex",
-      "bytes": 19011,
-      "sha256": "ca4ac479230a3a63e92e70f2e157806d42a58e892b53450b973694db4c15d219"
+      "bytes": 24370,
+      "sha256": "756f10c89ab02eed62f74899a8c74aab4494732332beb1dda6668e6980ddaad2"
     },
     {
       "arquivo": "thesis/paper/sections/revisao_bibliografica.tex",
-      "bytes": 13741,
-      "sha256": "3f0924a6c440acefe52f574ff674c5e97fbb6775a932ad6d097b19df3898e5df"
+      "bytes": 19758,
+      "sha256": "4b8db3e2d2a21662b9d4a7ec7cdfecedb2bca1112bd97a288d6939918f24058f"
     },
     {
       "arquivo": "thesis/paper/tables/coordenadas.tex",
@@ -852,6 +852,56 @@
       "sha256": "2650b014babf0f9dc99718a8e3744d84fe23899fd500a02dddbc16429e5c4280"
     },
     {
+      "arquivo": "thesis/paper/tex/capitulos/arquitetura_metodologia.tex",
+      "bytes": 1730,
+      "sha256": "7b54c93afd8a3b94fd852ec1d73d4edbe18f176341bff9ad81567d3a1641c65a"
+    },
+    {
+      "arquivo": "thesis/paper/tex/capitulos/avaliacao.tex",
+      "bytes": 1254,
+      "sha256": "e824aea162b1022495027ff9884d13eb4474a6f17611bdbb70d27e66e75b6098"
+    },
+    {
+      "arquivo": "thesis/paper/tex/capitulos/conclusao.tex",
+      "bytes": 770,
+      "sha256": "878f46022444c4966526e51be94a371e0b3ff3b7cf27b718342152cfb79b079a"
+    },
+    {
+      "arquivo": "thesis/paper/tex/capitulos/desenvolvimento.tex",
+      "bytes": 1354,
+      "sha256": "c6814ad78c61f58fa539e4da54f02f5ef32c8dc9181cb05e6ec8ff7f16077785"
+    },
+    {
+      "arquivo": "thesis/paper/tex/capitulos/introducao.tex",
+      "bytes": 5918,
+      "sha256": "7ab00556aa763054d4ba9b9ffbecd4fc1177198d8a3d23b998f9f6fd026ae32a"
+    },
+    {
+      "arquivo": "thesis/paper/tex/capitulos/revisao.tex",
+      "bytes": 23376,
+      "sha256": "6f0fb436d31a6c3fbf8e0e2a283c994ef3256b49bd1c32f6c7a95b8e09006323"
+    },
+    {
+      "arquivo": "thesis/paper/tex/pre-textual/agradecimentos.tex",
+      "bytes": 28,
+      "sha256": "a1af9cdeff509ad810b778c7011f7771061479556ba7e2ef8ab1b967daa0667b"
+    },
+    {
+      "arquivo": "thesis/paper/tex/pre-textual/dedicatoria.tex",
+      "bytes": 25,
+      "sha256": "8811422ebc96feb7b8b636d249fa972a9f0682e725514fd5bb03158b374c8ce0"
+    },
+    {
+      "arquivo": "thesis/paper/thesis.tex",
+      "bytes": 2654,
+      "sha256": "3d24ddc17242924f76e0062807e85fb79453112525205d83a46a7d5c87b2b9a5"
+    },
+    {
+      "arquivo": "thesis/pdf_template/Monografias.v2026.pdf",
+      "bytes": 324202,
+      "sha256": "6fce407d6464ee904475b43458b67531feebf682bc8d3ce4f7480c9085800890"
+    },
+    {
       "arquivo": "thesis/propose.pdf",
       "bytes": 58319,
       "sha256": "6f7be82547659a3695566da207de5898df31344a6f50debb5dacd5dc7624ac79"
@@ -890,6 +940,11 @@
       "arquivo": "thesis/relatedPapers/smartcities-08-00082-v2.pdf",
       "bytes": 2542972,
       "sha256": "140153a0f54a53b4eb2c6c41e96389843dbfe5c318d58a7aa664a8b67eb8218a"
+    },
+    {
+      "arquivo": "thesis/scripts/exportar_resultados.py",
+      "bytes": 5658,
+      "sha256": "fd1b671fce3290e62fe96f386e94d2035c1bb97afdfe423d93c4733897a25ce7"
     }
   ]
 }

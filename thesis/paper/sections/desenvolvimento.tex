@@ -16,37 +16,34 @@ da quantidade de entradas e a análise espacial complementar.
 \label{subsec:contextualizacao_problema}
 \label{subsec:proposta_reconstrucao}
 
-O problema consiste em estimar a temperatura agregada de um sensor
-físico a partir das medições dos demais dispositivos do mesmo ambiente.
-A referência física permite quantificar o erro, enquanto o histórico
-do alvo fornece a resposta para ajustar os modelos supervisionados.
-Durante a estimativa, o valor do alvo não participa das entradas.
-A investigação utiliza uma infraestrutura preexistente, sem alterar
-o posicionamento dos sensores ou propor novos algoritmos.
+%O problema consiste em estimar a temperatura agregada de um sensor físico a partir das medições dos demais dispositivos do mesmo ambiente. A referência física permite quantificar o erro, enquanto o histórico do alvo fornece a resposta para ajustar os modelos supervisionados. Durante a estimativa, o valor do alvo não participa das entradas. A investigação utiliza uma infraestrutura preexistente, sem alterar o posicionamento dos sensores ou propor novos algoritmos.
+
+O problema investigado consiste em reconstruir a temperatura registrada por um sensor físico a partir das medições dos demais dispositivos do mesmo ambiente. Para avaliar essa abordagem, cada sensor é tratado, alternadamente, como um alvo cuja temperatura deve ser estimada, simulando sua indisponibilidade durante a reconstrução. Dessa forma, suas medições são excluídas das variáveis de entrada, enquanto as temperaturas registradas pelos demais sensores são utilizadas para produzir as estimativas.
+
+Nos métodos supervisionados, o histórico do sensor-alvo é utilizado como referência durante o treinamento dos modelos. Posteriormente, as temperaturas estimadas são comparadas com os valores reais registrados pelo dispositivo no conjunto de teste, permitindo quantificar os erros de reconstrução. As estimativas são realizadas a partir de medições correspondentes ao mesmo intervalo temporal, não constituindo, portanto, uma previsão de temperaturas futuras.
+
+Embora o procedimento utilize sensores físicos existentes para permitir uma avaliação quantitativa, o sensoriamento virtual apresenta potencial para apoiar a estimativa de temperaturas em posições não instrumentadas do ambiente. Entretanto, essa possibilidade exigiria uma estratégia específica de reconstrução espacial e validação adicional, não sendo diretamente demonstrada pelos experimentos realizados neste trabalho. A investigação concentra-se, assim, na avaliação de métodos de reconstrução aplicados a uma infraestrutura preexistente, sem modificar o posicionamento dos sensores ou propor novos algoritmos.
 
 \subsection{Ambiente experimental e cadastro}
 \label{subsec:ambiente_experimental}
 
-O trabalho utiliza a infraestrutura do Laboratório de Sistemas
-Distribuídos e Programação Concorrente (LASDPC), do Instituto de
-Ciências Matemáticas e de Computação (ICMC), da Universidade de São
-Paulo (USP). O experimento principal considera os registros associados
-ao identificador \texttt{1006} no QuestDB.
+O trabalho utiliza a infraestrutura do Laboratório de Sistemas Distribuídos e Programação Concorrente (LASDPC), do Instituto de Ciências Matemáticas e de Computação (ICMC), da Universidade de São Paulo (USP). O experimento principal considera os registros de temperatura associados ao ambiente \texttt{1006} no QuestDB, correspondentes a nove sensores físicos. A Figura~\ref{fig:lablasdpcschem} apresenta uma representação aproximada da planta do laboratório, com a identificação e a localização dos dispositivos cujas posições foram mapeadas. Informações adicionais sobre a infraestrutura e imagens
+do laboratório estão disponíveis na página do projeto
+Smart LASDPC\footnote{\url{https://smart-lasdpc.github.io/about-project.html}}.
 
-O cadastro da plataforma e a planta física descrevem aspectos distintos.
-As categorias 1006, Cluster e Reunião identificam grupos de dispositivos
-no inventário consultado; por si só, esses nomes não definem paredes
-ou espaços termicamente isolados. Na planta fornecida pelo autor,
-o espaço do cluster é separado da região dos demais sensores por
-uma divisória, com abertura à direita. A interpretação espacial considera
-essa configuração, e não somente o nome atribuído a cada dispositivo.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{Distribuição Espacial dos Sensores.png}
+\caption{Distribuição espacial aproximada dos sensores no ambiente do LASDPC. As cores representam os grupos cadastrais 1006, Cluster e Reunião, enquanto os eixos indicam coordenadas relativas.}
+\label{fig:lablasdpcschem}
+\fautor
+\end{figure}
 
-As coordenadas são relativas e aproximadas. Foram confirmadas posições
-para 14 dispositivos, dos quais seis pertencem ao conjunto principal
-de nove sensores. A seleção por distância utiliza apenas esse subconjunto;
-os outros três sensores não receberam coordenadas por aproximação.
-O mapa da Seção~\ref{subsec:mapa_termico} apresenta os pontos observados,
-a divisória e o domínio da interpolação ilustrativa.
+O cadastro da plataforma e a organização física do laboratório representam aspectos distintos. As categorias 1006, Cluster e Reunião identificam grupos de dispositivos no inventário consultado, mas não correspondem necessariamente a ambientes termicamente isolados. Conforme ilustrado na Figura~\ref{fig:lablasdpcschem}, a região do cluster é separada da área principal por uma divisória, com uma abertura à direita. Essa configuração foi considerada na interpretação da distribuição espacial dos sensores.
+
+Foram mapeadas coordenadas relativas e aproximadas para 14 dispositivos, representados na Figura~\ref{fig:lablasdpcschem}. Entretanto, apenas seis deles pertencem ao conjunto principal de nove sensores utilizado nos experimentos com dados do QuestDB: 48, 887, 891, 86790, 86791 e 86793. Os outros três sensores do conjunto principal não possuem coordenadas confirmadas e, portanto, não foram incluídos nas análises que dependem de informações espaciais.
+
+Dessa forma, os experimentos de comparação entre métodos de reconstrução utilizam os nove sensores do conjunto principal, enquanto a análise complementar de seleção por proximidade considera apenas os seis dispositivos com posições conhecidas. Os demais sensores representados na planta contribuem para a caracterização do ambiente, mas suas medições não integram os experimentos consolidados. O mapa apresentado na Seção~\ref{subsec:mapa_termico} utiliza as coordenadas confirmadas para representar as temperaturas médias observadas nos sensores e ilustrar sua distribuição espacial por meio de interpolação.
 
 \subsection{Infraestrutura de monitoramento e armazenamento}
 \label{subsec:infraestrutura_monitoramento}

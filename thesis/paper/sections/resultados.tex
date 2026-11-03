@@ -93,18 +93,15 @@ Esse resultado evidencia a importância de manter uma referência
 simples e avaliar cada alvo. O ajuste no treinamento não garante
 menor erro no período posterior para todos os dispositivos.
 
-A Figura~\ref{fig:reconstrucao_891} apresenta o sensor 891 como
-exemplo das dificuldades de reconstrução, escolhido por seu maior
-MAE entre os alvos na Random Forest. Os gráficos dos demais alvos
-foram igualmente exportados. Nesse exemplo, a média aritmética
-permanece acima da temperatura observada, enquanto as estimativas
-supervisionadas acompanham melhor seu nível, mas ainda apresentam
-resíduos positivos em parte do teste. A figura permite visualizar
-esse comportamento, sem estabelecer sua causa física.
+A Figura~\ref{fig:reconstrucao_891} apresenta o comportamento das estimativas para o sensor 891, selecionado por apresentar o maior MAE entre os alvos avaliados pela Random Forest. O gráfico superior compara a temperatura efetivamente registrada pelo sensor com as temperaturas estimadas pelos três métodos ao longo do período de teste. Já o gráfico inferior apresenta os resíduos das estimativas, calculados pela diferença entre a temperatura estimada e a observada, permitindo visualizar a magnitude e o sentido dos erros. Valores positivos indicam superestimação, enquanto valores negativos indicam subestimação.
+
+Observa-se que a média aritmética permanece sistematicamente acima da temperatura real, apresentando resíduos positivos elevados durante praticamente todo o período analisado. Em contrapartida, a regressão linear e a Random Forest acompanham mais de perto as variações da temperatura observada, com resíduos geralmente próximos de zero, embora ainda apresentem desvios em determinados intervalos. Esse comportamento é consistente com os menores erros absolutos médios obtidos pelos métodos supervisionados para esse sensor. A figura evidencia, portanto, diferenças na capacidade dos métodos de reproduzir o nível térmico observado, sem permitir identificar as causas físicas dessas discrepâncias.
 
 \begin{figure}[htbp]
     \centering
-    \caption{Temperaturas observadas, estimativas e resíduos do sensor 891.}
+    \caption{Reconstrução da temperatura do sensor 891 no conjunto
+    de teste: temperaturas observadas e estimadas (superior)
+    e resíduos das estimativas (inferior).}
     \label{fig:reconstrucao_891}
     \includegraphics[width=\linewidth]{reconstrucao_sensor_891.pdf}
     \fautor
@@ -392,22 +389,84 @@ sem incluí-los como entradas dos modelos ou calcular consumo energético.
 \subsection{Síntese e alcance dos resultados}
 \label{subsec:sintese_resultados}
 
-No conjunto estudado, foi possível reconstruir as médias de
-temperatura dos nove sensores com MAE médio entre alvos próximo
-de 0,25~°C usando métodos supervisionados. A adequação desse erro
-a uma aplicação específica dependeria de requisitos que não foram
-definidos neste experimento. A regressão linear e a Random Forest
-apresentaram desempenho agregado próximo, com vantagens distintas
-conforme a métrica e o alvo. A análise de quantidade mostrou que
-mais entradas não asseguraram menor erro no período de teste.
+%No conjunto estudado, foi possível reconstruir as médias de temperatura dos nove sensores com MAE médio entre alvos próximo de 0,25~°C usando métodos supervisionados. A adequação desse erro a uma aplicação específica dependeria de requisitos que não foram definidos neste experimento. A regressão linear e a Random Forest apresentaram desempenho agregado próximo, com vantagens distintas conforme a métrica e o alvo. A análise de quantidade mostrou que mais entradas não asseguraram menor erro no período de teste.
 
-A umidade acrescentou um ganho médio pequeno, com efeitos distintos
-por alvo, enquanto os registros de energia tiveram disponibilidade
-insuficiente para uma avaliação no período completo.
-A evidência se restringe à reconstrução de janelas completas em
-um ambiente e uma divisão temporal. Não foi avaliada a operação
-sob indisponibilidade simultânea das entradas, nem a estabilidade
-em outras estações, ambientes ou configurações físicas. Além disso,
-a referência é a medição do sensor físico: concordância com esse
-registro não demonstra exatidão em relação a um instrumento calibrado,
-nem valida índices de conforto térmico ou um campo térmico contínuo.
+% A umidade acrescentou um ganho médio pequeno, com efeitos distintos por alvo, enquanto os registros de energia tiveram disponibilidade insuficiente para uma avaliação no período completo. A evidência se restringe à reconstrução de janelas completas em um ambiente e uma divisão temporal. Não foi avaliada a operação sob indisponibilidade simultânea das entradas, nem a estabilidade em outras estações, ambientes ou configurações físicas. Além disso, a referência é a medição do sensor físico: concordância com esse registro não demonstra exatidão em relação a um instrumento calibrado, nem valida índices de conforto térmico ou um campo térmico contínuo.
+
+Os experimentos demonstraram a viabilidade da reconstrução das
+temperaturas médias dos sensores físicos no ambiente estudado,
+com erros absolutos médios próximos de 0,25~°C para os métodos
+supervisionados. A regressão linear e a Random Forest apresentaram
+desempenhos agregados semelhantes: a Random Forest obteve o menor
+MAE médio entre os nove alvos (0,254~°C), enquanto a regressão
+linear apresentou o menor RMSE médio (0,325~°C). Considerando a
+proximidade desses resultados e a menor complexidade estrutural
+da regressão linear, esta se apresenta como uma alternativa inicial
+adequada para a reconstrução de temperaturas no cenário avaliado.
+Entretanto, as diferenças de desempenho entre os sensores-alvo
+indicam que a escolha do método deve considerar as características
+de cada dispositivo, não sendo possível estabelecer uma abordagem
+universalmente superior.
+
+A análise da quantidade de entradas mostrou que a utilização de
+todos os sensores disponíveis não necessariamente resulta em
+menores erros de reconstrução. Na regressão linear com seleção
+por correlação, quatro sensores de referência apresentaram o
+menor MAE médio entre as configurações avaliadas (0,238~°C),
+inferior ao obtido com oito entradas (aproximadamente
+0,257~°C). Esse resultado sugere que subconjuntos de sensores
+podem fornecer informações suficientes para produzir estimativas
+competitivas, sem que a inclusão de todas as medições disponíveis
+represente necessariamente uma vantagem. Contudo, a quantidade
+de quatro entradas não deve ser interpretada como uma configuração
+ótima geral, pois seu desempenho foi identificado no próprio
+conjunto de teste e variou conforme o sensor-alvo.
+
+Na análise espacial complementar, a seleção de sensores por
+correlação histórica apresentou menores erros médios que a
+seleção por proximidade física para uma a quatro entradas.
+Esse comportamento sugere que a distância euclidiana,
+isoladamente, não representa todas as relações relevantes
+entre as temperaturas registradas no ambiente. A observação
+é compatível com a importância de considerar relações
+estatísticas entre sensores, discutida por
+\citeonline{brunello2021virtual}. Entretanto, a comparação
+foi realizada com apenas seis dispositivos com coordenadas
+confirmadas, não permitindo generalizar a superioridade
+de um critério de seleção para outras configurações espaciais.
+
+O enriquecimento das entradas com medições de umidade relativa
+produziu uma redução pequena no MAE médio da regressão linear,
+de 0,25668~°C para 0,25343~°C, com melhorias em cinco
+sensores-alvo e aumento do erro nos outros quatro. Assim,
+embora a integração de diferentes grandezas ambientais
+seja uma possibilidade relevante para o sensoriamento virtual,
+os resultados não demonstraram uma vantagem uniforme ou
+expressiva da inclusão de umidade na configuração avaliada.
+Os registros de energia, por sua vez, apresentaram disponibilidade
+insuficiente para uma análise correspondente ao período completo,
+permanecendo restritos à caracterização exploratória.
+
+Em conjunto, os resultados indicam que a reconstrução virtual
+pode aproveitar relações existentes entre sensores físicos
+para estimar temperaturas em posições previamente monitoradas,
+com desempenho dependente do método, do sensor-alvo e da
+seleção das entradas. Para o ambiente estudado, a regressão
+linear representa uma alternativa competitiva e relativamente
+simples, enquanto a seleção de subconjuntos de sensores
+mostrou potencial para reduzir a quantidade de informações
+necessárias à reconstrução.
+
+Essas conclusões, entretanto, restringem-se às condições
+experimentais consideradas: um único ambiente, um período
+de observação e uma divisão cronológica de treinamento e teste.
+Não foram avaliadas situações de indisponibilidade simultânea
+dos sensores de referência, nem a estabilidade dos resultados
+em outros períodos ou configurações físicas. Além disso, a
+comparação utiliza as medições dos próprios sensores como
+referência, sem validação por instrumentos calibrados. Dessa
+forma, os resultados não demonstram diretamente a capacidade
+de estimar temperaturas em posições não instrumentadas,
+reconstruir um campo térmico contínuo ou avaliar condições
+de conforto térmico, permanecendo essas possibilidades
+como perspectivas para trabalhos futuros.

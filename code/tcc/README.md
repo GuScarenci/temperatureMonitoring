@@ -76,13 +76,16 @@ Na raiz do projeto:
 
 ```bash
 .venv/bin/python code/tcc/verificar_resultados.py
-python3 thesis/paper/scripts/exportar_resultados.py
+python3 thesis/scripts/exportar_resultados.py
 make -C thesis/paper
 ```
 
 A conferência recalcula MAE, RMSE e R² a partir das previsões salvas,
 verifica hashes, timestamps e as métricas resumidas. Não treina modelos
-nem consulta servidores. O exportador atualiza tabelas e figuras do
+nem consulta servidores. Os fontes atuais do Overleaf estão em `thesis/paper/`, com entrada
+`thesis.tex` e compilação pdfLaTeX. O PDF de referência em
+`thesis/TCC_GustavoMoura.pdf` não é sobrescrito. A exportação é opcional
+e regrava os artefatos dos fontes locais. O exportador atualiza tabelas e figuras do
 LaTeX; números nos parágrafos precisam ser conferidos se os dados mudarem.
 
 Os notebooks `../final.ipynb`, `../main2.ipynb` e `../novo.ipynb` são

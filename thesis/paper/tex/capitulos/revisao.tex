@@ -1,0 +1,349 @@
+%\chapter{Revisão Bibliográfica}
+\label{sec:revisao}
+
+\section{Considerações Iniciais}
+
+O monitoramento de condições ambientais por meio de redes de sensores permite acompanhar a evolução de grandezas físicas em diferentes posições de um ambiente. Entretanto, a utilização dessas informações para estimar valores em pontos não monitorados diretamente apresenta desafios relacionados à distribuição espacial dos dispositivos, à qualidade das medições e à escolha dos métodos de estimativa.
+
+Nesse contexto, técnicas de sensoriamento virtual possibilitam utilizar medições de sensores físicos para estimar valores de temperatura em outras posições. A aplicação dessas técnicas depende da identificação de relações entre as séries temporais disponíveis e da seleção de modelos capazes de representar o comportamento térmico do ambiente.
+
+Este capítulo apresenta os conceitos que fundamentam o desenvolvimento do trabalho e discute pesquisas relacionadas ao monitoramento ambiental, à reconstrução de temperaturas e ao tratamento de dados provenientes de sensores. Inicialmente, são abordados os conceitos de redes de sensores IoT, séries temporais, sensoriamento virtual e métodos de estimativa. Em seguida, são analisados trabalhos da literatura que investigam a infraestrutura de monitoramento, a seleção de sensores, a reconstrução de campos térmicos e a preparação dos dados para análise.
+
+
+\section{Conceitos e Técnicas Relevantes}
+\label{sec:conceitos}
+
+
+\subsection{Monitoramento Ambiental e Internet das Coisas}
+\label{subsec:iot}
+
+A Internet das Coisas (\textit{Internet of Things} -- IoT) compreende a utilização de dispositivos conectados capazes de coletar, transmitir e disponibilizar informações sobre objetos e ambientes físicos. No contexto do monitoramento ambiental, sensores IoT podem registrar periodicamente grandezas como temperatura e umidade, permitindo acompanhar suas variações ao longo do tempo.
+
+Uma infraestrutura de monitoramento geralmente envolve dispositivos de aquisição, mecanismos de comunicação e sistemas responsáveis pelo armazenamento e disponibilização das medições. A integração desses componentes permite a construção de históricos de dados que podemser utilizados tanto para acompanhamento das condições ambientais quanto para análises posteriores.
+
+\citeonline{marques2026testbed} apresentam uma infraestrutura IoT voltada ao monitoramento e ao controle de sistemas de climatização em edifícios inteligentes. A arquitetura descrita pelos autores integra dispositivos baseados em ESP32, mecanismos de comunicação e serviços de armazenamento de séries temporais, demonstrando a aplicação de tecnologias IoT em um ambiente real de laboratório.
+
+A disponibilidade de medições históricas produzidas por esse tipo de infraestrutura possibilita investigar aplicações que vão além do monitoramento direto. Entre elas, destaca-se a estimativa de temperaturas a partir das relações existentes entre diferentes sensores instalados em um mesmo ambiente.
+
+
+\subsection{Séries Temporais e Pré-processamento de Dados}
+\label{subsec:series_temporais}
+
+Uma série temporal corresponde a um conjunto de observações associadas a instantes ou intervalos de tempo. Em sistemas de monitoramento ambiental, cada sensor produz uma sequência de medições que representa a evolução de determinada grandeza física.
+
+A análise conjunta de diferentes séries temporais exige atenção à correspondência entre seus registros. Mesmo quando sensores operam com frequências de aquisição semelhantes, as medições podem apresentar diferenças entre seus instantes de registro, além de lacunas decorrentes de falhas de comunicação ou indisponibilidade dos dispositivos.
+
+O pré-processamento busca organizar os dados para permitir comparações consistentes e sua utilização em métodos estatísticos e computacionais. Entre os procedimentos possíveis estão a identificação de registros inválidos, a padronização dos instantes de registro (\textit{timestamps}), a agregação temporal e o tratamento de valores ausentes.
+
+\citeonline{alsalehy2025timeseries} destacam a importância do tratamento de valores discrepantes e ausentes em séries temporais ambientais. Os autores investigam diferentes técnicas para identificar anomalias e preencher lacunas, considerando que a qualidade dos dados influencia diretamente a confiabilidade das análises posteriores.
+
+Uma estratégia para sincronizar medições provenientes de diferentes dispositivos consiste na agregação dos registros em intervalos temporais regulares. Nesse procedimento, os valores observados dentro de cada intervalo podem ser representados por uma medida estatística, como a média aritmética.
+
+Para um sensor $s$, a temperatura média em determinado intervalo $t$ pode ser expressa por:
+
+\begin{equation}
+    \overline{T}_{s,t} =
+    \frac{1}{n_{s,t}}
+    \sum_{j=1}^{n_{s,t}} T_{s,t,j}
+    \label{eq:media_temporal}
+\end{equation}
+
+\noindent
+em que $n_{s,t}$ representa a quantidade de medições disponíveis para o sensor $s$ no intervalo $t$, e $T_{s,t,j}$ corresponde à $j$-ésima medição registrada nesse intervalo. A expressão é aplicável quando $n_{s,t} > 0$.
+
+A definição da frequência de agregação envolve um compromisso
+entre a resolução temporal e a disponibilidade simultânea das
+observações. Intervalos menores preservam maior detalhamento
+das variações, mas podem resultar em mais registros incompletos.
+Intervalos maiores podem facilitar a sincronização, embora
+reduzam a resolução temporal das séries.
+
+Outro aspecto relevante é a identificação de valores ausentes.
+Dependendo do objetivo da análise, esses registros podem ser
+removidos, preservados ou estimados por técnicas de imputação.
+A escolha do procedimento deve considerar o comportamento
+dos dados e seus possíveis efeitos sobre os resultados.
+
+
+\subsection{Sensoriamento Virtual de Temperatura}
+\label{subsec:sensoriamento_virtual}
+
+O sensoriamento virtual consiste na utilização de modelos
+computacionais para estimar grandezas que poderiam ser medidas
+diretamente por sensores físicos. Em vez de depender exclusivamente
+de uma medição local, um sensor virtual combina informações
+disponíveis para produzir uma estimativa da variável de interesse.
+
+No monitoramento de temperatura, essa abordagem pode ser utilizada
+para estimar a temperatura de determinada posição a partir das
+medições realizadas por outros sensores. \citeonline{brunello2021virtual}
+investigam essa possibilidade em ambientes internos, considerando
+a seleção de sensores e diferentes estratégias de estimativa.
+
+O problema pode ser representado por uma função que relaciona
+as temperaturas observadas em um conjunto de sensores à
+temperatura de um ponto de interesse:
+
+\begin{equation}
+    \hat{T}_{p}(t) =
+    f\left(T_1(t), T_2(t), \ldots, T_k(t)\right)
+    \label{eq:sensoriamento_virtual}
+\end{equation}
+
+\noindent
+em que $\hat{T}_{p}(t)$ representa a temperatura estimada para
+o ponto $p$ no instante $t$, $T_i(t)$ corresponde à temperatura
+registrada pelo sensor $i$, $k$ representa a quantidade de sensores
+utilizados e $f$ é o método responsável pela estimativa.
+
+Os métodos empregados podem explorar diferentes tipos de relação
+entre as medições. Técnicas de interpolação espacial consideram
+a localização dos sensores e as relações espaciais entre as
+observações. Métodos estatísticos e de aprendizado de máquina
+podem utilizar padrões identificados nos dados históricos
+para construir modelos de estimativa.
+
+A escolha dos sensores utilizados como entrada também influencia
+o problema. A utilização de um número maior de dispositivos
+aumenta a quantidade de informações disponíveis, mas não
+garante necessariamente melhores estimativas. Sensores
+adicionais podem apresentar informações redundantes ou
+comportamentos pouco relacionados à variável de interesse.
+
+Por esse motivo, a seleção de sensores constitui uma etapa
+relevante no desenvolvimento de sistemas de sensoriamento
+virtual. \citeonline{brunello2021virtual} investigam
+diferentes medidas de distância entre sensores e sua
+utilização na identificação de subconjuntos adequados
+para a reconstrução de temperaturas.
+
+Entre os critérios possíveis para selecionar sensores
+estão a proximidade espacial e a correlação entre suas
+séries temporais. A proximidade espacial considera a
+distância física entre os dispositivos, enquanto a
+correlação temporal permite identificar sensores cujas
+medições apresentam padrões semelhantes de variação.
+
+Esses critérios podem ser utilizados para investigar
+a influência da quantidade e da escolha dos sensores
+sobre a qualidade das estimativas.
+
+
+\subsection{Métodos de Estimativa e Avaliação}
+\label{subsec:metodos_estimativa}
+
+Diferentes métodos podem ser empregados para reconstruir
+medições de temperatura. As abordagens variam desde
+procedimentos estatísticos simples até modelos de
+aprendizado de máquina capazes de representar relações
+mais complexas entre as variáveis.
+
+Uma abordagem simples consiste em calcular a média das
+temperaturas registradas pelos sensores disponíveis:
+
+\begin{equation}
+    \hat{T}_{p}(t) =
+    \frac{1}{k}
+    \sum_{i=1}^{k} T_i(t)
+    \label{eq:media_sensores}
+\end{equation}
+
+\noindent
+em que $k$ corresponde à quantidade de sensores utilizados
+e $T_i(t)$ representa a temperatura observada pelo sensor
+$i$ no instante $t$.
+
+Essa estratégia não exige treinamento e pode ser utilizada
+como referência para avaliar se métodos mais elaborados
+apresentam melhorias.
+
+Outra abordagem é a interpolação pelo inverso da distância,
+conhecida como IDW (\textit{Inverse Distance Weighting}).
+Nesse método, as medições dos sensores são combinadas
+por meio de pesos associados à distância entre cada
+dispositivo e o ponto de interesse.
+
+Uma formulação do método é apresentada na
+Equação~\ref{eq:idw}:
+
+\begin{equation}
+    \hat{T}_{p}(t) =
+    \frac{
+        \displaystyle\sum_{i=1}^{k}
+        \frac{T_i(t)}{d_{ip}^{q}}
+    }{
+        \displaystyle\sum_{i=1}^{k}
+        \frac{1}{d_{ip}^{q}}
+    }
+    \label{eq:idw}
+\end{equation}
+
+\noindent
+em que $d_{ip}$ representa a distância entre o sensor $i$
+e o ponto de interesse $p$, e $q$ é um parâmetro positivo
+que controla a influência da distância na estimativa.
+A expressão considera sensores com distância não nula
+em relação ao ponto estimado.
+
+A interpolação espacial constitui uma alternativa para
+explorar as informações de posicionamento dos sensores.
+\citeonline{jedermann2011interpolation} investigam sua
+aplicação na reconstrução de perfis espaciais de temperatura,
+comparando o método IDW com a interpolação por Kriging.
+
+A regressão linear, por sua vez, busca representar a variável
+de interesse como uma combinação linear das variáveis
+de entrada:
+
+\begin{equation}
+    \hat{T}_{p}(t) =
+    \beta_0 +
+    \sum_{i=1}^{k} \beta_i T_i(t)
+    \label{eq:regressao_linear}
+\end{equation}
+
+\noindent
+em que $\beta_0$ representa o intercepto e $\beta_i$
+corresponde ao coeficiente associado à temperatura
+do sensor $i$. Os coeficientes são ajustados a partir
+de observações históricas.
+
+Outra alternativa é o Random Forest, método de aprendizado
+supervisionado baseado na combinação de múltiplas árvores
+de decisão. Na tarefa de regressão, as estimativas produzidas
+pelas árvores são agregadas para gerar o resultado final.
+
+Essa abordagem permite representar relações não lineares
+entre as variáveis de entrada e a temperatura estimada.
+Diferentemente da regressão linear, o Random Forest não
+exige que a relação entre as temperaturas dos sensores
+seja representada exclusivamente por uma combinação
+linear das medições.
+
+A comparação entre métodos exige critérios quantitativos
+de avaliação. Duas métricas frequentemente utilizadas em
+problemas de regressão são o erro absoluto médio
+(\textit{Mean Absolute Error} -- MAE) e a raiz do erro
+quadrático médio (\textit{Root Mean Squared Error} -- RMSE).
+
+O MAE corresponde à média das diferenças absolutas
+entre os valores observados e estimados:
+
+\begin{equation}
+    MAE =
+    \frac{1}{n}
+    \sum_{i=1}^{n}
+    \left|T_i-\hat{T}_i\right|
+    \label{eq:mae}
+\end{equation}
+
+O RMSE é definido por:
+
+\begin{equation}
+    RMSE =
+    \sqrt{
+        \frac{1}{n}
+        \sum_{i=1}^{n}
+        \left(T_i-\hat{T}_i\right)^2
+    }
+    \label{eq:rmse}
+\end{equation}
+
+\noindent
+em que $T_i$ representa a temperatura observada, $\hat{T}_i$ representa a temperatura estimada e $n$ corresponde à quantidade de observações avaliadas.
+
+Ambas as métricas expressam o erro na mesma unidade da temperatura. Entretanto, o RMSE atribui maior peso a erros elevados devido à utilização das diferenças quadráticas.
+
+A utilização conjunta dessas métricas permite caracterizar o desempenho dos modelos e comparar diferentes configurações de reconstrução virtual.
+
+
+\section{Trabalhos Relacionados}
+\label{sec:trabalhos_relacionados}
+
+O desenvolvimento de sistemas de monitoramento ambiental e de métodos de estimativa de temperatura tem sido abordado na literatura sob diferentes perspectivas. Alguns trabalhos concentram-se na construção e operação de infraestruturas IoT, enquanto outros investigam técnicas de reconstrução espacial, seleção de sensores e tratamento de dados.
+
+\citeonline{marques2026testbed}, no artigo \textit{From Deployment to Operation: A Reproducible IoT Testbed for Smart-Building HVAC with OTA and Observability}, apresentam uma infraestrutura IoT para aplicações de monitoramento e controle de climatização em edifícios inteligentes.
+
+A solução integra dispositivos baseados em ESP32, comunicação por MQTT e CoAP, gerenciamento remoto de firmware e mecanismos de observabilidade. O sistema foi implantado em um laboratório universitário e avaliado por meio de experimentos relacionados ao funcionamento da infraestrutura e ao controle de climatização.
+
+Os autores relatam redução de 55,7\% no consumo mensal de energia elétrica no cenário experimental apresentado, mantendo condições de conforto térmico.
+
+A principal contribuição desse trabalho está na demonstração de uma infraestrutura operacional de monitoramento e atuação, capaz de produzir e armazenar dados ambientais em condições reais. Sua relação com a presente pesquisa está no contexto tecnológico de aquisição e disponibilização de medições.
+
+Enquanto \citeonline{marques2026testbed} concentram-se na arquitetura e na operação da infraestrutura IoT, esta pesquisa investiga a utilização de dados históricos de temperatura para a construção e avaliação de modelos de sensoriamento virtual.
+
+Em uma abordagem mais diretamente relacionada à reconstrução de temperaturas, \citeonline{brunello2021virtual}, no artigo \textit{Virtual Sensing and Sensors Selection for Efficient Temperature Monitoring in Indoor Environments}, investigam o sensoriamento virtual em um ambiente interno de escritório.
+
+O estudo considera sensores físicos distribuídos irregularmente e propõe estratégias para selecionar subconjuntos de dispositivos utilizados na estimativa de temperaturas. Os autores analisam diferentes medidas de distância e desenvolvem uma abordagem de seleção de sensores, além de comparar métodos de predição baseados em técnicas estatísticas e de aprendizado de máquina.
+
+Os resultados apresentados por \citeonline{brunello2021virtual} demonstram a viabilidade de selecionar sensores físicos e utilizar suas medições para estimar temperaturas registradas em outros pontos do ambiente estudado.
+
+O trabalho possui relação direta com esta pesquisa, especialmente pela investigação da quantidade de sensores necessários e da influência dos critérios de seleção sobre a qualidade das estimativas.
+
+Entretanto, enquanto os autores desenvolvem uma estratégia mais abrangente de seleção e predição, o presente estudo concentra-se na comparação de métodos de reconstrução e critérios de seleção relativamente simples, aplicados a uma infraestrutura de sensores com posicionamento fixo.
+
+\citeonline{yuan2025optimization}, no artigo \textit{Optimization of Sparse Sensor Layouts and Data-Driven Reconstruction Methods for Steady-State and Transient Thermal Field Inverse Problems}, investigam a reconstrução de campos térmicos a partir de conjuntos reduzidos de medições.
+
+Os autores avaliam diferentes estratégias de distribuição de sensores e métodos de reconstrução baseados em dados, incluindo técnicas relacionadas à decomposição ortogonal própria (\textit{Proper Orthogonal Decomposition} -- POD).
+
+O estudo considera cenários de condução térmica em regimes estacionários e transientes e analisa a influência da configuração dos sensores sobre a estabilidade e a precisão da reconstrução.
+
+A pesquisa de \citeonline{yuan2025optimization} evidencia a importância da seleção de sensores em problemas de reconstrução térmica. Sua relação com o presente trabalho está na investigação de como a quantidade e a escolha dos dispositivos influenciam a qualidade das estimativas.
+
+Uma diferença importante é que Yuan et al. consideram a otimização da disposição dos sensores em cenários numéricos, enquanto o presente estudo utiliza dispositivos já instalados, sem possibilidade de alterar suas posições.
+
+A reconstrução espacial de temperaturas também é investigada por \citeonline{jedermann2011interpolation}, no artigo \textit{Interpolation of Spatial Temperature Profiles by Sensor Networks}.
+
+Os autores estudam a utilização de redes de sensores para estimar temperaturas em posições intermediárias, com aplicação em ambientes de armazenamento e transporte de alimentos.
+
+O trabalho compara a interpolação por Kriging com um método baseado na ponderação pelo inverso da distância. Nos experimentos apresentados, a abordagem por Kriging obteve erro de interpolação aproximadamente 20\% menor do que o método de referência.
+
+O estudo de \citeonline{jedermann2011interpolation} demonstra a relevância das relações espaciais entre sensores para a estimativa de temperaturas.
+
+Essa perspectiva contribui para fundamentar a análise da proximidade física como critério de seleção de dispositivos. Entretanto, diferentemente da interpolação espacial em posições intermediárias, o presente trabalho avalia a reconstrução de medições em posições nas quais já existem sensores físicos, permitindo comparar diretamente os valores estimados com os registros observados.
+
+Além dos métodos de reconstrução, a qualidade dos dados constitui um aspecto importante para aplicações de monitoramento ambiental.
+
+\citeonline{alsalehy2025timeseries}, no artigo \textit{Improving Time Series Data Quality: Identifying Outliers and Handling Missing Values in a Multilocation Gas and Weather Dataset}, investigam procedimentos para identificar valores discrepantes e tratar lacunas em séries temporais ambientais.
+
+Os autores combinam métodos estatísticos e algoritmos de detecção de anomalias, além de avaliar diferentes técnicas de interpolação para o preenchimento de valores ausentes.
+
+O trabalho destaca que a preparação dos dados deve considerar as características temporais das observações, uma vez que procedimentos inadequados podem comprometer análises posteriores.
+
+Essa discussão é relevante para a presente pesquisa devido à necessidade de sincronizar medições provenientes de diferentes sensores e identificar intervalos com dados indisponíveis.
+
+De maneira complementar, \citeonline{cho2022preprocessing}, no artigo \textit{Data Preprocessing Combination to Improve the Performance of Quality Classification in the Manufacturing Process}, investigam a influência de diferentes estratégias de pré-processamento sobre o desempenho de modelos de classificação aplicados a dados industriais.
+
+O estudo aborda problemas relacionados a valores ausentes e desbalanceamento de classes, avaliando combinações de procedimentos de preparação dos dados.
+
+Embora a aplicação investigada por \citeonline{cho2022preprocessing} seja distinta do monitoramento de temperatura, o trabalho reforça a importância de considerar a qualidade dos dados antes da aplicação de modelos de aprendizado de máquina.
+
+No presente estudo, essa preocupação se manifesta principalmente na padronização temporal, na identificação de registros inválidos e na organização das séries utilizadas nos experimentos.
+
+Em conjunto, os trabalhos analisados fornecem fundamentos complementares para a investigação proposta.
+
+\citeonline{marques2026testbed} contribuem para a contextualização da infraestrutura IoT; \citeonline{brunello2021virtual}, \citeonline{yuan2025optimization} e \citeonline{jedermann2011interpolation} apresentam diferentes perspectivas sobre sensoriamento virtual, reconstrução térmica e seleção de sensores; e \citeonline{alsalehy2025timeseries} e \citeonline{cho2022preprocessing} discutem aspectos relacionados à preparação e à qualidade dos dados.
+
+A partir dessas contribuições, o presente trabalho propõe uma avaliação experimental da reconstrução virtual de medições de temperatura utilizando dados históricos reais de sensores IoT.
+
+A investigação concentra-se em dispositivos com posições fixas, comparando métodos de estimativa e analisando a influência da quantidade e dos critérios de seleção dos sensores utilizados como entrada.
+
+Dessa forma, busca-se avaliar em que medida diferentes configurações de sensores e métodos computacionais permitem reconstruir temperaturas em posições conhecidas, utilizando exclusivamente as medições dos demais dispositivos durante a etapa de estimativa.
+
+
+\section{Considerações Finais}
+\label{sec:consideracoes_finais_revisao}
+
+Este capítulo apresentou os principais conceitos e trabalhos científicos relacionados à reconstrução virtual de temperaturas a partir de redes de sensores.
+
+Foram abordados aspectos da infraestrutura IoT, da organização de séries temporais, do pré-processamento de dados e dos métodos de estimativa utilizados em problemas de regressão.
+
+A revisão da literatura evidencia que a utilização de medições provenientes de sensores físicos constitui uma alternativa para estimar temperaturas em diferentes posições de um ambiente.
+
+Também demonstra que a qualidade das estimativas depende de fatores como a distribuição dos dispositivos, a seleção das variáveis de entrada, o tratamento dos dados e a escolha do método de reconstrução.
+
+Os trabalhos analisados apresentam diferentes abordagens para esses desafios, desde técnicas de interpolação espacial até modelos de aprendizado de máquina e métodos de otimização de sensores.
+
+Entretanto, as características específicas da infraestrutura disponível e dos dados históricos utilizados exigem uma avaliação experimental própria.
+
+No capítulo seguinte, são apresentados os ambientes monitorados, os sensores selecionados, os procedimentos de obtenção e preparação dos dados e a metodologia utilizada para avaliar a reconstrução virtual das medições de temperatura.

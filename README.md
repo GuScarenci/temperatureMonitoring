@@ -4,7 +4,7 @@ Código, dados e resultados do TCC **Reconstrução virtual de temperaturas a pa
 
 O estudo avalia a estimativa da temperatura de um sensor físico a partir das medições simultâneas dos demais sensores no ambiente 1006 do LASDPC. Compara média aritmética, regressão linear e Random Forest; investiga quantidade de entradas, seleção por correlação e proximidade, e inclusão de umidade relativa.
 
-**Comece pelo [PDF atualizado do TCC](new_thesis/TCC_GustavoMoura_atualizado%20%285%29.pdf) e pelos [experimentos consolidados](code/tcc/README.md).** O PDF e o ZIP importados do Overleaf em `new_thesis/` são a referência da entrega atual. Os fontes em `thesis/paper/` pertencem à versão local anterior e não devem ser usados para reconstruir essa entrega.
+**Comece pelo [PDF atualizado do TCC](thesis/TCC_GustavoMoura.pdf) e pelos [experimentos consolidados](code/tcc/README.md).** O PDF de referência e os fontes locais da entrega atual estão reunidos em `thesis/`. O projeto do Overleaf foi extraído para `thesis/paper/`, preservando conteúdo e formatação. Consulte o [guia da monografia](thesis/README.md).
 
 ## Resultados principais
 
@@ -24,7 +24,8 @@ Na análise da quantidade de entradas, quatro sensores selecionados por correla�
 
 | Caminho | Conteúdo e finalidade |
 |---|---|
-| [`new_thesis/`](new_thesis/) | PDF atualizado e projeto original exportado do Overleaf em ZIP; referência da entrega |
+| [`thesis/paper/`](thesis/paper/) | Fontes atuais do Overleaf; documento principal `thesis.tex`, compilação com pdfLaTeX |
+| [`thesis/archive/`](thesis/archive/) | ZIP original do Overleaf e fontes da versão local anterior |
 | [`code/tcc/`](code/tcc/) | Seis notebooks numerados, dependências e scripts da avaliação consolidada |
 | [`code/tcc/data/raw/`](code/tcc/data/raw/) | Extrações preservadas, consultas SQL e metadados de origem; o QuestDB já está agregado em cinco minutos |
 | [`code/tcc/data/processed/`](code/tcc/data/processed/) | Matrizes sincronizadas de temperatura, umidade, energia e contagens |
@@ -32,10 +33,10 @@ Na análise da quantidade de entradas, quatro sensores selecionados por correla�
 | [`code/tcc/results/`](code/tcc/results/) | Tabelas, figuras, previsões e configurações dos experimentos |
 | [`code/sensores.json`](code/sensores.json), [`code/sensorsWithCoordinates`](code/sensorsWithCoordinates) | Cadastro dos dispositivos e coordenadas relativas |
 | `code/final.ipynb`, `code/main2.ipynb`, `code/novo.ipynb` | Explorações anteriores; podem usar protocolos distintos do TCC |
-| [`thesis/`](thesis/) | Proposta, artigos de apoio, modelo e fontes locais anteriores |
+| [`thesis/`](thesis/) | PDF de referência, guia de compilação, proposta, artigos e modelo de apoio |
 | [`docs/avaliacao-tcc.md`](docs/avaliacao-tcc.md) | Avaliação do texto, dos códigos e da rastreabilidade da entrega |
 
-Os caminhos existentes foram mantidos porque notebooks, scripts e manifestos fazem referência a eles.
+Os caminhos dos dados e experimentos foram mantidos. A monografia foi unificada em `thesis/`, com os materiais anteriores preservados em arquivos ZIP.
 
 ## Protocolo experimental
 
@@ -67,7 +68,7 @@ Abra os notebooks em um editor com suporte a Jupyter e selecione o kernel `tempe
 .venv/bin/python code/tcc/verificar_resultados.py
 ```
 
-Essa conferência funciona com os arquivos locais: recalcula MAE, RMSE e R² das previsões salvas e verifica hashes específicos, amostras, exclusão do alvo e máscara espacial. Não treina modelos nem consulta servidores. O [manifesto de reprodução](code/tcc/manifesto_reproducao.json) registra separadamente hashes de 178 arquivos da versão consolidada; não inclui a entrega importada em `new_thesis/`.
+Essa conferência funciona com os arquivos locais: recalcula MAE, RMSE e R² das previsões salvas e verifica hashes específicos, amostras, exclusão do alvo e máscara espacial. Não treina modelos nem consulta servidores. O [manifesto de reprodução](code/tcc/manifesto_reproducao.json) registra separadamente os hashes dos arquivos consolidados de `code/tcc/` e `thesis/`, incluindo o PDF de referência, os fontes atuais e os arquivos históricos. Compilações e caches não são incluídos.
 
 ## Executar os experimentos
 
@@ -83,7 +84,7 @@ Execute todas as células de cada notebook nessa ordem. Mantenha `ATUALIZAR_EXTR
 
 O [`01_exploracao_dados.ipynb`](code/tcc/01_exploracao_dados.ipynb) registra a exploração da Smartlab e não é necessário para reproduzir os resultados consolidados com os arquivos presentes. Sua execução integral exige acesso à API e autenticação por `SMARTLAB_USERNAME` e `SMARTLAB_PASSWORD`, ou entrada interativa. O código não carrega `.env` automaticamente. Não salve credenciais nem tokens nas células ou saídas.
 
-A exportação de tabelas e figuras para `thesis/paper/` é um procedimento da versão local anterior, descrito no [README técnico](code/tcc/README.md). Ela não atualiza o ZIP ou o PDF da entrega do Overleaf.
+Para compilar os fontes atuais, execute `make -C thesis/paper` (requer pdfLaTeX e latexmk). A saída será `thesis/paper/build/thesis.pdf`. O script `thesis/scripts/exportar_resultados.py` atualiza opcionalmente as tabelas e figuras desses fontes; não é necessário executá-lo para compilar a entrega preservada. Consulte o [guia da monografia](thesis/README.md).
 
 ## Alcance dos resultados
 

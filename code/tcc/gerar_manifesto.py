@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BASE = ROOT / 'code/tcc'
 ARQUIVO = BASE / 'manifesto_reproducao.json'
 paths = set()
-for pasta in [BASE, ROOT / 'thesis/paper']:
+for pasta in [BASE, ROOT / 'thesis']:
     for p in pasta.rglob('*'):
         if not p.is_file() or p == ARQUIVO:
             continue

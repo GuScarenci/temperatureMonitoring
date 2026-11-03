@@ -1,7 +1,7 @@
 .PHONY: all clean
 
 all:
-	latexmk -lualatex -interaction=nonstopmode -halt-on-error -outdir=build main.tex
+	latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build thesis.tex
 
 clean:
-	latexmk -C -outdir=build main.tex
+	latexmk -c -outdir=build thesis.tex

@@ -65,9 +65,11 @@ O aprendizado de máquina é a abordagem de inteligência artificial (IA)
 empregada neste estudo. No aprendizado supervisionado, observações
 históricas relacionam variáveis de entrada a uma resposta conhecida,
 permitindo ajustar um modelo e avaliar suas estimativas em outras
-observações. A Scikit-learn disponibiliza implementações para esse
-procedimento \cite{pedregosa2011scikit}; entre os métodos estudados,
-a Random Forest combina árvores de decisão \cite{breiman2001random}.
+observações. Para a implementação dos modelos supervisionados, foi utilizada a biblioteca Scikit-learn \cite{pedregosa2011scikit}, especificamente as classes \texttt{LinearRegression} e \texttt{RandomForestRegressor}, empregadas, respectivamente, na regressão linear e na regressão por florestas aleatórias \cite{breiman2001random}.
+% PARTE ANTIGA CORRIGIDA
+% A Scikit-learn disponibiliza implementações para esse
+% procedimento \cite{pedregosa2011scikit}; entre os métodos estudados,
+% a Random Forest combina árvores de decisão \cite{breiman2001random}.
 
 O enriquecimento amplia as informações associadas aos registros.
 No contexto deste trabalho, compreende vincular as medições a metadados
@@ -80,9 +82,7 @@ não assegura menor erro.
 
 A integração de grandezas ambientais e registros de energia também
 é explorada por \citeonline{tavoni2026digitaltwin}, que utilizam essas
-informações na previsão de consumo em uma arquitetura de gêmeo digital.
-Essa relação oferece contexto para o enriquecimento investigado aqui,
-embora a variável de resposta e o sistema desenvolvido sejam distintos.
+informações na previsão de consumo em uma arquitetura de gêmeo digital. A combinação de diferentes variáveis permite considerar múltiplos aspectos das condições ambientais, oferecendo informações adicionais aos modelos de aprendizado de máquina. Essa abordagem se relaciona ao enriquecimento investigado neste trabalho, no qual as medições de umidade são incorporadas às temperaturas dos sensores para avaliar sua contribuição na reconstrução térmica. Embora os estudos apresentem objetivos distintos, ambos investigam o aproveitamento conjunto de diferentes fontes de informação.
 
 \subsection{Sensoriamento Virtual de Temperatura}
 \label{subsec:sensoriamento_virtual}
@@ -97,11 +97,13 @@ de temperaturas, o problema pode ser representado por
 em que $p$ é o alvo, $k$ é a quantidade de entradas e $f$ é o método
 de estimativa. As medições do próprio alvo não podem integrar essas
 entradas durante a reconstrução; seu histórico pode fornecer a resposta
-para treinamento supervisionado.
+para treinamento supervisionado. Neste trabalho, o sensoriamento virtual é avaliado por meio da reconstrução das medições de sensores físicos existentes, tratados individualmente como alvos de estimativa. Esse procedimento permite comparar os valores reconstruídos com medições reais, sem depender de observações em posições não instrumentadas.
 
-\citeonline{brunello2021virtual} investigam essa abordagem em um escritório
-com sensores distribuídos irregularmente, combinando seleção de entradas
-e avaliação de preditores. A distância física e a correlação entre
+\citeonline{brunello2021virtual} constitui uma das referências metodológicas deste trabalho, especialmente pela investigação da reconstrução de temperaturas a partir de outros sensores e pela avaliação da influência da seleção das entradas. Essas questões orientaram os experimentos realizados no LASDPC, nos quais foram comparados diferentes métodos de estimativa e critérios de seleção de sensores, considerando uma infraestrutura física previamente instalada.
+%investigam essa abordagem em um escritório
+%com sensores distribuídos irregularmente, combinando seleção de entradas
+%e avaliação de preditores.
+A distância física e a correlação entre
 séries são critérios distintos: o primeiro utiliza coordenadas, enquanto
 o segundo expressa associação entre observações. Mais entradas podem
 adicionar informação ou redundância, tornando necessário avaliar seu
@@ -128,10 +130,11 @@ Weighting} -- IDW) atribui maior peso a observações próximas:
 \end{equation}
 em que $d_{ip}>0$ é a distância ao ponto estimado e $q>0$ controla
 o decaimento dos pesos. Na coincidência espacial com um sensor,
-atribui-se seu valor diretamente. \citeonline{jedermann2011interpolation}
-comparam IDW e Kriging na reconstrução de perfis de temperatura.
-A interpolação fornece valores entre pontos observados, mas sua
-representação gráfica não substitui a validação contra medições.
+atribui-se seu valor diretamente. 
+% \citeonline{jedermann2011interpolation} comparam IDW e Kriging na reconstrução de perfis de temperatura. A interpolação fornece valores entre pontos observados, mas sua representação gráfica não substitui a validação contra medições.
+
+O Kriging é um método de interpolação geoestatística que utiliza a estrutura de dependência espacial entre observações para estimar valores em posições não medidas. Diferentemente do IDW, que determina os pesos a partir das distâncias, o Kriging considera um modelo de correlação espacial para calcular as estimativas.
+Embora \citeonline{jedermann2011interpolation} tenham observado vantagens do Kriging em relação ao IDW nos conjuntos avaliados, a escolha do IDW neste trabalho não teve como objetivo identificar o método de interpolação espacial mais preciso. O IDW foi empregado exclusivamente como recurso de visualização exploratória, em razão de sua simplicidade e da possibilidade de representar a influência das observações em função da distância. Sua aplicação não substitui uma validação espacial e não permite concluir que as temperaturas interpoladas correspondam às condições reais em posições não instrumentadas.
 
 A regressão linear estima o alvo por uma combinação ajustada das entradas:
 \begin{equation}
@@ -206,12 +209,10 @@ de dados heterogêneos e no uso de aprendizado de máquina para apoiar
 análises da climatização. Neste trabalho, a resposta é a temperatura
 de um sensor e a avaliação usa uma divisão temporal fixa; não foram
 implementados gêmeo digital, XGBoost, simulação de consumo ou atuação.
-O SCT-013 descrito pelos autores também difere do modelo ACS712
-identificado na extração aqui analisada. Portanto, a unidade kWh
-reportada naquele estudo não confirma a unidade do campo
-\texttt{energy} deste conjunto.
+% O SCT-013 descrito pelos autores também difere do modelo ACS712 identificado na extração aqui analisada. 
+% Portanto, a unidade kWh reportada naquele estudo não confirma a unidade do campo \texttt{energy} deste conjunto.
 
-\citeonline{brunello2021virtual} constituem a referência mais próxima
+O trabalho de \citeonline{brunello2021virtual} constitui a referência mais próxima
 do problema investigado. Os autores analisam métricas de distância
 espaciais e estatísticas, desenvolvem uma combinação por programação
 genética e selecionam subconjuntos de sensores para estimar temperaturas
@@ -251,14 +252,71 @@ industrial. Embora a aplicação seja distinta da reconstrução de
 temperaturas, o artigo reforça que a preparação dos dados integra
 o procedimento de avaliação e deve ser descrita com precisão.
 
+Os trabalhos apresentados abordam diferentes aspectos
+relacionados ao monitoramento ambiental, ao sensoriamento
+virtual e à reconstrução de temperaturas.
+
+Embora apresentem objetivos e metodologias distintos,
+fornecem fundamentos para as escolhas realizadas neste
+estudo.
+
+A Tabela~\ref{tab:comparacao_trabalhos} sintetiza
+o foco principal de cada trabalho e sua relação com
+a abordagem adotada, destacando as contribuições
+utilizadas na definição e na avaliação dos experimentos.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Síntese dos principais trabalhos relacionados e suas contribuições para o presente estudo.}
+    \label{tab:comparacao_trabalhos}
+    \small
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabularx}{\textwidth}{
+        >{\raggedright\arraybackslash}p{3.0cm}
+        >{\raggedright\arraybackslash}X
+        >{\raggedright\arraybackslash}X
+    }
+        \hline
+        \textbf{Trabalho} &
+        \textbf{Foco principal} &
+        \textbf{Relação com o presente trabalho} \\
+        \hline
+        Marques et al. (2026) &
+        Infraestrutura IoT para monitoramento e controle de climatização. &
+        Contextualização da infraestrutura de sensoriamento e armazenamento de dados. \\
+        Tavoni et al. (2026) &
+        Gêmeo digital e análise energética com dados ambientais. &
+        Fundamentação da integração de diferentes grandezas ambientais. \\
+        Brunello et al. (2021) &
+        Sensoriamento virtual de temperatura e seleção de sensores. &
+        Principal referência metodológica para reconstrução e seleção de entradas. \\
+        Yuan et al. (2025) &
+        Reconstrução de campos térmicos com sensores distribuídos. &
+        Importância da distribuição espacial dos sensores. \\
+        Jedermann et al. (2011) &
+        Interpolação espacial de temperaturas por Kriging e IDW. &
+        Fundamentação da representação espacial das temperaturas. \\
+        AlSalehy e Bailey (2025) & Detecção de anomalias e imputação em séries temporais & Fundamentação dos cuidados com a qualidade e continuidade dos dados \\
+        Cho, Chang e Hwang (2022) & Pré-processamento e tratamento de dados em classificação & Importância da preparação dos dados para a avaliação experimental \\
+        \hline
+        \textbf{Presente trabalho} &
+        Reconstrução virtual de temperaturas no LASDPC. &
+        Avaliação experimental com dados históricos de sensores IoT existentes. \\
+        \hline
+    \end{tabularx}
+
+    \fautor
+\end{table}
+
 \section{Considerações Finais}
 \label{sec:consideracoes_finais_revisao}
 
-Os trabalhos sobre infraestrutura e gêmeos digitais contextualizam
-a integração das medições e suas aplicações na climatização.
-A literatura relaciona o sensoriamento virtual à seleção de entradas,
-aos métodos de estimativa e à qualidade das medições. Este trabalho
-reúne essas perspectivas em uma avaliação delimitada de dados reais,
-sem propor um novo algoritmo ou otimizar a posição física dos sensores.
-O capítulo seguinte descreve a infraestrutura, os dados e o protocolo,
-e apresenta os resultados nas condições efetivamente disponíveis.
+A revisão bibliográfica apresentou conceitos e trabalhos relacionados ao monitoramento ambiental, ao sensoriamento virtual e à reconstrução de temperaturas. Os estudos sobre infraestrutura IoT e gêmeos digitais contextualizam a integração de diferentes fontes de informação e suas possíveis aplicações no monitoramento e na climatização de ambientes internos.
+
+Entre os trabalhos analisados, o estudo de \citeonline{brunello2021virtual} apresenta maior proximidade com a abordagem adotada, especialmente pela investigação da reconstrução virtual de temperaturas e da seleção de sensores de referência. Os demais trabalhos contribuem para fundamentar aspectos relacionados à organização das medições, à distribuição espacial dos sensores e ao aproveitamento de diferentes grandezas ambientais.
+
+Diferentemente de abordagens voltadas à otimização do posicionamento físico dos sensores ou ao desenvolvimento de novos algoritmos, o presente trabalho concentra-se na avaliação de métodos de reconstrução aplicados a uma infraestrutura já existente. Busca-se, assim, investigar o desempenho de diferentes estratégias de estimativa, a influência da quantidade e da seleção de sensores de entrada e a contribuição de informações complementares, considerando as características e limitações dos dados disponíveis no LASDPC.
+
+O capítulo seguinte apresenta a infraestrutura utilizada, os procedimentos de preparação dos dados, a metodologia experimental e os resultados obtidos.
+
+

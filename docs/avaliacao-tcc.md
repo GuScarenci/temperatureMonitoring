@@ -1,5 +1,7 @@
 # Avaliação do TCC e dos artefatos experimentais
 
+> Registro da revisão anterior à unificação das pastas. Os caminhos e pendências nas seções abaixo descrevem aquele estado. Posteriormente, o PDF passou para `thesis/TCC_GustavoMoura.pdf`, os fontes atuais para `thesis/paper/` e os arquivos originais/anteriores para `thesis/archive/`. A versão avaliada foi incluída no commit `114d3219`; não foi realizado push nesta revisão. O manifesto foi regenerado para a estrutura unificada. Consulte o [guia atual](../thesis/README.md).
+
 Referência: `new_thesis/TCC_GustavoMoura_atualizado (5).pdf`, revisão de 02/11/2026. Avaliação baseada na leitura do texto extraído do PDF, inspeção dos fontes do ZIP sem alterá-lo, leitura dos notebooks e conferência dos dados locais. Não constitui validação acadêmica pelo orientador, revisão visual de todas as páginas ou auditoria externa das referências bibliográficas.
 
 ## Parecer geral

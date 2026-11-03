@@ -1,15 +1,19 @@
-% Modelo adaptado de ../pdf_template/Monografias.v2026.pdf.
-% Compilador: LuaLaTeX (Times New Roman e Arial instaladas no sistema).
-\documentclass{packages/monografias}
+% Template LaSDPC/ICMC-USP para TCC - versão pré-preenchida
+\documentclass[brazilian]{packages/icmc}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, fit, backgrounds}
+
 \graphicspath{{figures/}{images/}}
+\renewcommand{\fonte}[1]{\legend{Fonte: #1}}
 \input{metadata}
 
-\begin{document}
-\imprimircapa
-\imprimirfolhaderosto
-\pretextual
-% Epígrafe, dedicatória e agradecimentos são opcionais.
-\begin{resumo}
+\textoresumo{
 Este trabalho avalia a reconstrução virtual de temperaturas com dados
 históricos de sensores da Internet das Coisas (IoT) no Laboratório de
 Sistemas Distribuídos e Programação Concorrente (LASDPC), da Universidade
@@ -30,22 +34,27 @@ Um mapa das médias representou os pontos observados e a divisória,
 com interpolação ilustrativa fora do cluster. Os resultados sustentam
 a reconstrução nas condições estudadas, sem assegurar desempenho
 equivalente em outros períodos ou ambientes.
-\palavraschave{sensoriamento virtual, temperatura, Internet das Coisas,
+}{sensoriamento virtual, temperatura, Internet das Coisas,
 regressão, séries temporais}
-\end{resumo}
 
-\tableofcontents
-\clearpage
+\definecolor{blue}{RGB}{41,5,195}
+\makeatletter
+\hypersetup{pagebackref=true,pdftitle={\@title},pdfauthor={\@author},pdfsubject={\imprimirpreambulo},pdfcreator={LaTeX with abnTeX2/ICMC-USP},pdfkeywords={\palavraschave},colorlinks=true,linkcolor=blue,citecolor=blue,filecolor=magenta,urlcolor=blue,bookmarksdepth=4}
+\makeatother
 
+% Elementos pré-textuais opcionais
+%\textodedicatoria*{tex/pre-textual/dedicatoria}
+%\textoagradecimentos*{tex/pre-textual/agradecimentos}
+\incluilistadefiguras
+\incluilistadetabelas
+
+\begin{document}
 \textual
 \input{sections/introducao}
 \input{sections/revisao_bibliografica}
 \input{sections/desenvolvimento}
 \input{sections/conclusao}
-
+\bookmarksetup{startatroot}
 \postextual
-\phantomsection
-\addcontentsline{toc}{chapter}{REFERÊNCIAS}
 \bibliography{references}
-
 \end{document}

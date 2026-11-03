@@ -1,14 +1,14 @@
 """Exporta os CSVs experimentais para tabelas LaTeX e copia figuras existentes.
 
-Execute: python3 thesis/paper/scripts/exportar_resultados.py
+Execute: python3 thesis/scripts/exportar_resultados.py
 Não consulta o banco nem ajusta modelos. Requer apenas a biblioteca padrão.
 """
 import csv
 import shutil
 from pathlib import Path
 
-PAPER = Path(__file__).resolve().parents[1]
-ROOT = PAPER.parents[1]
+ROOT = Path(__file__).resolve().parents[2]
+PAPER = ROOT / 'thesis/paper'
 RESULTS = ROOT / 'code/tcc/results/experimentos'
 TABLES = PAPER / 'tables'
 FIGURES = PAPER / 'figures'
