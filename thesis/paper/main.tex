@@ -1,30 +1,51 @@
-% Classe extraída do template ICMC/USP fornecido.
-\documentclass[brazil]{packages/icmc}
-\usepackage{booktabs}
+% Modelo adaptado de ../pdf_template/Monografias.v2026.pdf.
+% Compilador: LuaLaTeX (Times New Roman e Arial instaladas no sistema).
+\documentclass{packages/monografias}
 \graphicspath{{figures/}{images/}}
 \input{metadata}
 
-\textoresumo{
-Escreva aqui um resumo do problema, do método utilizado e dos principais
-resultados do trabalho.
-}{temperatura, umidade, monitoramento ambiental}
-
-% Ative quando houver figuras e tabelas no texto.
-% \incluilistadefiguras
-% \incluilistadetabelas
-\hypersetup{hidelinks}
-
 \begin{document}
-% A classe gera capa, folha de rosto, resumo e sumário automaticamente.
+\imprimircapa
+\imprimirfolhaderosto
+\pretextual
+% Epígrafe, dedicatória e agradecimentos são opcionais.
+\begin{resumo}
+Este trabalho avalia a reconstrução virtual de temperaturas com dados
+históricos de sensores da Internet das Coisas (IoT) no Laboratório de
+Sistemas Distribuídos e Programação Concorrente (LASDPC), da Universidade
+de São Paulo. Foram utilizados nove sensores do ambiente 1006, de junho
+a julho de 2026, com médias de cinco minutos e 12.892 janelas completas.
+Compararam-se média aritmética, regressão linear e Random Forest,
+com divisão cronológica de 70\% para treinamento e 30\% para teste.
+Os erros absolutos médios entre os nove alvos foram, respectivamente,
+0,927~°C, 0,257~°C e 0,254~°C, com vantagens distintas por dispositivo.
+Na regressão linear com seleção por correlação no treinamento, quatro
+entradas apresentaram o menor erro médio entre as quantidades avaliadas,
+de 0,238~°C. Na análise espacial com seis sensores, a correlação
+apresentou menor erro médio que a proximidade para uma a quatro entradas.
+O acréscimo de umidade reduziu pouco o erro médio e apresentou
+efeitos distintos por alvo. Os registros de energia foram limitados
+a uma auditoria exploratória por sua baixa disponibilidade.
+Um mapa das médias representou os pontos observados e a divisória,
+com interpolação ilustrativa fora do cluster. Os resultados sustentam
+a reconstrução nas condições estudadas, sem assegurar desempenho
+equivalente em outros períodos ou ambientes.
+\palavraschave{sensoriamento virtual, temperatura, Internet das Coisas,
+regressão, séries temporais}
+\end{resumo}
+
+\tableofcontents
+\clearpage
+
 \textual
 \input{sections/introducao}
-\input{sections/metodologia}
-\input{sections/resultados}
+\input{sections/revisao_bibliografica}
+\input{sections/desenvolvimento}
 \input{sections/conclusao}
 
-\bookmarksetup{startatroot}
 \postextual
-% Adicione referências em references.bib e cite-as com \cite{chave}.
-% Ative após adicionar a primeira citação:
-% \bibliography{references}
+\phantomsection
+\addcontentsline{toc}{chapter}{REFERÊNCIAS}
+\bibliography{references}
+
 \end{document}

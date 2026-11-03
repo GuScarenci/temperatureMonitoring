@@ -1,63 +1,90 @@
-# TCC em LaTeX — ICMC/USP
+# Monografia — ICMC/USP
 
-O documento principal continua sendo `main.tex`, compilado com pdfLaTeX.
-A classe `packages/icmc.cls` e os logotipos em `images/` foram extraídos de
-`TCC06_PEDRO_GUDIN_OVERLEAF_TEMPLATE_v0_1.zip`, fornecido para a adaptação
-solicitada na issue #1. A classe mantém seu cabeçalho e licença LPPL originais.
-O conteúdo do TCC de exemplo sobre máquina de café não foi importado.
+**Reconstrução virtual de temperaturas a partir de sensores IoT no LASDPC**
 
-## Conteúdo e dados pessoais
+Autor: Gustavo Moura Scarenci de Carvalho Ferreira.
+Orientador: Prof. Dr. Júlio Cezar Estrella.
+Disciplina: SSC0670 — Projeto de Formatura I.
 
-- Preencha título, autor, orientador, curso, área e data em `metadata.tex`.
-- Confirme o curso e a disciplina: a classe fornecida contém um preâmbulo fixo
-  para Engenharia de Computação / SSC0670. Alterar `\curso` não altera esse
-  texto; use a substituição indicada em `metadata.tex` se necessário.
-- Escreva o resumo em `main.tex`. A classe gera capa, folha de rosto, resumo
-  e sumário automaticamente. As listas de figuras e tabelas são opcionais.
-- Os textos existentes permanecem em `sections/`, agora como capítulos.
-- Coloque figuras em `figures/`; preserve `images/`, usado pela capa.
-- Cadastre referências em `references.bib`, cite com `\cite{chave}` e ative
-  `\bibliography{references}` em `main.tex`. A classe configura citações ABNT.
-  Nenhuma referência do TCC de exemplo foi adicionada.
+A identificação está em `metadata.tex`. O título reflete o recorte efetivamente
+avaliado: reconstrução de temperaturas, sem experimentos de umidade ou índices
+de conforto. O documento usa a classe `packages/monografias.cls`, adaptada do
+modelo fornecido em `../pdf_template/Monografias.v2026.pdf`.
 
-Os campos pessoais e os textos ainda são placeholders. Confirme os requisitos
-institucionais atuais antes da entrega; esta adaptação usa a classe fornecida
-no ZIP, sem certificação independente de sua versão.
+## Conteúdo
 
-## Instalação (Ubuntu/Debian)
+- Introdução: contexto, objetivos e organização dos capítulos.
+- Revisão bibliográfica: conceitos, métodos e trabalhos relacionados.
+- Desenvolvimento: infraestrutura, metodologia, resultados e limitações.
+- Conclusão: síntese das evidências e continuidade do trabalho.
 
-```bash
-sudo apt update
-sudo apt install latexmk texlive-latex-recommended texlive-latex-extra \
-  texlive-publishers texlive-science texlive-fonts-recommended \
-  texlive-lang-portuguese texlive-plain-generic texlive-pictures
-```
+Resumo e referências são incluídos em `main.tex`. O capítulo de desenvolvimento
+inclui `sections/metodologia.tex` e `sections/resultados.tex`. A classe anterior
+`packages/icmc.cls` foi preservada como legado e não é carregada.
 
-`texlive-publishers` fornece `abntex2`; os demais pacotes atendem às
-dependências da classe, incluindo `algorithm2e`, `morewrites` e fontes.
+O modelo utiliza A4, margens superior/esquerda de 3 cm e inferior/direita de
+2 cm, Times New Roman 12 pt e espaçamento 1,5, com Arial nos títulos. O resumo
+é um parágrafo com espaçamento duplo. As legendas ficam acima de tabelas e
+figuras, com fonte abaixo. As referências usam `abntex2cite`.
+O modelo recomenda cerca de 30 páginas; essa recomendação não é limite automático.
 
 ## Compilação
 
-Na raiz do repositório:
+Requisitos: LuaLaTeX, latexmk, BibTeX, fontes Times New Roman e Arial.
+Pacotes TeX necessários em Ubuntu/Debian:
+
+```bash
+sudo apt install latexmk texlive-luatex texlive-latex-recommended \
+  texlive-latex-extra texlive-publishers texlive-lang-portuguese
+```
+
+As fontes Microsoft precisam ser instaladas separadamente, respeitando sua
+licença. Na raiz do projeto:
 
 ```bash
 make -C thesis/paper
 ```
 
-O PDF é gerado em `thesis/paper/build/main.pdf`. Para limpar:
+Saída: `thesis/paper/build/main.pdf`. O LuaLaTeX precisa de um diretório de
+cache de fontes gravável pelo usuário. Para limpar os arquivos de compilação:
 
 ```bash
 make -C thesis/paper clean
 ```
 
-Ou, dentro de `thesis/paper`:
+## Resultados e rastreabilidade
+
+O procedimento completo está em [code/tcc/README.md](../../code/tcc/README.md).
+Os notebooks 02 e 03 produzem a comparação principal de nove sensores; o 04
+compara regras de seleção entre seis sensores e gera o mapa das médias.
+O notebook 05 acrescenta a caracterização e o experimento pareado de umidade;
+o 06 apresenta a auditoria exploratória de energia.
+A exploração Smartlab é separada dos experimentos do QuestDB.
+
+Para conferir os artefatos e atualizar as tabelas/figuras:
 
 ```bash
-latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build main.tex
+.venv/bin/python code/tcc/verificar_resultados.py
+python3 thesis/paper/scripts/exportar_resultados.py
+make -C thesis/paper
+```
+
+O exportador usa a biblioteca padrão do Python. As tabelas em `tables/` e as
+figuras em `figures/` são cópias próprias para o LaTeX. Se a extração ou os
+experimentos mudarem, também é necessário conferir os números nos parágrafos.
+
+A conferência bibliográfica e editorial está em `REVISAO.md`.
+A correspondência com `thesis/propose.pdf` e os pontos de validação acadêmica
+estão em `ALINHAMENTO_PROPOSTA.md`. Os hashes dos
+arquivos consolidados podem ser regenerados com:
+
+```bash
+python3 code/tcc/gerar_manifesto.py
 ```
 
 ## Overleaf
 
-Envie o conteúdo de `thesis/paper/`, incluindo `packages/` e `images/`.
-Selecione `main.tex` como documento principal e pdfLaTeX como compilador.
-Não é necessário enviar a pasta `build/`.
+Envie o conteúdo de `thesis/paper/`, sem `build/`, selecione `main.tex` e
+LuaLaTeX. As fontes Times New Roman e Arial precisam estar disponíveis;
+se necessário, forneça arquivos de fonte licenciados e adapte sua declaração
+na classe. Não é necessário enviar os dados ou notebooks para compilar o texto.

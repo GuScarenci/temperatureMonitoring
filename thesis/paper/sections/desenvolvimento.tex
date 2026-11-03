@@ -1,0 +1,124 @@
+\chapter{Desenvolvimento do Trabalho}
+\label{sec:desenvolvimento}
+
+\section{Considerações Iniciais}
+\label{sec:desenvolvimento_iniciais}
+
+Este capítulo descreve a infraestrutura e o recorte experimental,
+a preparação das séries e a avaliação da reconstrução de temperaturas.
+Apresenta também os resultados por método e sensor-alvo, a influência
+da quantidade de entradas e a análise espacial complementar.
+
+\section{Descrição do Problema e do Ambiente}
+\label{sec:descricao_projeto}
+
+\subsection{Problema de reconstrução}
+\label{subsec:contextualizacao_problema}
+\label{subsec:proposta_reconstrucao}
+
+O problema consiste em estimar a temperatura agregada de um sensor
+físico a partir das medições dos demais dispositivos do mesmo ambiente.
+A referência física permite quantificar o erro, enquanto o histórico
+do alvo fornece a resposta para ajustar os modelos supervisionados.
+Durante a estimativa, o valor do alvo não participa das entradas.
+A investigação utiliza uma infraestrutura preexistente, sem alterar
+o posicionamento dos sensores ou propor novos algoritmos.
+
+\subsection{Ambiente experimental e cadastro}
+\label{subsec:ambiente_experimental}
+
+O trabalho utiliza a infraestrutura do Laboratório de Sistemas
+Distribuídos e Programação Concorrente (LASDPC), do Instituto de
+Ciências Matemáticas e de Computação (ICMC), da Universidade de São
+Paulo (USP). O experimento principal considera os registros associados
+ao identificador \texttt{1006} no QuestDB.
+
+O cadastro da plataforma e a planta física descrevem aspectos distintos.
+As categorias 1006, Cluster e Reunião identificam grupos de dispositivos
+no inventário consultado; por si só, esses nomes não definem paredes
+ou espaços termicamente isolados. Na planta fornecida pelo autor,
+o espaço do cluster é separado da região dos demais sensores por
+uma divisória, com abertura à direita. A interpretação espacial considera
+essa configuração, e não somente o nome atribuído a cada dispositivo.
+
+As coordenadas são relativas e aproximadas. Foram confirmadas posições
+para 14 dispositivos, dos quais seis pertencem ao conjunto principal
+de nove sensores. A seleção por distância utiliza apenas esse subconjunto;
+os outros três sensores não receberam coordenadas por aproximação.
+O mapa da Seção~\ref{subsec:mapa_termico} apresenta os pontos observados,
+a divisória e o domínio da interpolação ilustrativa.
+
+\subsection{Infraestrutura de monitoramento e armazenamento}
+\label{subsec:infraestrutura_monitoramento}
+
+A infraestrutura está relacionada à plataforma apresentada por
+\citeonline{marques2026testbed}, com dispositivos baseados em ESP32,
+comunicação e armazenamento de séries temporais. Na exploração do
+QuestDB, os dispositivos do conjunto principal foram associados ao
+modelo DHT22. A resposta principal é a temperatura; uma análise complementar inclui
+umidade como entrada e uma auditoria caracteriza o campo de energia.
+Não foi realizado controle de climatização.
+
+No QuestDB, as tabelas identificadas foram
+\texttt{sensor\_temperature}, \texttt{sensor\_humidity} e
+\texttt{sensor\_energy}. A primeira contém o instante
+\texttt{measured\_in}, o identificador \texttt{sensor\_id}, o modelo,
+o ambiente e a temperatura. As consultas SQL foram realizadas em
+Python, por interface HTTP, e as extrações preservadas localmente.
+A API Smartlab foi explorada separadamente para consultar o cadastro
+e outros dispositivos. As diferenças de disponibilidade entre as
+extrações são discutidas na Seção~\ref{subsec:disponibilidade_fontes}.
+
+\input{sections/metodologia}
+
+\input{sections/resultados}
+
+
+\section{Dificuldades e Limitações}
+\label{sec:dificuldades_limitacoes}
+
+A sincronização exigiu agregar medições cujos instantes de aquisição
+não coincidem. A exclusão de 356 janelas incompletas permitiu comparar
+os métodos nas mesmas amostras, mas restringe a avaliação a instantes
+com todas as entradas disponíveis. Portanto, os resultados não medem
+o desempenho durante falhas simultâneas dos sensores de entrada.
+As médias de cinco minutos também foram calculadas com quantidades
+variáveis de medições, sem impor um limite mínimo uniforme.
+
+A avaliação utiliza um único ambiente, um período e uma divisão
+cronológica. A dependência temporal entre observações e a ausência
+de repetições em outros períodos limitam as conclusões de generalização.
+O teste foi examinado em diferentes configurações exploratórias;
+por isso, o menor erro observado não deve ser interpretado como
+avaliação independente de uma configuração escolhida após essa inspeção.
+Não foram estimados intervalos de confiança nem significância
+estatística das diferenças entre métodos.
+
+As coordenadas estão disponíveis para seis dos nove sensores, e as
+paredes foram aproximadas a partir da planta. A distância euclidiana
+não modela obstáculos, circulação de ar ou trocas de calor pela abertura.
+O mapa interpola médias observadas e não valida um campo térmico contínuo.
+A separação dos registros do QuestDB e da API evita combinar convenções
+temporais ainda não equiparadas, mas deixa as medições do cluster fora
+da avaliação consolidada.
+
+A extensão com umidade foi avaliada no mesmo período já examinado
+nos experimentos anteriores, sem constituir teste independente de
+novas hipóteses em dados inéditos. Para energia, a curta disponibilidade
+e a unidade não confirmada impedem interpretar os valores como consumo.
+
+Por fim, a referência experimental é o registro de cada sensor, sem
+comparação com instrumento calibrado. Assim, erro reduzido de reconstrução
+não demonstra exatidão metrológica nem atendimento a critérios de
+conforto térmico. A contribuição está na avaliação dos métodos nas
+condições documentadas, com dados, parâmetros e previsões rastreáveis.
+
+\section{Considerações Finais}
+\label{sec:desenvolvimento_finais}
+
+A avaliação mostrou erros agregados próximos entre regressão linear
+e Random Forest, com vantagens distintas conforme o alvo e a métrica.
+A quantidade de entradas e a regra de seleção influenciaram os erros;
+a análise espacial permitiu situar as diferenças de temperatura e
+comparar proximidade com correlação em condições comuns. O capítulo
+seguinte sintetiza essas evidências e suas possibilidades de continuidade.

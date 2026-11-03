@@ -1,0 +1,7 @@
+{
+  "extraido_em_utc": "2026-10-31T20:37:41.449160+00:00",
+  "endpoint": "http://andromeda.lasdpc.icmc.usp.br:61102/questdb/exec",
+  "sql": "SELECT measured_in, sensor_id, avg(humidity) AS umidade_media,\n min(humidity) AS minimo, max(humidity) AS maximo,\n count(*) AS quantidade, count(humidity) AS quantidade_validos\n FROM sensor_humidity WHERE environment = '1006'\n AND measured_in >= '2026-06-10T00:00:00Z' AND measured_in < '2026-07-26T00:00:00Z'\n AND sensor_id IN ('1', '48', '887', '891', '86782', '86789', '86790', '86791', '86793') SAMPLE BY 5m ORDER BY measured_in, sensor_id",
+  "linhas": 116475,
+  "sha256_csv": "c8b0eace227bb99299cc42f4425967dca7219ef56fc104099d4cf4f667c61045"
+}

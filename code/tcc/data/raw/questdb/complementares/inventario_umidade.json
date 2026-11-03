@@ -1,0 +1,10 @@
+{
+  "extraido_em_utc": null,
+  "registrado_em_utc": "2026-10-30T22:06:48.066884+00:00",
+  "endpoint": "http://andromeda.lasdpc.icmc.usp.br:61102/questdb/exec",
+  "sql": "SELECT sensor_id, sensor_model, count(*) AS total, min(measured_in) AS inicio, max(measured_in) AS fim, min(humidity) AS minimo, max(humidity) AS maximo FROM sensor_humidity WHERE environment = '1006' AND measured_in >= '2026-06-10T00:00:00Z' AND measured_in < '2026-07-26T00:00:00Z' GROUP BY sensor_id, sensor_model ORDER BY sensor_id",
+  "linhas": 10,
+  "sha256_csv": "10cf6d1295d94632e92711d18728937cade58844e6e3cc95a573ad131fd20a22",
+  "origem": "Resposta JSON da auditoria inicial preservada em auditoria_humidity.json",
+  "sha256_resposta_original": "1dc713be415c1120b571029a3bba5428cd14ee22d284f22c04e3a25f5716143b"
+}

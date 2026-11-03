@@ -1,0 +1,18 @@
+sensor_id,regiao_inventario,coordenadas_confirmadas,questdb_extracao_principal,questdb_janelas_validas,smartlab_csv_local,smartlab_linhas_retornadas,smartlab_primeiro_timestamp_textual,smartlab_ultimo_timestamp_textual
+1,sem coordenadas,False,True,12944.0,False,,,
+48,1006,True,True,12902.0,True,92083.0,2026-06-10T00:00:00,2026-07-25T06:58:00
+885,Cluster,True,False,,True,97280.0,2026-06-10T00:00:00,2026-07-25T06:58:30
+887,1006,True,True,12931.0,True,96077.0,2026-06-10T00:00:30,2026-07-25T06:58:00
+891,1006,True,True,12954.0,True,97318.0,2026-06-10T00:00:00,2026-07-25T06:58:30
+1025,Reuniao,True,False,,True,96988.0,2026-06-10T00:00:00,2026-07-25T06:58:30
+86782,sem coordenadas,False,True,12963.0,False,,,
+86786,Cluster,True,False,,True,96773.0,2026-06-10T00:00:00,2026-07-25T06:58:30
+86789,sem coordenadas,False,True,12918.0,False,,,
+86790,1006,True,True,12925.0,True,97309.0,2026-06-10T00:01:00,2026-07-25T06:58:30
+86791,1006,True,True,12941.0,True,96044.0,2026-06-10T00:00:00,2026-07-25T06:58:30
+86793,1006,True,True,12960.0,True,97389.0,2026-06-10T00:00:00,2026-07-25T06:58:30
+86794,Cluster,True,False,,True,97136.0,2026-06-10T00:00:00,2026-07-25T06:58:00
+86795,Cluster,True,False,,True,96308.0,2026-06-10T00:00:00,2026-07-25T06:57:30
+86796,Cluster,True,False,,True,97983.0,2026-06-10T00:00:00,2026-07-25T06:58:30
+86797,Cluster,True,False,,True,96683.0,2026-06-10T00:00:00,2026-07-25T06:58:30
+86801,Reuniao,True,False,,True,96165.0,2026-06-10T00:00:00,2026-07-25T06:58:00

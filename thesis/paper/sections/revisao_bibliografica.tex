@@ -1,0 +1,264 @@
+\chapter{Revisão Bibliográfica}
+\label{sec:revisao}
+
+\section{Considerações Iniciais}
+
+A reconstrução de temperaturas a partir de redes de sensores envolve
+relações entre as medições, disponibilidade dos registros e escolha das
+entradas. Este capítulo apresenta os conceitos de monitoramento IoT,
+séries temporais e sensoriamento virtual, seguidos dos métodos de
+estimativa e das pesquisas que fundamentam a avaliação experimental.
+
+\section{Conceitos e Técnicas Relevantes}
+\label{sec:conceitos}
+
+\subsection{Monitoramento Ambiental e Internet das Coisas}
+\label{subsec:iot}
+
+A Internet das Coisas (\textit{Internet of Things} -- IoT) integra
+dispositivos de aquisição, comunicação e serviços que disponibilizam
+medições para acompanhamento e análise. Em aplicações ambientais,
+sensores distribuídos registram grandezas como temperatura e umidade,
+produzindo séries associadas a diferentes posições físicas.
+
+\citeonline{marques2026testbed} descrevem uma infraestrutura de laboratório
+com dispositivos ESP32, comunicação multiprotocolo e armazenamento de
+séries temporais. A disponibilidade de históricos dessa infraestrutura
+permite investigar o aproveitamento conjunto das medições, além do
+monitoramento direto de cada dispositivo. Contudo, a presença de um
+registro no banco não assegura continuidade, sincronização ou
+representatividade de todas as posições do ambiente.
+
+\subsection{Séries Temporais e Pré-processamento de Dados}
+\label{subsec:series_temporais}
+
+Uma série temporal reúne observações associadas a instantes ou
+intervalos de tempo. Sensores podem registrar valores em instantes
+diferentes e apresentar lacunas, mesmo quando possuem frequências
+nominais semelhantes. A análise conjunta exige verificar identificadores,
+convenções temporais, duplicatas, valores inválidos e disponibilidade
+simultânea.
+
+Uma estratégia de sincronização é agregar as medições em intervalos
+regulares. Para o sensor $s$ e a janela $t$, a média é
+\begin{equation}
+    \overline{T}_{s,t}=\frac{1}{n_{s,t}}
+    \sum_{j=1}^{n_{s,t}}T_{s,t,j},
+    \label{eq:media_temporal}
+\end{equation}
+em que $n_{s,t}>0$ é a quantidade de medições disponíveis e $T_{s,t,j}$
+a $j$-ésima temperatura da janela. Intervalos maiores reduzem a resolução
+temporal e podem facilitar a coincidência dos registros, enquanto
+intervalos menores preservam variações mais rápidas.
+
+Valores ausentes podem ser preservados, excluídos ou imputados, conforme
+o objetivo e as características dos dados. \citeonline{alsalehy2025timeseries}
+discutem a importância de considerar a estrutura temporal na detecção
+de anomalias e no preenchimento de lacunas ambientais. Qualquer regra
+adotada deve ser documentada para permitir interpretar suas consequências
+sobre o conjunto efetivamente avaliado.
+
+\subsection{Aprendizado de Máquina e Enriquecimento dos Dados}
+\label{subsec:ia_enriquecimento}
+
+O aprendizado de máquina é a abordagem de inteligência artificial (IA)
+empregada neste estudo. No aprendizado supervisionado, observações
+históricas relacionam variáveis de entrada a uma resposta conhecida,
+permitindo ajustar um modelo e avaliar suas estimativas em outras
+observações. A Scikit-learn disponibiliza implementações para esse
+procedimento \cite{pedregosa2011scikit}; entre os métodos estudados,
+a Random Forest combina árvores de decisão \cite{breiman2001random}.
+
+O enriquecimento amplia as informações associadas aos registros.
+No contexto deste trabalho, compreende vincular as medições a metadados
+dos dispositivos e às posições físicas, além de combinar temperatura
+e umidade em uma mesma janela temporal. As informações espaciais podem
+orientar a seleção de entradas, enquanto a inclusão de outra grandeza
+ambiental permite investigar sua contribuição preditiva. O benefício
+precisa ser demonstrado na avaliação, pois aumentar as informações
+não assegura menor erro.
+
+A integração de grandezas ambientais e registros de energia também
+é explorada por \citeonline{tavoni2026digitaltwin}, que utilizam essas
+informações na previsão de consumo em uma arquitetura de gêmeo digital.
+Essa relação oferece contexto para o enriquecimento investigado aqui,
+embora a variável de resposta e o sistema desenvolvido sejam distintos.
+
+\subsection{Sensoriamento Virtual de Temperatura}
+\label{subsec:sensoriamento_virtual}
+
+Um sensor virtual utiliza informações disponíveis para estimar uma
+grandeza que poderia ser medida por um sensor físico. Na reconstrução
+de temperaturas, o problema pode ser representado por
+\begin{equation}
+    \widehat{T}_p(t)=f\bigl(T_1(t),\ldots,T_k(t)\bigr),
+    \label{eq:sensoriamento_virtual}
+\end{equation}
+em que $p$ é o alvo, $k$ é a quantidade de entradas e $f$ é o método
+de estimativa. As medições do próprio alvo não podem integrar essas
+entradas durante a reconstrução; seu histórico pode fornecer a resposta
+para treinamento supervisionado.
+
+\citeonline{brunello2021virtual} investigam essa abordagem em um escritório
+com sensores distribuídos irregularmente, combinando seleção de entradas
+e avaliação de preditores. A distância física e a correlação entre
+séries são critérios distintos: o primeiro utiliza coordenadas, enquanto
+o segundo expressa associação entre observações. Mais entradas podem
+adicionar informação ou redundância, tornando necessário avaliar seu
+efeito em dados separados do ajuste e da seleção.
+
+\subsection{Métodos de Estimativa e Avaliação}
+\label{subsec:metodos_estimativa}
+
+A média aritmética constitui uma referência sem treinamento:
+\begin{equation}
+    \widehat{T}_p(t)=\frac{1}{k}\sum_{i=1}^{k}T_i(t).
+    \label{eq:media_sensores}
+\end{equation}
+Ela atribui pesos iguais às entradas e não ajusta diferenças sistemáticas
+entre o nível térmico dos sensores e o do alvo.
+
+A interpolação pelo inverso da distância (\textit{Inverse Distance
+Weighting} -- IDW) atribui maior peso a observações próximas:
+\begin{equation}
+    \widehat{T}_p(t)=
+    \frac{\sum_{i=1}^{k}T_i(t)d_{ip}^{-q}}
+         {\sum_{i=1}^{k}d_{ip}^{-q}},
+    \label{eq:idw}
+\end{equation}
+em que $d_{ip}>0$ é a distância ao ponto estimado e $q>0$ controla
+o decaimento dos pesos. Na coincidência espacial com um sensor,
+atribui-se seu valor diretamente. \citeonline{jedermann2011interpolation}
+comparam IDW e Kriging na reconstrução de perfis de temperatura.
+A interpolação fornece valores entre pontos observados, mas sua
+representação gráfica não substitui a validação contra medições.
+
+A regressão linear estima o alvo por uma combinação ajustada das entradas:
+\begin{equation}
+    \widehat{T}_p(t)=\beta_0+\sum_{i=1}^{k}\beta_iT_i(t),
+    \label{eq:regressao_linear}
+\end{equation}
+em que $\beta_0$ é o intercepto e $\beta_i$ são os coeficientes estimados
+no treinamento. A Random Forest, apresentada por
+\citeonline{breiman2001random}, combina árvores de decisão; em regressão,
+as estimativas das árvores são agregadas. Essa estrutura permite
+representar relações não lineares, mas não assegura menor erro que
+uma alternativa linear em qualquer conjunto de dados.
+
+A comparação utiliza o erro absoluto médio (\textit{Mean Absolute
+Error} -- MAE) e a raiz do erro quadrático médio (\textit{Root Mean
+Squared Error} -- RMSE):
+\begin{equation}
+    \mathrm{MAE}=\frac{1}{n}\sum_{j=1}^{n}|T_j-\widehat{T}_j|,
+    \label{eq:mae}
+\end{equation}
+\begin{equation}
+    \mathrm{RMSE}=\sqrt{\frac{1}{n}
+    \sum_{j=1}^{n}(T_j-\widehat{T}_j)^2}.
+    \label{eq:rmse}
+\end{equation}
+As duas métricas possuem a unidade da temperatura, mas o RMSE penaliza
+mais os erros elevados. $T_j$ é o valor observado, $\widehat{T}_j$ é a
+estimativa e $n$ é o número de observações. Sua interpretação exige
+informar a divisão temporal, os alvos e as amostras utilizados.
+
+\subsection{Relação com o Conforto Térmico}
+\label{subsec:conforto_termico}
+
+Temperatura e umidade são relevantes à caracterização ambiental,
+mas a interpretação do conforto envolve outras condições. A apresentação
+institucional da ASHRAE Standard 55 relaciona fatores ambientais
+--- temperatura, radiação térmica, umidade e velocidade do ar ---
+e pessoais, como atividade e vestimenta \cite{ashrae55overview}.
+Assim, uma temperatura reconstruída com baixo erro não permite,
+isoladamente, classificar a satisfação térmica dos ocupantes.
+
+O presente conjunto não inclui caracterização da radiação térmica,
+da velocidade do ar, da atividade ou da vestimenta, nem votos de
+sensação térmica. Esses fatores não foram substituídos por valores
+arbitrários para produzir um índice. A reconstrução e a representação
+espacial são tratadas como recursos analíticos que poderiam apoiar
+uma avaliação de conforto futura, mediante protocolo e dados adequados.
+
+\section{Trabalhos Relacionados}
+\label{sec:trabalhos_relacionados}
+
+\citeonline{marques2026testbed} apresentam uma infraestrutura IoT com
+ESP32, MQTT, CoAP, atualização remota de firmware e observabilidade.
+Os autores relatam redução de 55,7\% no consumo mensal de energia em
+seu cenário de controle de climatização, mantendo condições de conforto.
+Essa evidência caracteriza a aplicação da infraestrutura estudada
+pelos autores; o presente trabalho utiliza históricos de temperatura
+e não reproduz o experimento energético.
+
+\citeonline{tavoni2026digitaltwin} apresentam uma arquitetura modular
+de gêmeo digital para otimização energética em um laboratório da USP.
+A solução integra sensores de temperatura e umidade DHT22, sensores
+de corrente SCT-013, comunicação MQTT, Eclipse Ditto e uma interface
+em Unity. O componente preditivo utiliza XGBoost para estimar consumo
+em kWh, com valores anteriores de energia, temperatura e umidade,
+validação por \textit{TimeSeriesSplit} e parada antecipada no treinamento.
+
+O artigo descreve cenários de simulação com diferentes configurações
+de operação e reconhece limitações relacionadas ao período experimental
+e à generalização. Sua contribuição para este TCC está na integração
+de dados heterogêneos e no uso de aprendizado de máquina para apoiar
+análises da climatização. Neste trabalho, a resposta é a temperatura
+de um sensor e a avaliação usa uma divisão temporal fixa; não foram
+implementados gêmeo digital, XGBoost, simulação de consumo ou atuação.
+O SCT-013 descrito pelos autores também difere do modelo ACS712
+identificado na extração aqui analisada. Portanto, a unidade kWh
+reportada naquele estudo não confirma a unidade do campo
+\texttt{energy} deste conjunto.
+
+\citeonline{brunello2021virtual} constituem a referência mais próxima
+do problema investigado. Os autores analisam métricas de distância
+espaciais e estatísticas, desenvolvem uma combinação por programação
+genética e selecionam subconjuntos de sensores para estimar temperaturas
+em um escritório. Avaliam diferentes estratégias de predição e a
+confiabilidade das saídas. O presente estudo adota uma comparação mais
+restrita, com métodos simples e duas regras de seleção, aplicada aos
+dispositivos e históricos disponíveis no LASDPC.
+
+\citeonline{yuan2025optimization} investigam reconstrução de campos
+térmicos em regimes estacionários e transientes, com cenários numéricos
+de condução de calor. Comparam configurações esparsas de sensores e
+métodos baseados em decomposição ortogonal própria (\textit{Proper
+Orthogonal Decomposition} -- POD), incluindo Gappy POD e Gappy C-POD.
+O estudo fundamenta a relevância da configuração das medições. Entretanto,
+a otimização de posições em cenários numéricos difere da condição deste
+TCC, que utiliza sensores reais previamente instalados.
+
+\citeonline{jedermann2011interpolation} aplicam interpolação espacial
+a dados de armazenamento e transporte de alimentos, comparando Kriging
+com ponderação pelo inverso da distância. Nos conjuntos avaliados pelos
+autores, o erro de Kriging foi aproximadamente 20\% menor que o da
+referência IDW. O trabalho sustenta a discussão de relações espaciais,
+mas não transfere esse resultado diretamente ao ambiente do LASDPC.
+Neste TCC, a IDW é usada apenas para ilustrar as médias espaciais.
+
+\citeonline{alsalehy2025timeseries} avaliam identificação de anomalias e
+imputação em séries de gases e variáveis meteorológicas, combinando
+métodos estatísticos e algoritmos de detecção, além de interpolação
+linear, PCHIP e Akima. Sua relação com o presente estudo é a atenção
+à continuidade e à qualidade das séries. A decisão experimental aqui
+adotada foi selecionar janelas completas, sem reproduzir as técnicas
+de imputação desse artigo.
+
+Por fim, \citeonline{cho2022preprocessing} investigam combinações de
+tratamento de valores ausentes e desbalanceamento para classificação
+industrial. Embora a aplicação seja distinta da reconstrução de
+temperaturas, o artigo reforça que a preparação dos dados integra
+o procedimento de avaliação e deve ser descrita com precisão.
+
+\section{Considerações Finais}
+\label{sec:consideracoes_finais_revisao}
+
+Os trabalhos sobre infraestrutura e gêmeos digitais contextualizam
+a integração das medições e suas aplicações na climatização.
+A literatura relaciona o sensoriamento virtual à seleção de entradas,
+aos métodos de estimativa e à qualidade das medições. Este trabalho
+reúne essas perspectivas em uma avaliação delimitada de dados reais,
+sem propor um novo algoritmo ou otimizar a posição física dos sensores.
+O capítulo seguinte descreve a infraestrutura, os dados e o protocolo,
+e apresenta os resultados nas condições efetivamente disponíveis.

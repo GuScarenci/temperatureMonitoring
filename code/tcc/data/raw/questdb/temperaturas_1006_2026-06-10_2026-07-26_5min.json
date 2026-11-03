@@ -1,0 +1,20 @@
+{
+  "extraido_em_utc": "2026-10-30T17:13:03.821441+00:00",
+  "endpoint": "http://andromeda.lasdpc.icmc.usp.br:61102/questdb/exec",
+  "inicio_inclusivo": "2026-06-10T00:00:00+00:00",
+  "fim_exclusivo": "2026-07-26T00:00:00+00:00",
+  "sensor_ids": [
+    1,
+    48,
+    887,
+    891,
+    86782,
+    86789,
+    86790,
+    86791,
+    86793
+  ],
+  "linhas_retornadas": 116438,
+  "sql": "\nSELECT\n    measured_in,\n    sensor_id,\n    avg(temperature) AS temperatura_media,\n    count(*) AS quantidade\nFROM sensor_temperature\nWHERE environment = '1006'\n  AND measured_in >= '2026-06-10T00:00:00Z'\n  AND measured_in < '2026-07-26T00:00:00Z'\n  AND sensor_id IN ('1', '48', '887', '891', '86782', '86789', '86790', '86791', '86793')\nSAMPLE BY 5m\nORDER BY measured_in, sensor_id\n",
+  "sha256_csv": "60dc83ecee283db049c4f51208d9a7e4fc7efec64760f5da771261065f561707"
+}

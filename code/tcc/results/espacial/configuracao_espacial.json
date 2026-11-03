@@ -1,0 +1,52 @@
+{
+  "executado_em_utc": "2026-10-30T21:13:32.757349+00:00",
+  "fonte_temperaturas": "QuestDB; mesma matriz de casos completos do notebook 03",
+  "sha256_dados": "36a7345b1b519a49f45620ea6fd939827255a99880e0e59e0daf639e421e9195",
+  "sha256_coordenadas": "a1477e125c15e7ca86a5dbb40f3429d0da6f3cd8bded432ca0e1d838763d8ec9",
+  "ids": [
+    48,
+    887,
+    891,
+    86790,
+    86791,
+    86793
+  ],
+  "k": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "n_treino": 9024,
+  "n_teste": 3868,
+  "inicio_treino_utc": "2026-06-10T01:40:00+00:00",
+  "fim_treino_utc": "2026-07-11T15:55:00+00:00",
+  "inicio_teste_utc": "2026-07-11T16:00:00+00:00",
+  "fim_teste_utc": "2026-07-25T09:55:00+00:00",
+  "parametros_modelo": {
+    "copy_X": true,
+    "fit_intercept": true,
+    "n_jobs": null,
+    "positive": false,
+    "tol": 1e-06
+  },
+  "ordenamento_correlacao": "Pearson decrescente com sinal, somente treinamento; desempate ID",
+  "ordenamento_distancia": "Euclidiana crescente; desempate ID; coordenadas relativas",
+  "mapa": {
+    "estatistica": "média por sensor nas mesmas 12892 janelas completas do período",
+    "idw_potencia": 2,
+    "dominio": "envoltório convexo dos seis sensores, excluído cluster",
+    "validacao_campo_termico": false,
+    "divisoria_y_aprox": 5.1,
+    "divisoria_fim_x_aprox": 5.7,
+    "parede_vertical_x_aprox": 6.2,
+    "origem_geometria": "planta fornecida pelo autor"
+  },
+  "versoes": {
+    "python": "3.12.3",
+    "pandas": "3.0.6",
+    "numpy": "2.5.4",
+    "scikit_learn": "1.9.1"
+  }
+}

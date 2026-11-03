@@ -1,0 +1,68 @@
+{
+  "executado_em_utc": "2026-10-30T21:05:33.124627+00:00",
+  "arquivo_dados": "code/tcc/data/processed/temperaturas_1006_5min_completas.csv",
+  "sha256_dados": "36a7345b1b519a49f45620ea6fd939827255a99880e0e59e0daf639e421e9195",
+  "versoes": {
+    "python": "3.12.3",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit_learn": "1.9.1"
+  },
+  "sensor_ids": [
+    1,
+    48,
+    887,
+    891,
+    86782,
+    86789,
+    86790,
+    86791,
+    86793
+  ],
+  "fracao_treino": 0.7,
+  "embaralhamento": false,
+  "n_treino": 9024,
+  "n_teste": 3868,
+  "inicio_treino_utc": "2026-06-10T01:40:00+00:00",
+  "fim_treino_utc": "2026-07-11T15:55:00+00:00",
+  "inicio_teste_utc": "2026-07-11T16:00:00+00:00",
+  "fim_teste_utc": "2026-07-25T09:55:00+00:00",
+  "parametros_regressao_linear": {
+    "copy_X": true,
+    "fit_intercept": true,
+    "n_jobs": null,
+    "positive": false,
+    "tol": 1e-06
+  },
+  "parametros_random_forest": {
+    "bootstrap": true,
+    "ccp_alpha": 0.0,
+    "criterion": "squared_error",
+    "max_depth": null,
+    "max_features": 1.0,
+    "max_leaf_nodes": null,
+    "max_samples": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 1,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "n_estimators": 100,
+    "n_jobs": -1,
+    "oob_score": false,
+    "random_state": 42,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "quantidades_avaliadas": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    8
+  ],
+  "selecao_sensores": "Correlação de Pearson decrescente, calculada exclusivamente no treinamento",
+  "agregacao_metricas": "Média aritmética das métricas individuais dos nove alvos",
+  "definicao_residuo": "temperatura_estimada - temperatura_real"
+}

@@ -1,5 +1,82 @@
 \chapter{Introdução}
 \label{sec:introducao}
 
-Apresente o contexto do monitoramento de temperatura e umidade, a motivação
-do estudo e os objetivos do trabalho.
+\section{Contextualização e Motivação}
+O monitoramento de condições ambientais em espaços internos desempenha um papel importante na caracterização e no acompanhamento das condições de funcionamento desses ambientes. Entre as variáveis frequentemente monitoradas, a temperatura se destaca por sua relação com o conforto térmico, com o funcionamento de equipamentos e com as condições de operação de determinados espaços. Nesse contexto, a utilização de dispositivos conectados à Internet das Coisas (Internet of Things — IoT) permite realizar medições periódicas e armazenar grandes volumes de dados para posterior análise.
+
+Sistemas de monitoramento baseados em sensores distribuídos possibilitam acompanhar a evolução temporal da temperatura em diferentes posições de um ambiente. Entretanto, as medições obtidas por esses dispositivos representam apenas as condições observadas em seus respectivos pontos de instalação. A distribuição espacial da temperatura pode não ser uniforme, especialmente em ambientes que apresentam equipamentos eletrônicos, sistemas de climatização, divisórias e diferentes condições de circulação de ar. Dessa forma, a temperatura registrada em um determinado ponto não necessariamente representa a temperatura de todo o espaço monitorado.
+
+Uma alternativa para ampliar o aproveitamento das informações disponíveis é o emprego de técnicas de sensoriamento virtual, como discutido por \citeonline{brunello2021virtual}. Diferentemente de um sensor físico, que realiza diretamente a medição de uma grandeza, um sensor virtual utiliza informações provenientes de outras fontes para estimar o valor dessa grandeza. No monitoramento térmico, essa abordagem permite investigar a possibilidade de estimar a temperatura em uma determinada posição a partir das medições realizadas por sensores instalados em outras posições.
+
+A viabilidade dessa abordagem depende, entre outros fatores, das relações existentes entre as séries temporais dos sensores, da distribuição espacial dos dispositivos e do método utilizado para realizar as estimativas. Sensores próximos podem apresentar comportamentos semelhantes, mas essa relação não é necessariamente determinada apenas pela distância física. Características específicas do ambiente também podem influenciar as medições e, consequentemente, a precisão das estimativas.
+
+Nesse cenário, métodos estatísticos e de aprendizado de máquina podem ser empregados para identificar relações entre as temperaturas registradas por diferentes dispositivos. Modelos como regressão linear e Random Forest permitem construir estimativas a partir de observações históricas, oferecendo alternativas a estratégias mais simples, como o cálculo da média das temperaturas dos sensores disponíveis.
+
+O presente trabalho investiga a reconstrução virtual de medições de temperatura utilizando dados históricos de sensores IoT instalados em ambientes internos de laboratório. O estudo considera uma infraestrutura de monitoramento já existente, sem alterações no posicionamento físico dos dispositivos. Dessa forma, a investigação concentra-se no aproveitamento dos dados disponíveis e na avaliação de diferentes estratégias de estimativa.
+
+Para possibilitar a avaliação quantitativa dos métodos, adota-se uma abordagem na qual as medições de um sensor físico são utilizadas como referência, enquanto as medições dos demais sensores servem como entradas para os modelos. Assim, é possível comparar as temperaturas estimadas com os valores efetivamente registrados e quantificar os erros de reconstrução.
+
+Além da comparação entre diferentes modelos, o trabalho busca investigar como a quantidade de sensores utilizados e os critérios empregados para sua seleção influenciam a qualidade das estimativas. Para isso, são consideradas tanto as relações estatísticas entre as séries temporais quanto as informações aproximadas sobre a localização física dos dispositivos.
+
+\section{Delimitação e Evolução do Escopo}
+\label{sec:evolucao_escopo}
+
+A proposta inicial, intitulada \textit{Enriquecimento de Dados de Sensores
+IoT para Aprendizado de Máquina focado em Conforto Térmico no LASDPC},
+previa estruturar os históricos e associá-los à localização física,
+aos estados da climatização e a outras informações para apoiar modelos
+de estimativa térmica e inferência de conforto. O presente documento
+explicita o recorte efetivamente executado: a reconstrução de temperaturas
+registradas por sensores físicos, com referência observada para avaliação.
+
+A preparação dos dados resultou em matrizes temporais sincronizadas.
+O enriquecimento foi operacionalizado pela associação dos identificadores
+ao cadastro e às coordenadas, e pela integração da umidade às entradas
+dos modelos. A regressão linear e a Random Forest constituem as abordagens
+de aprendizado supervisionado avaliadas. As coordenadas apoiam a seleção
+por proximidade e a representação espacial; não foram adicionadas como
+variáveis explicativas dos modelos individuais de cada alvo.
+
+O conforto térmico permanece como motivação e possibilidade de aplicação.
+Não foram coletadas todas as variáveis necessárias a uma avaliação de
+conforto, nem respostas dos ocupantes que permitissem validá-la. Também
+não foram integradas informações meteorológicas externas ou estados
+confirmados dos aparelhos de climatização. Os registros de energia foram
+limitados a uma auditoria, devido à curta disponibilidade e à unidade
+não confirmada do campo consultado.
+
+Assim, a contribuição apresentada está na estruturação, no enriquecimento
+e na avaliação dos dados para sensoriamento virtual. O mapa permite
+visualizar diferenças entre temperaturas médias em posições conhecidas,
+mas não representa a validação de um gradiente térmico contínuo ou de
+condições de conforto. A inferência de conforto e o controle automatizado,
+previstos como aplicações na proposta inicial, dependem de uma etapa
+adicional de instrumentação e definição do protocolo de avaliação.
+
+\section{Objetivos}
+No recorte delimitado, o objetivo geral é avaliar a reconstrução virtual
+de temperaturas a partir de dados históricos de sensores IoT,
+estruturados e enriquecidos com cadastro espacial e umidade,
+utilizando medições físicas como referência experimental.
+
+Como objetivos específicos, estabelecem-se:
+\begin{itemize}
+    \item caracterizar os dados históricos e a disponibilidade das medições;
+    \item organizar os sensores por identificadores cadastrais e posições relativas;
+    \item preparar e sincronizar as séries em uma grade temporal comum;
+    \item comparar média aritmética, regressão linear e Random Forest;
+    \item investigar o efeito da quantidade de sensores de entrada;
+    \item comparar seleção por correlação e proximidade no subconjunto com coordenadas;
+    \item avaliar a umidade dos sensores de entrada como informação complementar
+    à reconstrução de temperatura;
+    \item interpretar os erros por sensor e representar espacialmente as temperaturas médias.
+\end{itemize}
+
+\section{Organização do Trabalho}
+Este trabalho está organizado em quatro capítulos. O
+Capítulo~\ref{sec:revisao} apresenta os conceitos de sensoriamento virtual,
+séries temporais e métodos de estimativa, além dos trabalhos relacionados.
+O Capítulo~\ref{sec:desenvolvimento} descreve a infraestrutura, os dados,
+o pré-processamento e o protocolo de avaliação, e apresenta os resultados
+e suas limitações. O Capítulo~\ref{sec:conclusao} reúne as conclusões e as
+possibilidades de continuidade da pesquisa.

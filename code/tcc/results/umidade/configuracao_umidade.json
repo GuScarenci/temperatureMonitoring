@@ -1,0 +1,35 @@
+{
+  "executado_em_utc": "2026-10-31T20:37:43.561159+00:00",
+  "ids": [
+    1,
+    48,
+    887,
+    891,
+    86782,
+    86789,
+    86790,
+    86791,
+    86793
+  ],
+  "sha256_temperatura": "36a7345b1b519a49f45620ea6fd939827255a99880e0e59e0daf639e421e9195",
+  "sha256_extracao_umidade": "c8b0eace227bb99299cc42f4425967dca7219ef56fc104099d4cf4f667c61045",
+  "inicio_teste_utc": "2026-07-11T16:00:00+00:00",
+  "imputacao": false,
+  "criterio_umidade": "Exclusão integral de janela se mínimo<0, máximo>100 ou contagem válida=0",
+  "umidade_alvo_usada": false,
+  "parametros": {
+    "copy_X": true,
+    "fit_intercept": true,
+    "n_jobs": null,
+    "positive": false,
+    "tol": 1e-06
+  },
+  "n_avaliacoes": 18,
+  "janelas_invalidas": 0,
+  "versoes": {
+    "python": "3.12.3",
+    "pandas": "3.0.6",
+    "numpy": "2.5.4",
+    "scikit_learn": "1.9.1"
+  }
+}

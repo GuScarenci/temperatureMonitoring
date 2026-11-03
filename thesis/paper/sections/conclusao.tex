@@ -1,5 +1,49 @@
 \chapter{Conclusão}
 \label{sec:conclusao}
 
-Sintetize os principais resultados, as limitações do estudo e as possibilidades
-de trabalhos futuros.
+Este trabalho avaliou a reconstrução da temperatura de sensores físicos
+utilizando medições contemporâneas dos demais dispositivos do ambiente
+1006 do LASDPC. O objetivo delimitado foi atendido com nove
+sensores e dados históricos agregados em cinco minutos, preservando
+a ordem temporal entre treinamento e teste. A contribuição é a preparação e o enriquecimento dos dados
+para aprendizado supervisionado, com avaliação reproduzível.
+
+Os resultados mostraram que os métodos supervisionados reduziram o
+erro médio entre alvos em relação à média aritmética. A regressão
+linear obteve MAE médio de 0,257~°C e a Random Forest, de 0,254~°C,
+contra 0,927~°C da referência. A proximidade entre os métodos
+supervisionados, com menor MAE para a Random Forest e menor média
+dos RMSE para a regressão linear, não permite estabelecer superioridade
+geral de um deles. A avaliação individual também mostrou que a média
+aritmética apresentou menor MAE nos alvos 1 e 86782. O resultado agregado deve considerar essas diferenças.
+
+A análise de quantidade de entradas indicou que utilizar mais sensores
+não assegurou menor erro. Com regressão linear e seleção por correlação
+calculada no treinamento, quatro entradas apresentaram o menor MAE
+médio entre as quantidades avaliadas, de 0,238~°C. Esse resultado
+caracteriza o período de teste e a regra de seleção adotada, sem definir
+uma quantidade ótima para todos os alvos ou demonstrar vantagem sobre
+critérios de seleção não avaliados.
+
+As conclusões se restringem a um ambiente, um período e uma divisão
+cronológica, com avaliação apenas em janelas completas. As medições
+físicas foram utilizadas como referência, sem validação contra um
+instrumento calibrado. Assim, a concordância observada não demonstra
+exatidão metrológica, estabilidade em outras condições ou capacidade
+de reconstruir todo o campo térmico. A inferência de conforto e o controle de climatização da proposta
+inicial permanecem como aplicações futuras, não como objetivos já
+concluídos por esta avaliação de sensoriamento virtual.
+
+Na análise espacial com seis sensores, a seleção por correlação
+apresentou menor MAE médio que a proximidade para uma a quatro
+entradas. O mapa das médias situou as diferenças entre dispositivos,
+com interpolação ilustrativa limitada à região fora do cluster.
+
+O acréscimo de umidade reduziu pouco o MAE médio, com melhora em
+cinco alvos e piora em quatro. A energia permaneceu exploratória,
+pois seus registros cobriram apenas 4,07\% da grade e sua unidade
+não foi confirmada.
+
+Como continuidade, propõe-se validar os modelos em outros períodos,
+equiparar as fontes e definir um protocolo de conforto com as
+variáveis ambientais e pessoais necessárias.
