@@ -99,7 +99,7 @@ de estimativa. As medições do próprio alvo não podem integrar essas
 entradas durante a reconstrução; seu histórico pode fornecer a resposta
 para treinamento supervisionado. Neste trabalho, o sensoriamento virtual é avaliado por meio da reconstrução das medições de sensores físicos existentes, tratados individualmente como alvos de estimativa. Esse procedimento permite comparar os valores reconstruídos com medições reais, sem depender de observações em posições não instrumentadas.
 
-\citeonline{brunello2021virtual} constitui uma das referências metodológicas deste trabalho, especialmente pela investigação da reconstrução de temperaturas a partir de outros sensores e pela avaliação da influência da seleção das entradas. Essas questões orientaram os experimentos realizados no LASDPC, nos quais foram comparados diferentes métodos de estimativa e critérios de seleção de sensores, considerando uma infraestrutura física previamente instalada.
+O trabalho de \citeonline{brunello2021virtual} constitui uma das referências metodológicas deste trabalho, especialmente pela investigação da reconstrução de temperaturas a partir de outros sensores e pela avaliação da influência da seleção das entradas. Essas questões orientaram os experimentos realizados no LASDPC, nos quais foram comparados diferentes métodos de estimativa e critérios de seleção de sensores, considerando uma infraestrutura física previamente instalada.
 %investigam essa abordagem em um escritório
 %com sensores distribuídos irregularmente, combinando seleção de entradas
 %e avaliação de preditores.
@@ -135,6 +135,8 @@ atribui-se seu valor diretamente.
 
 O Kriging é um método de interpolação geoestatística que utiliza a estrutura de dependência espacial entre observações para estimar valores em posições não medidas. Diferentemente do IDW, que determina os pesos a partir das distâncias, o Kriging considera um modelo de correlação espacial para calcular as estimativas.
 Embora \citeonline{jedermann2011interpolation} tenham observado vantagens do Kriging em relação ao IDW nos conjuntos avaliados, a escolha do IDW neste trabalho não teve como objetivo identificar o método de interpolação espacial mais preciso. O IDW foi empregado exclusivamente como recurso de visualização exploratória, em razão de sua simplicidade e da possibilidade de representar a influência das observações em função da distância. Sua aplicação não substitui uma validação espacial e não permite concluir que as temperaturas interpoladas correspondam às condições reais em posições não instrumentadas.
+
+Ambos os métodos podem utilizar sistemas de coordenadas locais, não sendo necessária a representação das posições por latitude e longitude. Neste trabalho, as coordenadas relativas e aproximadas dos sensores foram utilizadas para calcular as distâncias empregadas na interpolação IDW. A escolha desse método decorreu de sua finalidade exclusivamente ilustrativa e da simplicidade de sua aplicação, e não da impossibilidade de utilizar Kriging com as coordenadas disponíveis.
 
 A regressão linear estima o alvo por uma combinação ajustada das entradas:
 \begin{equation}
@@ -279,7 +281,7 @@ utilizadas na definição e na avaliação dos experimentos.
         \hline
         \textbf{Trabalho} &
         \textbf{Foco principal} &
-        \textbf{Relação com o presente trabalho} \\
+        \textbf{Contribuição e distinção em relação ao presente trabalho} \\
         \hline
         Marques et al. (2026) &
         Infraestrutura IoT para monitoramento e controle de climatização. &
@@ -289,13 +291,13 @@ utilizadas na definição e na avaliação dos experimentos.
         Fundamentação da integração de diferentes grandezas ambientais. \\
         Brunello et al. (2021) &
         Sensoriamento virtual de temperatura e seleção de sensores. &
-        Principal referência metodológica para reconstrução e seleção de entradas. \\
+        Fundamenta a reconstrução virtual e a seleção de sensores; este estudo avalia métodos mais simples com dados históricos do LASDPC. \\
         Yuan et al. (2025) &
         Reconstrução de campos térmicos com sensores distribuídos. &
-        Importância da distribuição espacial dos sensores. \\
+        Demonstra a importância da distribuição espacial; este trabalho utiliza uma infraestrutura existente, sem otimizar o posicionamento dos sensores. \\
         Jedermann et al. (2011) &
         Interpolação espacial de temperaturas por Kriging e IDW. &
-        Fundamentação da representação espacial das temperaturas. \\
+        Fundamenta a interpolação espacial; neste estudo, o IDW é utilizado apenas para visualização, sem avaliação de métodos geoestatísticos. \\
         AlSalehy e Bailey (2025) & Detecção de anomalias e imputação em séries temporais & Fundamentação dos cuidados com a qualidade e continuidade dos dados \\
         Cho, Chang e Hwang (2022) & Pré-processamento e tratamento de dados em classificação & Importância da preparação dos dados para a avaliação experimental \\
         \hline

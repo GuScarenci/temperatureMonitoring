@@ -1,5 +1,5 @@
 % Template LaSDPC/ICMC-USP para TCC - versão pré-preenchida
-\documentclass[brazilian]{packages/icmc}
+\documentclass[english, brazilian]{packages/icmc}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -14,28 +14,46 @@
 \input{metadata}
 
 \textoresumo{
-Este trabalho avalia a reconstrução virtual de temperaturas com dados
-históricos de sensores da Internet das Coisas (IoT) no Laboratório de
-Sistemas Distribuídos e Programação Concorrente (LASDPC), da Universidade
-de São Paulo. Foram utilizados nove sensores do ambiente 1006, de junho
-a julho de 2026, com médias de cinco minutos e 12.892 janelas completas.
-Compararam-se média aritmética, regressão linear e Random Forest,
-com divisão cronológica de 70\% para treinamento e 30\% para teste.
-Os erros absolutos médios entre os nove alvos foram, respectivamente,
-0,927~°C, 0,257~°C e 0,254~°C, com vantagens distintas por dispositivo.
-Na regressão linear com seleção por correlação no treinamento, quatro
-entradas apresentaram o menor erro médio entre as quantidades avaliadas,
-de 0,238~°C. Na análise espacial com seis sensores, a correlação
-apresentou menor erro médio que a proximidade para uma a quatro entradas.
-O acréscimo de umidade reduziu pouco o erro médio e apresentou
-efeitos distintos por alvo. Os registros de energia foram limitados
-a uma auditoria exploratória por sua baixa disponibilidade.
-Um mapa das médias representou os pontos observados e a divisória,
-com interpolação ilustrativa fora do cluster. Os resultados sustentam
-a reconstrução nas condições estudadas, sem assegurar desempenho
-equivalente em outros períodos ou ambientes.
-}{sensoriamento virtual, temperatura, Internet das Coisas,
-regressão, séries temporais}
+O monitoramento térmico de ambientes internos por sensores IoT fornece medições em posições específicas, mas a disponibilidade limitada de dispositivos e a ocorrência de falhas podem dificultar a caracterização das temperaturas em diferentes pontos. Nesse contexto, o sensoriamento virtual permite investigar a reconstrução de temperaturas a partir das medições de outros sensores. Este trabalho avalia essa abordagem utilizando dados históricos de nove dispositivos instalados no Laboratório de Sistemas Distribuídos e Programação Concorrente (LASDPC), da Universidade de São Paulo. As medições foram agregadas em intervalos de cinco minutos, resultando em 12.892 janelas completas, com divisão cronológica de 70\% para treinamento e 30\% para teste. Foram comparadas média aritmética, regressão linear e Random Forest, além da influência da quantidade e da seleção de sensores de referência e da inclusão de umidade relativa. Os erros absolutos médios entre os nove alvos foram de 0,927~°C, 0,257~°C e 0,254~°C, respectivamente. Na regressão linear, quatro entradas selecionadas por correlação apresentaram o menor erro médio entre as configurações avaliadas, de 0,238~°C. A seleção por correlação também apresentou menor erro médio que a proximidade física na análise espacial complementar, enquanto a inclusão de umidade produziu ganhos reduzidos e não uniformes. Os resultados indicam que a regressão linear constitui uma alternativa inicial competitiva para a reconstrução de temperaturas no ambiente estudado, com desempenho próximo ao da Random Forest e menor complexidade estrutural. Conclui-se que o aproveitamento de dados históricos de sensores existentes permite reconstruções com erros relativamente baixos nas condições avaliadas, embora sua aplicação em outros períodos, ambientes e posições não instrumentadas ainda exija validação adicional.}{sensoriamento virtual, temperatura, Internet das Coisas, regressão, séries temporais}
+
+\textoresumo[english]{
+Thermal monitoring of indoor environments using Internet of Things
+(IoT) sensors provides measurements at specific locations. However,
+the limited availability of devices and potential sensor failures
+can make it difficult to characterize temperatures at different
+points. In this context, virtual sensing allows temperatures to
+be reconstructed from measurements collected by other sensors.
+This work evaluates this approach using historical data from nine
+devices installed at the Distributed Systems and Concurrent
+Programming Laboratory (LASDPC) of the University of São Paulo.
+The measurements were aggregated into five-minute intervals,
+resulting in 12,892 complete time windows, with a chronological
+split of 70\% for training and 30\% for testing.
+Arithmetic mean, linear regression, and Random Forest were
+compared, along with the influence of the number and selection
+of reference sensors and the inclusion of relative humidity.
+The mean absolute errors averaged across the nine target sensors
+were 0.927~°C, 0.257~°C, and 0.254~°C, respectively.
+For linear regression, four inputs selected based on correlation
+achieved the lowest average error among the evaluated
+configurations, at 0.238~°C. Correlation-based selection also
+resulted in a lower average error than physical proximity in the
+complementary spatial analysis, while including humidity provided
+small and inconsistent improvements. The results indicate that
+linear regression is a competitive initial approach for temperature
+reconstruction in the studied environment, achieving performance
+close to Random Forest with lower structural complexity.
+It is concluded that historical data from existing sensors
+can support temperature reconstruction with relatively low errors
+under the evaluated conditions, although applications to other
+periods, environments, and uninstrumented locations require
+further validation.
+}{
+virtual sensing, temperature, Internet of Things,
+linear regression, time series
+}
+
+%Este trabalho avalia a reconstrução virtual de temperaturas com dados históricos de sensores da Internet das Coisas (IoT) no Laboratório de Sistemas Distribuídos e Programação Concorrente (LASDPC), da Universidade de São Paulo. Foram utilizados nove sensores do ambiente 1006, de junho a julho de 2026, com médias de cinco minutos e 12.892 janelas completas. Compararam-se média aritmética, regressão linear e Random Forest, com divisão cronológica de 70\% para treinamento e 30\% para teste. Os erros absolutos médios entre os nove alvos foram, respectivamente, 0,927~°C, 0,257~°C e 0,254~°C, com vantagens distintas por dispositivo. Na regressão linear com seleção por correlação no treinamento, quatro entradas apresentaram o menor erro médio entre as quantidades avaliadas, de 0,238~°C. Na análise espacial com seis sensores, a correlação apresentou menor erro médio que a proximidade para uma a quatro entradas. O acréscimo de umidade reduziu pouco o erro médio e apresentou efeitos distintos por alvo. Os registros de energia foram limitados a uma auditoria exploratória por sua baixa disponibilidade. Um mapa das médias representou os pontos observados e a divisória, com interpolação ilustrativa fora do cluster. Os resultados sustentam a reconstrução nas condições estudadas, sem assegurar desempenho equivalente em outros períodos ou ambientes. }{sensoriamento virtual, temperatura, Internet das Coisas, regressão, séries temporais}
 
 \definecolor{blue}{RGB}{41,5,195}
 \makeatletter
@@ -44,7 +62,7 @@ regressão, séries temporais}
 
 % Elementos pré-textuais opcionais
 %\textodedicatoria*{tex/pre-textual/dedicatoria}
-%\textoagradecimentos*{tex/pre-textual/agradecimentos}
+\textoagradecimentos*{tex/pre-textual/agradecimentos}
 \incluilistadefiguras
 \incluilistadetabelas
 

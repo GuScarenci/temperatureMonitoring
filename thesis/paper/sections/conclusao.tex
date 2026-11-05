@@ -47,16 +47,26 @@ o desempenho depende do sensor-alvo e da regra de seleção
 empregada, não sendo possível estabelecer uma quantidade
 universalmente ótima com base nos experimentos realizados.
 
+% Na análise espacial complementar, realizada com seis sensores de posições conhecidas, a seleção por correlação histórica apresentou menor MAE médio que a seleção por proximidade física para uma a quatro entradas. Esse comportamento indica que a distância euclidiana, isoladamente, não foi o critério mais favorável nas configurações avaliadas. A representação espacial das temperaturas médias também permitiu visualizar diferenças entre os dispositivos, utilizando interpolação IDW exclusivamente para fins ilustrativos, sem validar um campo térmico contínuo.
+
 Na análise espacial complementar, realizada com seis sensores
 de posições conhecidas, a seleção por correlação histórica
 apresentou menor MAE médio que a seleção por proximidade
-física para uma a quatro entradas. Esse comportamento indica
-que a distância euclidiana, isoladamente, não foi o critério
-mais favorável nas configurações avaliadas. A representação
-espacial das temperaturas médias também permitiu visualizar
-diferenças entre os dispositivos, utilizando interpolação
-IDW exclusivamente para fins ilustrativos, sem validar
-um campo térmico contínuo.
+física para uma a quatro entradas. Uma possível explicação
+é que a correlação considera as relações observadas entre
+as séries temporais, podendo refletir influências ambientais
+compartilhadas que não são representadas apenas pela distância
+euclidiana. A proximidade física, por sua vez, não considera
+diretamente fatores como obstáculos, circulação de ar e fontes
+de calor. Embora os resultados indiquem uma vantagem da
+seleção por correlação nas configurações avaliadas, não
+permitem identificar as causas físicas desse comportamento
+nem estabelecer a superioridade geral desse critério.
+
+A representação espacial das temperaturas médias também
+permitiu visualizar diferenças entre os dispositivos,
+utilizando interpolação IDW exclusivamente para fins
+ilustrativos, sem validar um campo térmico contínuo.
 
 O enriquecimento das entradas com umidade relativa produziu
 uma redução pequena no MAE médio da regressão linear, com
@@ -68,6 +78,26 @@ disponibilidade temporal, cobrindo apenas 4,07\% da grade
 considerada, e não tiveram sua unidade física confirmada.
 Por esse motivo, sua utilização permaneceu restrita a uma
 análise exploratória.
+
+Em conjunto, os resultados indicam que os dados históricos
+de uma infraestrutura IoT existente podem ser utilizados
+para reconstruir temperaturas de sensores físicos com
+erros relativamente baixos nas condições experimentais
+avaliadas. A comparação entre métodos e configurações
+evidencia a importância de considerar as características
+de cada sensor-alvo e selecionar adequadamente as
+informações utilizadas na reconstrução.
+
+%As conclusões obtidas estão limitadas a um único ambiente, um período de observação e uma divisão cronológica de treinamento e teste, considerando apenas janelas com temperaturas disponíveis para todos os sensores do conjunto principal. Não foram avaliados cenários de indisponibilidade simultânea das entradas ou a estabilidade dos modelos em outras condições ambientais. Além disso, as medições dos próprios sensores foram utilizadas como referência, sem comparação com instrumentos calibrados. Portanto, os erros observados não demonstram exatidão metrológica nem validam diretamente a reconstrução de temperaturas em posições não instrumentadas ou a avaliação de conforto térmico.
+
+% Como continuidade, recomenda-se avaliar os métodos em outros períodos e ambientes, investigar estratégias de reconstrução diante de falhas dos sensores de referência e validar estimativas em posições não instrumentadas.
+
+%A integração de novas fontes de dados, após a verificação de suas convenções temporais e unidades físicas, também poderá ampliar as possibilidades de análise. Por fim, a utilização das temperaturas reconstruídas em estudos de conforto térmico dependerá da definição de um protocolo específico e da obtenção das demais variáveis ambientais e pessoais necessárias.
+
+% Em síntese, os resultados demonstram que dados históricos de uma infraestrutura IoT existente podem ser utilizados para reconstruir temperaturas de sensores físicos com erros relativamente baixos nas condições experimentais avaliadas. A comparação entre métodos e configurações evidencia a importância de considerar as características de cada sensor-alvo e de selecionar adequadamente as informações utilizadas na reconstrução, oferecendo uma base experimental para futuras aplicações de sensoriamento virtual no LASDPC.
+
+\section{Limitações e trabalhos futuros}
+\label{sec:trabalhos_futuros}
 
 As conclusões obtidas estão limitadas a um único ambiente,
 um período de observação e uma divisão cronológica de
@@ -84,24 +114,18 @@ em posições não instrumentadas ou a avaliação de conforto
 térmico.
 
 Como continuidade, recomenda-se avaliar os métodos em
-outros períodos e ambientes, investigar estratégias de
-reconstrução diante de falhas dos sensores de referência
+diferentes períodos e ambientes, investigar estratégias
+de reconstrução diante de falhas dos sensores de referência
 e validar estimativas em posições não instrumentadas.
-A integração de novas fontes de dados, após a verificação
-de suas convenções temporais e unidades físicas, também
-poderá ampliar as possibilidades de análise. Por fim,
-a utilização das temperaturas reconstruídas em estudos
-de conforto térmico dependerá da definição de um protocolo
-específico e da obtenção das demais variáveis ambientais
-e pessoais necessárias.
+A integração de novas fontes de dados, incluindo informações
+meteorológicas externas e registros de funcionamento dos
+equipamentos de climatização, também poderá ampliar as
+possibilidades de análise, desde que suas convenções
+temporais e unidades físicas sejam verificadas.
 
-Em síntese, os resultados demonstram que dados históricos
-de uma infraestrutura IoT existente podem ser utilizados
-para reconstruir temperaturas de sensores físicos com
-erros relativamente baixos nas condições experimentais
-avaliadas. A comparação entre métodos e configurações
-evidencia a importância de considerar as características
-de cada sensor-alvo e de selecionar adequadamente as
-informações utilizadas na reconstrução, oferecendo uma
-base experimental para futuras aplicações de sensoriamento
-virtual no LASDPC.
+Por fim, uma possível extensão consiste na utilização
+das temperaturas reconstruídas como parte de uma avaliação
+de conforto térmico. Para isso, seria necessário estabelecer
+um protocolo específico, incorporando outras variáveis
+ambientais e pessoais relevantes, bem como critérios
+de validação adequados.
